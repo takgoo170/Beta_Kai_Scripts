@@ -1325,7 +1325,7 @@ end
 
 ---------- SCRIPT'S UI -----------
 print("--[[Loaded UI]]--")
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 Window = Fluent:CreateWindow({
     Title = "Kai Hub : Blox Fruits ",
     SubTitle = " by Kai Team (discord.gg/wDMPK3QAmY)",
@@ -8053,7 +8053,7 @@ game.StarterGui:SetCore("SendNotification", {
 	Button2 = "No";
 })
 
-local ScreenGui = Instance.new("ScreenGui")
+--[[local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local ImageLabel = Instance.new("ImageLabel")
 local UICorner = Instance.new("UICorner")
@@ -8101,7 +8101,7 @@ TextButton.Text = ""
 TextButton.Font = Enum.Font.SourceSans
 TextButton.TextSize = 8
 TextButton.TextTransparency = 0
-
+]]
 local TweenService = game:GetService("TweenService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 
