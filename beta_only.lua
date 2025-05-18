@@ -3128,6 +3128,61 @@ spawn(function()
     end
 end)
 end
+Main:AddSection("Chest")
+ToggleChest = Main:AddToggle("ToggleChest", {Title = "Auto Chest", Description = "Tween and collect chests.", Default = false })
+ToggleChest:OnChanged(function(Value)
+    getgenv().AutoFarmChest = Value
+end)
+spawn(function()
+    local lastTarget = nil
+    while wait(0.2) do
+        if getgenv().AutoFarmChest then
+            local player = game:GetService("Players").LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local playerPos = character:GetPivot().Position
+            local chestService = game:GetService("CollectionService")
+            local chests = chestService:GetTagged("_ChestTagged")
+            local closestChest, minDist = nil, math.huge
+            for _, chest in ipairs(chests) do
+                if not chest:GetAttribute("IsDisabled") then
+                    local dist = (chest:GetPivot().Position - playerPos).Magnitude
+                    if dist < minDist then
+                        minDist, closestChest = dist, chest
+                    end
+                end
+            end
+            if closestChest and closestChest ~= lastTarget then
+                lastTarget = closestChest
+                topos(closestChest:GetPivot())
+            end
+        end
+    end
+end)
+Toggle = Other:AddToggle("Toggle", {Title = "Auto Stop Collecting Chest", Description = "Stops automatically if Fist and God's Chalice is owned.", Default = false })
+Toggle:OnChanged(function(Value)
+    getgenv().StopChest = Value
+end)
+spawn(function()
+    while task.wait(0.5) do
+        if getgenv().StopChest then
+            local player = game.Players.LocalPlayer
+            if not player then continue end       
+            local backpack = player:FindFirstChild("Backpack")
+            local character = player.Character            
+            if backpack and character then
+                if backpack:FindFirstChild("Fist of Darkness") or character:FindFirstChild("Fist of Darkness") or 
+                   backpack:FindFirstChild("God's Chalice") or character:FindFirstChild("God's Chalice") then
+                    getgenv().AutoFarmChest = false
+                    if ToggleChest and typeof(ToggleChest.Set) == "function" then
+                        ToggleChest:Set(false)
+                    end
+                    break
+                end
+            end
+        end
+    end
+end)
+
 Main:AddSection("Materials")
 local MaterialList = {}
 if World1 then
@@ -3216,6 +3271,7 @@ elseif World3 then
         "Cake Queen", "Cake Prince", "Dough King"
     }
 end
+Main:AddSection("Bosses")
 Dropdown = Main:AddDropdown("Dropdown", {
     Title = "Select Boss",
     Values = tableBoss,
@@ -4405,8 +4461,8 @@ spawn(function()
     end
 end)
 Toggle = Stack:AddToggle("Toggle", {Title = "Auto Tyrant of the Skies", Default = false })     
-Toggle:OnChanged(function(Value)
-     	_G.FarmDaiBan = Value 
+Toggle:OnChanged(function(value)
+     	_G.FarmDaiBan = value 
      	StopTween(_G.FarmDaiBan)
        end)
            local TyrantoftheSkies = CFrame.new(-16194.0048828125, 155.21844482421875, 1420.719970703125)
