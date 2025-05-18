@@ -1,3 +1,13 @@
+--[[
+Version: BETA
+This script was made by Takgoo.
+Kai Hub is self developed.
+Joining to our discord is a support to us.
+Join now: discord.gg/wDMPK3QAmY 
+
+]]
+
+------- SCRIPT START --------
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
