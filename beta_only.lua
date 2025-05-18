@@ -3158,7 +3158,7 @@ spawn(function()
         end
     end
 end)
-Toggle = Other:AddToggle("Toggle", {Title = "Auto Stop Collecting Chest", Description = "Stops automatically if Fist and God's Chalice is owned.", Default = false })
+Toggle = Main:AddToggle("Toggle", {Title = "Auto Stop Collecting Chest", Description = "Stops automatically if Fist and God's Chalice is owned.", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().StopChest = Value
 end)
@@ -3253,6 +3253,7 @@ spawn(function()
         end
     end
 end)
+Main:AddSection("Bosses")
 if World1 then
     tableBoss = {
         "The Gorilla King", "Bobby", "Yeti", "Mob Leader", "Vice Admiral", 
@@ -3271,7 +3272,6 @@ elseif World3 then
         "Cake Queen", "Cake Prince", "Dough King"
     }
 end
-Main:AddSection("Bosses")
 Dropdown = Main:AddDropdown("Dropdown", {
     Title = "Select Boss",
     Values = tableBoss,
