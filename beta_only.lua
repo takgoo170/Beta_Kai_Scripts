@@ -1323,7 +1323,7 @@ function AttackNoCoolDown()
     end
 end
 
-function AutoHaki()
+--[[function AutoHaki()
   local player = game:GetService("Players").LocalPlayer
   local character = player.Character
   if character and not character:FindFirstChild("HasBuso") then
@@ -1332,7 +1332,7 @@ function AutoHaki()
       remote:InvokeServer("Buso") 
     end
   end
-end
+end]]
 
 ---------- SCRIPT'S UI -----------
 print("--[[Loaded UI]]--")
@@ -4405,7 +4405,8 @@ spawn(function()
     end
 end)
 Toggle = Stack:AddToggle("Toggle", {Title = "Auto Tyrant of the Skies", Default = false })     
-     	_G.FarmDaiBan = value 
+Toggle:OnChanged(function(Value)
+     	_G.FarmDaiBan = Value 
      	StopTween(_G.FarmDaiBan)
        end)
            local TyrantoftheSkies = CFrame.new(-16194.0048828125, 155.21844482421875, 1420.719970703125)
@@ -8149,9 +8150,9 @@ Input = PVP:AddInput("Input", {
 ----------------------------------------------------------------------------------------------------
 game.StarterGui:SetCore("SendNotification", {
     Title = "Kai Hub";
-    Text = "Loading...";
+    Text = "Script Loaded.";
     Icon = "rbxassetid://97615227201354";
-    Duration = 12;
+    Duration = 5;
 })
 
 game.StarterGui:SetCore("SendNotification", {
