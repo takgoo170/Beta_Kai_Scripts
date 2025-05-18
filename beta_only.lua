@@ -1,5 +1,11 @@
 --[[
 Version: BETA
+Owner/Developer:
+- Takgoo
+BETA Users:
+- Sage
+- Chii
+||=====================||
 This script was made by Takgoo.
 Kai Hub is self developed.
 Joining to our discord is a support to us.
