@@ -1323,6 +1323,17 @@ function AttackNoCoolDown()
     end
 end
 
+function AutoHaki()
+  local player = game:GetService("Players").LocalPlayer
+  local character = player.Character
+  if character and not character:FindFirstChild("HasBuso") then
+    local remote = game:GetService("ReplicatedStorage").Remotes.CommF_
+    if remote then
+      remote:InvokeServer("Buso") 
+    end
+  end
+end
+
 ---------- SCRIPT'S UI -----------
 print("--[[Loaded UI]]--")
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
@@ -3948,7 +3959,7 @@ Toggle:OnChanged(function(Value)
     StopTween(getgenv().AutoGetMelee)
 end)
 
-
+if World2 then
 Toggle = Stack:AddToggle("Toggle", {Title = "Auto Factory", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().AutoFactory = Value
@@ -3973,6 +3984,7 @@ task.spawn(function()
         end
     end
 end)
+end
 Stack:AddSection("Raid Boss")
 Toggle = Stack:AddToggle("Toggle", { Title = "Auto Pirate Raid", Default = false })
 Toggle:OnChanged(function(Value)
@@ -4392,6 +4404,103 @@ spawn(function()
         end
     end
 end)
+Toggle = Stack:AddToggle("Toggle", {Title = "Auto Tyrant of the Skies", Default = false })     
+     	_G.FarmDaiBan = value 
+     	StopTween(_G.FarmDaiBan)
+       end)
+           local TyrantoftheSkies = CFrame.new(-16194.0048828125, 155.21844482421875, 1420.719970703125)
+    local Plsmon = game:GetService("Workspace").Enemies
+     task.spawn(function()
+    while task.wait() do
+        if _G.FarmDaiBan then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Tyrant of the Skies") then
+                    for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Tyrant of the Skies" then
+                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                repeat
+                                    task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(0, 40, 0))
+                                    NeedAttacking = true
+                                until not _G.FarmDaiBan or not v.Parent or v.Humanoid.Health <= 0
+                                wait(1)
+                            end
+                        end
+                    end
+                else
+                    local foundMob = false
+                    for _, mobName in pairs({"Isle Outlaw", "Island Boy", "Isle Champion", "Serpent Hunter", "Skull Slayer"}) do
+                        if game:GetService("Workspace").Enemies:FindFirstChild(mobName) then
+                            foundMob = true
+                            break
+                        end
+                    end
+                    if foundMob then
+                        for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == "Isle Outlaw" or v.Name == "Island Boy" or v.Name == "Isle Champion" or v.Name == "Serpent Hunter" or v.Name == "Skull Slayer" then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat
+                                        task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        StartBring = true
+                                        v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+                                        PosMon = v.HumanoidRootPart.CFrame
+                                        MonFarm = v.Name
+                                        v.Head.CanCollide = false
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
+                                        NeedAttacking = true
+                                        if v.Name == "Isle Outlaw" then
+                                            Bring(v.Name, CFrame.new(-16442.814453125, 116.13899993896484, -264.4637756347656))
+                                        elseif v.Name == "Island Boy" then
+                                            Bring(v.Name, CFrame.new(-16901.26171875, 84.06756591796875, -192.88906860351562))
+                                        elseif v.Name == "Isle Champion" then
+                                            Bring(v.Name, CFrame.new(-16641.6796875, 235.7825469970703, 1031.282958984375))
+                                        elseif v.Name == "Serpent Hunter" then
+                                            Bring(v.Name, CFrame.new(-16521.0625, 106.09285, 1488.78467, 0.469467044, 0, 0.882950008, 0, 1, 0, -0.882950008, 0, 0.469467044))
+                                            elseif v.Name == "Skull Slayer" then
+                                            Bring(v.Name, CFrame.new(-16855.043, 122.457253, 1478.15308, -0.999392271, 0, -0.0348687991, 0, 1, 0, 0.0348687991, 0, -0.999392271))
+                                        end
+                                    until not _G.FarmDaiBan or not v.Parent or v.Humanoid.Health <= 0 or game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 or game:GetService("ReplicatedStorage"):FindFirstChild("Tyrant of the Skies [Lv. 2600] [Raid Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tyrant of the Skies [Lv. 2600] [Raid Boss]")
+                                    DamageAura = false
+                                end
+                            end
+                        end
+                    else
+                        local RandomTele = math.random(1, 3)
+                        if RandomTele == 1 then
+                            topos(CFrame.new(-1436.86011, 167.753616, -12296.9512))
+                        elseif RandomTele == 2 then
+                            topos(CFrame.new(-2383.78979, 150.450592, -12126.4961))
+                        elseif RandomTele == 3 then
+                            topos(CFrame.new(-2231.2793, 168.256653, -12845.7559))
+                        end
+                    end
+                    if BypassTP then
+                        if (playerPos - TyrantoftheSkies.Position).Magnitude > 1500 then
+                            BTP(TyrantoftheSkies)
+                        else
+                            topos(TyrantoftheSkies)
+                        end
+                    else
+                        topos(TyrantoftheSkies)
+                    end
+                    UnEquipWeapon(_G.Selectweapon)
+                    topos(CFrame.new(-16194.0048828125, 155.21844482421875, 1420.719970703125))
+                end
+            end)
+        end
+    end
+end)
+                        
+if World2 then
 Toggle = Stack:AddToggle("Toggle", {Title = "Auto Darkbeard", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().AutoDarkbeard = Value
@@ -4429,6 +4538,7 @@ spawn(function()
         end
     end
 end)
+end
 --------- OTHER FARM TAB ---------
 Stack:AddSection("Dragon Dojo Quest")
 Stack:AddButton({
