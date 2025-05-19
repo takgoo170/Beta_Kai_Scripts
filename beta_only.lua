@@ -1363,6 +1363,7 @@ Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl 
 })
 ---------------------- TABS -------------------------
+Beta = Window:AddTab({ Title = "BETA", Icon = "info" })
 Server = Window:AddTab({ Title = "Server Status", Icon = "scroll" }) -- 1604
 LGa = Window:AddTab({ Title = "Local Player", Icon = "user" })
 Main = Window:AddTab({ Title = "Farm", Icon = "home" })
@@ -1601,6 +1602,9 @@ Shop:AddButton({
         end
     end
 })
+---------- BETA TAB ----------
+Beta:AddSection("BETA VERSION")
+
 -------- SERVER TAB --------
 Time = Server:AddParagraph({
     Title = "Time Zone",
