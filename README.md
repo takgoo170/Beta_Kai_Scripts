@@ -1,2 +1,2 @@
-discord.gg/wDMPK3QAmY
+https://discord.gg/wDMPK3QAmY
 
