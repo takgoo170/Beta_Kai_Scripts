@@ -1542,66 +1542,66 @@ Shop:AddButton({
 })
 Shop:AddSection("Sword")
 Shop:AddButton({
-    Title = "Cutlass Katana",
+    Title = "Buy Cutlass Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cutlass")
       end    
 })
 Shop:AddButton({
-    Title = "Katana",
+    Title = "Buy Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Katana")
       end    
 })
 
 Shop:AddButton({
-    Title = "Iron Mace",
+    Title = "Buy Iron Mace",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Iron Mace")
       end    
 })
 Shop:AddButton({
-    Title = "Dual Katana",
+    Title = "Buy Dual Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Duel Katana")
       end    
 })
 
 Shop:AddButton({
-    Title = "Triple Katana",
+    Title = "Buy Triple Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Triple Katana")
       end    
 })
 
 Shop:AddButton({
-    Title = "Pipe",
+    Title = "Buy Pipe",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Pipe")
       end    
 })
 Shop:AddButton({
-    Title = "Dual-Headed Blade ",
+    Title = "Buy Dual-Headed Blade ",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Dual-Headed Blade")
       end    
 })
 
 Shop:AddButton({
-    Title = "Bisento",
+    Title = "Buy Bisento",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Bisento")
       end    
 })
 
 Shop:AddButton({
-    Title = "Soul Cane",
+    Title = "Buy Soul Cane",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Soul Cane")
       end    
 })
 Shop:AddButton({
-    Title = "Pole v.2 [ 5,000 Fragments ]",
+    Title = "Buy Pole v2 [ 5,000 Fragments ]",
     Description = "must have the requirements",
     Callback = function()
         game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk")
@@ -1609,34 +1609,34 @@ Shop:AddButton({
 })
 Shop:AddSection("Gun")
 Shop:AddButton({
-    Title = "Slingshot",
+    Title = "Buy Slingshot",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Slingshot")
       end    
 })
 
 Shop:AddButton({
-    Title = "Musket",
+    Title = "Buy Musket",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Musket")
       end    
 })
 
 Shop:AddButton({
-    Title = "Flintlock",
+    Title = "Buy Flintlock",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Flintlock")
       end    
 })
 Shop:AddButton({
-    Title = "Refined Slingshot",
+    Title = "Buy Refined Slingshot",
     Callback = function()
           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Refined Flintlock")
       end    
 })
 
 Shop:AddButton({
-    Title = "Refined Flintlock",
+    Title = "Buy Refined Flintlock",
     Callback = function()
         local args = {
             [1] = "BuyItem",
@@ -1647,13 +1647,13 @@ Shop:AddButton({
 })
 
 Shop:AddButton({
-    Title = "Cannon",
+    Title = "Buy Cannon",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cannon")
       end    
 })
 Shop:AddButton({
-    Title = "Kabucha [ 1,500 Fragments]",
+    Title = "Buy Kabucha [ 1,500 Fragments]",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","2")
@@ -1661,7 +1661,7 @@ Shop:AddButton({
 })
 
 Shop:AddButton({
-    Title = "Bizarre Rifle [ 250 Ectoplasm ]",
+    Title = "Buy Bizarre Rifle [ 250 Ectoplasm ]",
     Callback = function()
         local A_1 = "Ectoplasm"
         local A_2 = "Buy"
@@ -1675,7 +1675,25 @@ Shop:AddButton({
         Event:InvokeServer(A_1, A_2, A_3)
       end    
 })
-
+Shop:AddSection("Accessory")
+Shop:AddButton({
+    Title = "Buy Black Cape",
+    Callback = function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Black Cape")
+       end
+})
+Shop:AddButton({
+    Title = "Buy Swordsman Hat",
+    Callback = function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Swordsman Hat")
+       end
+})
+Shop:AddButton({
+    Title = "Buy Tomae Ring",
+    Callback = function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Tomae Ring")
+       end
+})
 Shop:AddSection("Abilities Shop")
 Shop:AddButton({
 	Title = "Skyjump [ $10,000 Beli ]",
@@ -1701,16 +1719,16 @@ Shop:AddButton({
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Soru")
 	end
 })
-Shop:AddSection("Other")
+Shop:AddSection("Fragments")
 Shop:AddButton({
-     Title = "Buy Stats Refund (2500F)",
+     Title = "Buy Stats Refund [ 2500F ]",
      Callback = function()            
          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","1")
          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","2")
      end
 })
 Shop:AddButton({
-     Title = "Buy Race Reroll (3000F)",
+     Title = "Buy Race Reroll [ 3000F ]",
      Callback = function()            
          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","1")
 	     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","2")
@@ -1727,7 +1745,7 @@ Shop:AddButton({
     end
 })
 Shop:AddButton({
-    Title = "Buy Cyborg Race (2500F)",
+    Title = "Buy Cyborg Race [ 2500F ]",
     Callback = function()
         if not isBuying then
             isBuying = true
