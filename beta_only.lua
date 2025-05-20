@@ -1363,7 +1363,7 @@ Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl 
 })
 ---------------------- TABS -------------------------
-Beta = Window:AddTab({ Title = "BETA", Icon = "info" })
+--Beta = Window:AddTab({ Title = "BETA", Icon = "info" })
 Server = Window:AddTab({ Title = "Server Status", Icon = "scroll" }) -- 1604
 LGa = Window:AddTab({ Title = "Local Player", Icon = "user" })
 Main = Window:AddTab({ Title = "Farm", Icon = "home" })
@@ -1540,6 +1540,73 @@ Shop:AddButton({
         CommF_:InvokeServer("BuySanguineArt")
     end
 })
+Shop:AddSection("Sword")
+Shop:AddButton({
+    Title = "Cutlass Katana",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cutlass")
+      end    
+})
+Shop:AddButton({
+    Title = "Katana",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Katana")
+      end    
+})
+
+Shop:AddButton({
+    Title = "Iron Mace",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Iron Mace")
+      end    
+})
+Shop:AddButton({
+    Title = "Dual Katana",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Duel Katana")
+      end    
+})
+
+Shop:AddButton({
+    Title = "Triple Katana",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Triple Katana")
+      end    
+})
+
+Shop:AddButton({
+    Title = "Pipe",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Pipe")
+      end    
+})
+Shop:AddButton({
+    Title = "Dual-Headed Blade ",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Dual-Headed Blade")
+      end    
+})
+
+Shop:AddButton({
+    Title = "Bisento",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Bisento")
+      end    
+})
+
+Shop:AddButton({
+    Title = "Soul Cane",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Soul Cane")
+      end    
+})
+Shop:AddButton({
+    Title = "Pole v.2 [ 5,000 Fragments ]",
+    Description = "must have the requirements",
+    Callback = function()
+        game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk")
+      end    
+})
 Shop:AddSection("Abilities Shop")
 Shop:AddButton({
 	Title = "Skyjump [ $10,000 Beli ]",
@@ -1567,14 +1634,14 @@ Shop:AddButton({
 })
 Shop:AddSection("Other")
 Shop:AddButton({
-     Title = "Buy Refund Stat (2500F)",
+     Title = "Buy Stats Refund (2500F)",
      Callback = function()            
          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","1")
          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","2")
      end
 })
 Shop:AddButton({
-     Title = "Buy Reroll Race (3000F)",
+     Title = "Buy Race Reroll (3000F)",
      Callback = function()            
          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","1")
 	     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","2")
@@ -1603,7 +1670,7 @@ Shop:AddButton({
     end
 })
 ---------- BETA TAB ----------
-Beta:AddSection("BETA VERSION")
+
 
 -------- SERVER TAB --------
 Time = Server:AddParagraph({
