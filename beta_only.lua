@@ -1653,7 +1653,7 @@ Shop:AddButton({
       end    
 })
 Shop:AddButton({
-    Name = "Kabucha [ 1,500 Fragments]",
+    Title = "Kabucha [ 1,500 Fragments]",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","2")
