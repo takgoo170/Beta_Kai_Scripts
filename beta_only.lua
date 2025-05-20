@@ -5186,6 +5186,7 @@ spawn(function()
 end)
 ]]
 ------------ FRUITS/RAIDS TAB ----------------
+Blog:AddSection("Fruits")
 Toggle = Blog:AddToggle("Toggle", {Title = "Random Devil Fruit", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().RandomFruit = Value
