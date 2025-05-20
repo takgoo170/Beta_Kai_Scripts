@@ -2785,7 +2785,7 @@ spawn(function()
         end)
     end
 end)
-Toggle = Settings:AddToggle("Toggle", {Title = "Spin Position", Description = "Spin Position When Farm", Default = true })
+Toggle = Settings:AddToggle("Toggle", {Title = "Spin Mode", Description = "The character will turn towards the enemy.", Default = true })
 Toggle:OnChanged(function(Value)
     getgenv().SpinPos = Value
 end)
@@ -4250,7 +4250,7 @@ Toggle:OnChanged(function(Value)
     getgenv().AutoEliteHunter = Value
     StopTween(getgenv().AutoEliteHunter)
 end)
-Toggle = Stack:AddToggle("Toggle", {Title = "Elite Hunter Server Hop", Description = "Find New Elite Hunter Server", Default = false })
+Toggle = Stack:AddToggle("Toggle", {Title = "Elite Hunter Hop", Description = "Find New Elite Hunter Server", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().AutoEliteHunterHop = Value
 end)
@@ -4302,7 +4302,7 @@ spawn(function()
         end
     end
 end)
-Toggle = Stack:AddToggle("Toggle", {Title = "Auto Touch Pad Haki", Default = false })
+Toggle = Stack:AddToggle("Toggle", {Title = "Auto Activate Indra Haki", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().AutoTouchPadHaki = Value
     StopTween(getgenv().AutoTouchPadHaki)
@@ -5211,7 +5211,7 @@ spawn(function()
         end
     end
 end)
-Toggle = Blog:AddToggle("Toggle", {Title = "Teleport To Fruit [ Hop Server ]", Default = false })
+Toggle = Blog:AddToggle("Toggle", {Title = "Fruit Hop", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().TeleportToFruitHop = Value
 end)
@@ -5383,7 +5383,7 @@ Dropdown = Blog:AddDropdown("Dropdown", {
 Dropdown:OnChanged(function(Value)
     getgenv().SelectChip = Value
 end)
-Toggle = Blog:AddToggle("Toggle", {Title = "Get Fruit In Inventory Low Beli", Default = false})
+Toggle = Blog:AddToggle("Toggle", {Title = "Auto Get Fruit", Default = false})
 Toggle:OnChanged(function(Value)
     getgenv().AutoGetFruit = Value
 end)
@@ -5406,7 +5406,7 @@ spawn(function()
         end)
     end
 end)
-Toggle = Blog:AddToggle("Toggle", {Title = "Auto Raid", Default = false})
+Toggle = Blog:AddToggle("Toggle", {Title = "Auto Raid", Description = "Don't use rn, it has a bug.", Default = false})
 Toggle:OnChanged(function(Value)
     getgenv().Auto_Dungeon = Value
 end)
@@ -5530,7 +5530,7 @@ end
 ---------- SEA EVENTS TAB --------------
 SetSpeedBoatSlider = Sea:AddSlider("SliderSpeedBoat", {
 	Title = "Ship Speed",
-	Default = 1,
+	Default = 250,
 	Min = 0,
 	Max = 1000,
 	Rounding = 1,
@@ -5543,12 +5543,12 @@ SetSpeedBoatSlider:OnChanged(function(value)
 end)
 SetSpeedBoatSlider:SetValue(300)    
 ListSeaZone = {
-  "Zone 1",
-  "Zone 2",
-  "Zone 3",
-  "Zone 4",
-  "Zone 5",
-  "Zone 6"
+  "Lv. 1",
+  "Lv. 2",
+  "Lv. 3",
+  "Lv. 4",
+  "Lv. 5",
+  "Lv. 6"
 }
 zoneselect = Sea:AddDropdown("zoneselect", {
 	Title = "Select Sea Level",
@@ -5637,7 +5637,7 @@ spawn(function()
         end
     end)
 end)
-Toggle = Sea:AddToggle("Toggle", {Title = "Ignore Rocks", Description = "Recommended to use when sea farming!", Default = true })
+Toggle = Sea:AddToggle("Toggle", {Title = "Ignore Rocks", Description = "Passes through rocks. [ RECOMMENDED ]", Default = true })
 Toggle:OnChanged(function(Value)
     getgenv().GoThroughRocks = Value
 end)
@@ -7027,7 +7027,7 @@ spawn(function()
     end
 end)
 Race:AddSection("Race V4")
-Toggle = Race:AddToggle("Toggle", {Title = "No Frog", Default = false})
+Toggle = Race:AddToggle("Toggle", {Title = "Remove Fog", Description = "For better vision",Default = false})
 Toggle:OnChanged(function(Value)
     getgenv().NoFrog = Value
 end)
@@ -7544,7 +7544,7 @@ spawn(function()
 end)
 local isHopping = false
 Toggle = Get:AddToggle("Toggle", {
-    Title = "Hop Server [ Haki color or Legendary Sword]",
+    Title = "Haki & Legendary Sword Hop",
     Default = false
 })
 Toggle:OnChanged(function(state)
