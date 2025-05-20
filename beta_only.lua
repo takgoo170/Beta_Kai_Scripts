@@ -2092,12 +2092,14 @@ function Hop()
     Teleport()
 end
 ------ PLAYER TAB -----
+LGa:AddSection("Tween")
 LGa:AddButton({
     Title = "Stop Tween",
     Callback = function()
         StopTween()
     end
 })
+LGa:AddSection("Pop-up")
 LGa:AddButton({
 	Title = "Show Item",
 	Description = "not working rn!",
@@ -2142,6 +2144,7 @@ LGa:AddButton({
         end
     end
 })
+LGa:AddSection("More FPS")
 LGa:AddButton({
     Title = "Get FPS",
     Description = "To increase your in-game fps and reduce lag.",
@@ -2195,6 +2198,7 @@ function FPSBooster()
         end
     end
 end
+LGa:AddSection("Stats")
 Dropdown = LGa:AddDropdown("Dropdown", {
     Title = "Select Stats",
     Values = {"Melee", "Defense", "Sword", "Gun", "Fruit"},
@@ -2242,6 +2246,8 @@ Toggle:OnChanged(function(Value)
 end)
 local canChangeTeam = true
 local debounceTime = 2
+
+LGa:AddSection("Team")
 LGa:AddButton({
     Title = "Join Pirates Team",
     Callback = function()
@@ -2272,7 +2278,7 @@ LGa:AddButton({
         canChangeTeam = true
     end
 })
-
+LGa:AddSection("Screen Vision")
 Toggle = LGa:AddToggle("Toggle", {Title = "Black Screen", Default = false })
 Toggle:OnChanged(function(Value)
 	getgenv().StartBlackScreen = Value
@@ -2300,6 +2306,7 @@ Toggle:OnChanged(function(Value)
         game:GetService("RunService"):Set3dRenderingEnabled(true)
     end
 end)
+LGa:AddSection("Hide Mob")
 Toggle = LGa:AddToggle("Toggle", {Title = "Hide Mob", Default = false })
 Toggle:OnChanged(function(Value)
      getgenv().HideMob = Value		
@@ -2332,6 +2339,7 @@ spawn(function()
         end
     end
 end)
+LGa:AddSection("Notifications")
 Toggle = LGa:AddToggle("Toggle", {Title = "Remove Damage Text", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().RemoveText = Value
@@ -2358,6 +2366,7 @@ Toggle:OnChanged(function(Value)
         end
     end
 end)
+LGa:AddSection("Visual")
 LGa:AddButton({
     Title = "Rain Fruit [ BETA ]",
     Callback = function()
