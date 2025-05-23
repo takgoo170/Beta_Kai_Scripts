@@ -28,25 +28,6 @@ local Window = WindUI:CreateWindow({
     },
 })
 
-WindUI:Popup({
-    Title = "Welcome to Kai Hub!",
-    Icon = "info",
-    Content = "Kai Hub universal version.",
-    Buttons = {
-        {
-            Title = "Cancel",
-            Callback = function() end,
-            Variant = "Tertiary",
-        },
-        {
-            Title = "Confirm",
-            Icon = "arrow-right",
-            Callback = function() end,
-            Variant = "Primary",
-        }
-    }
-})
-
 ------------- TABS ------------------
 local Discord = Window:Tab({
     Title = "Discord",
