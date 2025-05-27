@@ -1885,10 +1885,10 @@ Shop:AddButton({
     end
 })
 ---------- ISLAND TAB ----------
-Island:AddToggle("Toggle", { Title = "Auto Kitsune Island", Description = "new function [ kitsune ]", Default = false
+Island:AddToggle("Toggle", { Title = "Auto Kitsune Island", Description = "new function [ kitsune ]", Default = false})
 Toggle:OnChanged(function(Value)
 	getgenv().AutoKitsuneIsland = Value;AutoKitsuneIsland()
-  end})
+  end
 ---------- BETA TAB ----------
 
 
