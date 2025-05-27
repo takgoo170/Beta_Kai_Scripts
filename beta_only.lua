@@ -1350,6 +1350,128 @@ end
   end
 end]]
 
+----- AUTO KITSUNE FUNCTION -----
+  local function AutoKitsuneIsland()
+  local Boat = nil
+  local Boats = workspace:WaitForChild("Boats", 9e9)
+  local Map = workspace:WaitForChild("Map", 9e9)
+  
+  local function GetBoat()
+    for _,boat in pairs(Boats:GetChildren()) do
+      if boat:FindFirstChild("Humanoid") and boat.Humanoid.Value > 0 then
+        if boat:FindFirstChild("Owner") and boat.Owner.Value.Name == Player.Name then
+          Boat = boat
+          return boat
+        end
+      end
+    end
+  end
+local function GetFireflies()
+    local Nearest, Fire = math.huge
+    for _,fire in pairs(workspace:GetChildren()) do
+      if fire.Name == "EmberTemplate" and fire:FindFirstChild("Part") then
+        local plrPP = Player.Character and Player.Character.PrimaryPart
+        if plrPP and (plrPP.Position - fire.Part.Position).Magnitude <= Nearest then
+          Nearest = (plrPP.Position - fire.Part.Position).Magnitude
+          Fire = fire.Part
+        end
+      end
+    end
+    return Fire
+  end
+  
+  local toPos1, toPos2, toPos3, toPos4 = true
+  while getgenv().AutoKitsuneIsland do task.wait()
+    local plrChar = Player.Character
+    local Boat = GetBoat()
+    
+    if Boat then
+      if not Boat:FindFirstChild("BodyVelocity") then
+        local BV = Instance.new("BodyVelocity", Boat)
+        BV.Velocity = Vector3.new()
+      end
+      for _,part in pairs(Boat:GetDescendants()) do
+        if part:IsA("BasePart") or part:IsA("MeshPart") and part.Name ~= "VehicleSeat" then
+          part.CanCollide = false
+        end
+      end
+    end
+    
+    local KitsuneIsland = Map:FindFirstChild("KitsuneIsland")
+    
+    if KitsuneIsland then
+      local plrChar = Player.Character
+      local plrPP = plrChar and plrChar.PrimaryPart
+      local plrH = plrChar and plrChar:FindFirstChild("Humanoid")
+      local Stone = KitsuneIsland:FindFirstChild("ShrineDialogPart")
+      local AzureEmber = GetFireflies()
+      
+      if plrH and plrH.Sit then plrH.Sit = false end
+      if not AzureEmber then
+        if plrPP and Stone and (plrPP.Position - Stone.Position).Magnitude < 5 then
+          if Stone:FindFirstChild("ProximityPrompt") then
+            -- fireproximityprompt(Stone.ProximityPrompt)
+          end
+        elseif Stone then
+          PlayerTP(Stone.CFrame)
+        end
+      elseif AzureEmber then
+        local plrPP = Player.Character and Player.Character.PrimaryPart
+        if plrPP and block and (AzureEmber.Position - plrPP.Position).Magnitude < 100 then
+          plrPP.CFrame = AzureEmber.CFrame
+          block.CFrame = AzureEmber.CFrame
+        else
+          PlayerTP(AzureEmber.CFrame)
+        end
+      else
+        PlayerTP(KitsuneIsland.WorldPivot)
+      end
+    elseif not Boat then
+      local BuyBoatDistance = (plrChar.PrimaryPart.Position - Vector3.new(-6123, 16, -2247)).Magnitude
+      if BuyBoatDistance <= 5 then
+        FireRemote("BuyBoat", "Guardian")
+      else
+        PlayerTP(CFrame.new(-6123, 16, -2247))
+      end
+    elseif Boat:FindFirstChild("VehicleSeat") then
+      local plrChar = Player.Character
+      local plrH = plrChar and plrChar:FindFirstChild("Humanoid")
+      
+      if plrH and plrH.SeatPart ~= Boat.VehicleSeat then
+        PlayerTP(Boat.VehicleSeat.CFrame)plrH.Sit = false
+        if Boat.PrimaryPart then
+          BoatTP(Boat, Boat.PrimaryPart.CFrame)
+        end
+      elseif Boat.PrimaryPart then
+        local BoatPP = Boat.PrimaryPart
+        if toPos1 then
+          BoatTP(Boat, CFrame.new(-42000, 21, 500))
+          if (BoatPP.Position - Vector3.new(-42000, 21, 500)).Magnitude < 25 then
+            toPos1, toPos2 = false, true
+          end
+        elseif toPos2 then
+          BoatTP(Boat, CFrame.new(-50000, 21, 500))
+          if (BoatPP.Position - Vector3.new(-50000, 21, 500)).Magnitude < 25 then
+            toPos2, toPos3 = false, true
+          end
+        elseif toPos3 then
+          BoatTP(Boat, CFrame.new(-50000, 21, 2000))
+          if (BoatPP.Position - Vector3.new(-50000, 21, 2000)).Magnitude < 25 then
+            toPos3, toPos4 = false, true
+          end
+        elseif toPos4 then
+          BoatTP(Boat, CFrame.new(-42000, 21, -1000))
+          if (BoatPP.Position - Vector3.new(-42000, 21, -1000)).Magnitude < 25 then
+            toPos4, toPos1 = false, true
+          end
+        end
+      end
+    end
+  end
+  if Boat and Boat.PrimaryPart then
+    BoatTP(Boat, Boat.PrimaryPart.CFrame)
+  end
+end
 ---------- SCRIPT'S UI -----------
 print("--[[Loaded UI]]--")
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
@@ -1762,6 +1884,11 @@ Shop:AddButton({
         end
     end
 })
+---------- ISLAND TAB ----------
+Island:AddToggle("Toggle", { Title = "Auto Kitsune Island", Description = "new function [ kitsune ]", Default = false
+Toggle:OnChanged(function(Value)
+	getgenv().AutoKitsuneIsland = Value;AutoKitsuneIsland()
+  end})
 ---------- BETA TAB ----------
 
 
