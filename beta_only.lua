@@ -2258,7 +2258,7 @@ Slider = LGa:AddSlider("Slider", {
         Description = "",
         Default = 1,
         Min = 1,
-        Max = 1000,
+        Max = 2650,
         Rounding = 0,
         Callback = function(value)
         PointStats = value
@@ -2374,6 +2374,7 @@ Toggle:OnChanged(function(Value)
     getgenv().RemoveNotification = Value
     game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = not getgenv().RemoveNotification
 end)
+LGa:AddSection("Rejoin")
 Toggle = LGa:AddToggle("Toggle", {Title = "Auto Rejoin On Kick", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().AutoRejoinKick = Value
@@ -2621,7 +2622,7 @@ if World3 then
 Teleport:AddSection("Race V4")
 end
 -------- MISC TAB! -------
-Toggle = Settings:AddToggle("Toggle", {Title = "Auto Turn On Buso", Default = true })
+Toggle = Settings:AddToggle("Toggle", {Title = "Auto Use Haki", Default = true })
 Toggle:OnChanged(function(Value)
     getgenv().AUTOHAKI = Value
 end)
@@ -2839,7 +2840,7 @@ spawn(function()
 end)
 Slider = Settings:AddSlider("Slider", {
      Title = "Farm Distance",
-     Default = 20,
+     Default = 15,
      Min = 0,
      Max = 30,
      Rounding = 5,
@@ -5981,7 +5982,7 @@ Toggle:OnChanged(function(value)
     getgenv().AutoKillPiranha = value
     StopTween(getgenv().AutoKillPiranha)
 end)
-Toggle = Sea:AddToggle("Toggle", {Title = "Auto Kill Fish Crew",Default = false })
+Toggle = Sea:AddToggle("Toggle", {Title = "Auto Kill Fish Crew Member",Default = false })
 Toggle:OnChanged(function(value)
     getgenv().AutoKillFishCrew = value
     StopTween(getgenv().AutoKillFishCrew)
