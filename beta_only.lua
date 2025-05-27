@@ -8392,6 +8392,67 @@ Input = PVP:AddInput("Input", {
          getgenv().WalkSpeed = Value
      end
 })
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+getgenv().DashLength = 20 -- default dash length
+
+local DashToggle = PVP:AddToggle("ToggleDash", {
+    Title = "Enable Dash Length",
+    Default = false
+})
+
+local DashConnection
+
+local function ApplyDash()
+    if not DashToggle.Value then return end
+    local Character = Player.Character
+    if Character then
+        Character:SetAttribute("DashLength", getgenv().DashLength)
+        if DashConnection then
+            DashConnection:Disconnect()
+        end
+        DashConnection = Character:GetAttributeChangedSignal("DashLength"):Connect(function()
+            if DashToggle.Value then
+                Character:SetAttribute("DashLength", getgenv().DashLength)
+            end
+        end)
+    end
+end
+
+DashToggle:OnChanged(function(Value)
+    if Value then
+        ApplyDash()
+        Player.CharacterAdded:Connect(ApplyDash)
+    else
+        if DashConnection then
+            DashConnection:Disconnect()
+            DashConnection = nil
+        end
+        local Character = Player.Character
+        if Character then
+            Character:SetAttribute("DashLength", 10) -- reset to default
+        end
+    end
+end)
+
+local DashInput = PVP:AddInput("DashLengthInput", {
+    Title = "Input Dash Length",
+    Default = 20,
+    Placeholder = "Enter Length (10-1200)",
+    Numeric = true,
+    Finished = true,
+    Callback = function(Value)
+        local num = tonumber(Value)
+        if num and num >= 10 and num <= 1200 then
+            getgenv().DashLength = num
+            if DashToggle.Value and Player.Character then
+                Player.Character:SetAttribute("DashLength", num)
+            end
+        end
+    end
+})
+
 ----------------------------------------------------------------------------------------------------
 game.StarterGui:SetCore("SendNotification", {
     Title = "Kai Hub";
