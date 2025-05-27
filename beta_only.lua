@@ -1353,6 +1353,8 @@ end]]
 ---------- SCRIPT'S UI -----------
 print("--[[Loaded UI]]--")
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 Window = Fluent:CreateWindow({
     Title = "Kai Hub : Blox Fruits ",
     SubTitle = " by Kai Team (discord.gg/wDMPK3QAmY)",
@@ -1380,6 +1382,9 @@ ESP = Window:AddTab({ Title = "ESP", Icon = "database" })
 PVP = Window:AddTab({ Title = "PVP", Icon = "sword" })
 Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" })
 Settings = Window:AddTab({ Title = "Misc", Icon = "settings" })
+----- OTHER TABS -------
+local Tabs = {
+    Interface = Window:AddTab({ Title = "Interface", Icon = "settings" }),
 sex = {
     "WildDares",
     "BossBuild",
@@ -8404,6 +8409,26 @@ game.StarterGui:SetCore("SendNotification", {
 	Button2 = "No";
 })
 
+---------- INTERFACE AND SAVE MANAGER ---------
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Interface)
+SaveManager:BuildConfigSection(Tabs.Interface)
+	
 --[[local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local ImageLabel = Instance.new("ImageLabel")
