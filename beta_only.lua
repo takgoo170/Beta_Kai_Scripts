@@ -1385,6 +1385,7 @@ Settings = Window:AddTab({ Title = "Misc", Icon = "settings" })
 ----- OTHER TABS -------
 local Tabs = {
     Interface = Window:AddTab({ Title = "Interface", Icon = "settings" }),
+}
 sex = {
     "WildDares",
     "BossBuild",
@@ -8410,10 +8411,26 @@ game.StarterGui:SetCore("SendNotification", {
 })
 
 ---------- INTERFACE AND SAVE MANAGER ---------
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Interface)
 SaveManager:BuildConfigSection(Tabs.Interface)
-	
+
+
 --[[local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local ImageLabel = Instance.new("ImageLabel")
