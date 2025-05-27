@@ -6537,10 +6537,7 @@ end)
 ChooseSkill:AddParagraph({
     Title = "Use To Enable Skill Fruit,\nPlease Select Correct",
 })
-ChooseSkill:AddParagraph({
-    Title = "Setting Skill Melee",
-    Content = string.rep("-", 21)
-})
+ChooseSkill:AddSection("Choose Melee Skill")
 Toggle = ChooseSkill:AddToggle("Toggle", {
     Title = "Skill Melee Z",
     Default = true
@@ -6870,21 +6867,21 @@ spawn(function()
 end)
 Sea:AddSection("Skills Settings [ PREHISTORIC ]")
 Toggle = Sea:AddToggle("Toggle", {
-    Title = "Auto Use Skill Melee",
+    Title = "Auto Use Melee Skill",
     Default = false
 })
 Toggle:OnChanged(function(v402)
     getgenv().UseMelee = v402
 end)
 Toggle = Sea:AddToggle("Toggle", {
-    Title = "Auto Use Skill Sword",
+    Title = "Auto Use Sword Skill",
     Default = false
 })
 Toggle:OnChanged(function(v403)
     getgenv().UseSword = v403
 end)
 Toggle = Sea:AddToggle("Toggle", {
-    Title = "Auto Use Skill Gun",
+    Title = "Auto Use Gun Skill",
     Default = false
 })
 Toggle:OnChanged(function(v404)
@@ -6893,7 +6890,7 @@ end)
 ----------- RACE V4 -------------
 Race:AddSection("Race Draco")
 local RunService = game:GetService("RunService")
-Toggle = Race:AddToggle("Toggle", {Title = "Teleport To The Draco Clan Trial Door", Default = false})
+Toggle = Race:AddToggle("Toggle", {Title = "Teleport to Draco Trial Door", Default = false})
 Toggle:OnChanged(function(Value)
     getgenv().TrialTeleportDraco = Value
 end)
@@ -6972,6 +6969,7 @@ spawn(function()
         end
     end)
 end)
+Toggle = Race:AddToggle("Toggle", {Title = "Auto Upgrade Race V3", Description = "This function is not working rn.", Default = false })
 Toggle = Race:AddToggle("Toggle", {Title = "Auto Get Cyborg", Description = "Buy Chip And Kill Order", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().AutoCyborg = Value
