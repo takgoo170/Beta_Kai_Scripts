@@ -1351,7 +1351,7 @@ end
 end]]
 
 ----- AUTO KITSUNE FUNCTION -----
-  local function AutoKitsuneIsland()
+--[[  local function AutoKitsuneIsland()
   local Boat = nil
   local Boats = workspace:WaitForChild("Boats", 9e9)
   local Map = workspace:WaitForChild("Map", 9e9)
@@ -1472,6 +1472,7 @@ local function GetFireflies()
     BoatTP(Boat, Boat.PrimaryPart.CFrame)
   end
 end
+]]
 ---------- SCRIPT'S UI -----------
 print("--[[Loaded UI]]--")
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
@@ -1885,10 +1886,7 @@ Shop:AddButton({
     end
 })
 ---------- ISLAND TAB ----------
-Island:AddToggle("Toggle", { Title = "Auto Kitsune Island", Description = "new function [ kitsune ]", Default = false})
-Toggle:OnChanged(function(Value)
-	getgenv().AutoKitsuneIsland = Value;AutoKitsuneIsland()
-  end
+
 ---------- BETA TAB ----------
 
 
