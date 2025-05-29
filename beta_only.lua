@@ -1367,7 +1367,7 @@ Fluent:Notify({
 	Title = "Welcome to Kai Hub!",
 	Content = "Thank you for using our script!",
 	SubContent = "discord.gg/wDMPK3QAmY",
-	Duration = 10
+	Duration = 12
 })
 ---------------------- TABS -------------------------
 --Beta = Window:AddTab({ Title = "BETA", Icon = "info" })
@@ -1774,7 +1774,7 @@ Shop:AddButton({
 
 -------- SERVER TAB --------
 Time = Server:AddParagraph({
-    Title = "🌐 Time Zone",
+    Title = "⏰ Time Zone",
     Content = ""
 })
 function UpdateOS()
@@ -2029,6 +2029,17 @@ Input = Server:AddInput("Input", {
          getgenv().Job = Value
      end
 })    
+local lastTeleportTime = 0
+local teleportCooldown = 5
+Server:AddButton({
+    Title = "Join Server",
+    Callback = function()
+        if tick() - lastTeleportTime >= teleportCooldown then
+            lastTeleportTime = tick()
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId, getgenv().Job, game.Players.LocalPlayer)        
+        end
+    end
+})
 Toggle = Server:AddToggle("Toggle", {Title = "Spam Join", Default = false })
 Toggle:OnChanged(function(Value)
 getgenv().Join = Value
@@ -2043,17 +2054,6 @@ spawn(function()
         end
     end
 end)
-local lastTeleportTime = 0
-local teleportCooldown = 5
-Server:AddButton({
-    Title = "Join Server",
-    Callback = function()
-        if tick() - lastTeleportTime >= teleportCooldown then
-            lastTeleportTime = tick()
-            game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId, getgenv().Job, game.Players.LocalPlayer)        
-        end
-    end
-})
 
 local lastTeleportTime = 0
 local teleportCooldown = 3
@@ -2142,7 +2142,7 @@ LGa:AddButton({
         StopTween()
 	Fluent:Notify({
 	Title = "Tween stopped successfully.",
-	Content = "",
+	Content = "Tween disabled.",
 	Duration = 10
 })
     end
@@ -2161,7 +2161,7 @@ LGa:AddButton({
     end
 })
 LGa:AddButton({
-    Title = "Open Devil Fruit Shop",
+    Title = "Open Devil Fruit Shop [ Normal ]",
     Description = "not working rn!",
     Callback = function()            
     end
@@ -2181,7 +2181,7 @@ LGa:AddButton({
 local lastButtonPressTime = 0
 local buttonCooldown = 2
 LGa:AddButton({
-    Title = "Open Color",
+    Title = "Open Haki Color",
     Callback = function()
         if tick() - lastButtonPressTime >= buttonCooldown then
             lastButtonPressTime = tick()
@@ -2279,7 +2279,7 @@ spawn(function()
 end)
 Slider = LGa:AddSlider("Slider", {
         Title = "Stats Amount",
-        Description = "",
+        Description = "Min: 1 | Max: 2650",
         Default = 1,
         Min = 1,
         Max = 2650,
@@ -2442,6 +2442,18 @@ LGa:AddButton({
             end)
         end
     end
+})
+LGa:AddButton({
+	Title = "No Dash CD [ SOON ]",
+	Description = "COMING SOON",
+	Callback = function()
+end
+})
+LGa:AddButton({
+	Title = "Remove Portal Dash CD [ SOON ]",
+	Description = "COMING SOON",
+	Callback = function()
+end
 })
 ------------ TELEPORT TAB -----------
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
