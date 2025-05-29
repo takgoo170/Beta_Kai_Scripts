@@ -1994,6 +1994,25 @@ spawn(function()
     end
 end)	        
 Server:AddSection("Server")
+Server:AddParagraph({
+    Title = "Server Job ID",
+    Content = game.JobId ~= "" and game.JobId or "Job ID not available."
+})
+local lastCopyTime = 0
+local copyCooldown = 2
+Server:AddButton({
+    Title = "Copy JobId",
+    Description = "Copy the Server Job Id.",
+    Callback = function()
+        if tick() - lastCopyTime >= copyCooldown then
+            lastCopyTime = tick()
+            setclipboard(tostring(game.JobId))
+            print("JobId Copied!")
+        else
+            print("Please try again in a moment!")
+        end
+    end
+})
 Input = Server:AddInput("Input", {
      Title = "Job Id",
      Default = "",
@@ -2029,20 +2048,7 @@ Server:AddButton({
         end
     end
 })
-local lastCopyTime = 0
-local copyCooldown = 2
-Server:AddButton({
-    Title = "Copy JobId",
-    Callback = function()
-        if tick() - lastCopyTime >= copyCooldown then
-            lastCopyTime = tick()
-            setclipboard(tostring(game.JobId))
-            print("JobId Copied!")
-        else
-            print("Please try again in a moment!")
-        end
-    end
-})
+
 local lastTeleportTime = 0
 local teleportCooldown = 3
 Server:AddButton({
