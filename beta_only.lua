@@ -8216,6 +8216,7 @@ Toggle:OnChanged(function(Value)
     end
 end)
 --------------------- PVP TAB ------------------
+PVP:AddSection("Player")
 local Playerslist = {}
 for i, player in ipairs(game.Players:GetPlayers()) do
     Playerslist[i] = player.Name
@@ -8250,6 +8251,7 @@ Toggle:OnChanged(function(Value)
         end)
     end
 end)
+PVP:AddSection("Aimbot")
 Toggle = PVP:AddToggle("Toggle", {Title = "Auto Aimbot", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().Aimbot = Value
@@ -8360,6 +8362,7 @@ Toggle:OnChanged(function(v)
         end
     end
 end)
+PVP:AddSection("Movement Settings")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 getgenv().WalkSpeed = 16
@@ -8479,12 +8482,35 @@ local DashInput = PVP:AddInput("DashLengthInput", {
 
 ----------------------------------------------------------------------------------------------------
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Kai Hub : Notification";
-    Text = "Script Loaded Successfully...";
-    Icon = "rbxassetid://97615227201354";
+    Title = "Kai Hub";
+    Text = "Script Loaded...";
+    Icon = "rbxassetid://17269788104";
     Duration = 3;
 })
-
+if World1 then
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Kai Hub",
+    Text = "You are in First Sea.",
+    Icon = "rbxassetid://16118194291",
+    Duration = 2;
+})
+end
+if World2 then
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Kai Hub",
+    Text = "You are in Second Sea.",
+    Icon = "rbxassetid://16118194291",
+    Duration = 2;
+})
+end
+if World3 then
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Kai Hub",
+    Text = "You are in Third Sea.",
+    Icon = "rbxassetid://16118194291",
+    Duration = 2;
+})
+end
 ---------- INTERFACE AND SAVE MANAGER ---------
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
