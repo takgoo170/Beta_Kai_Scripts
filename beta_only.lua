@@ -2015,7 +2015,7 @@ Server:AddButton({
 })
 Fluent:Notify({
 	Title = "Job Id Copied!",
-	Content = "Job ID copied to clipboard successfully!"
+	Content = "Job ID copied to clipboard successfully!",
 	Duration = 10
 })
 Input = Server:AddInput("Input", {
