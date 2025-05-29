@@ -1363,6 +1363,11 @@ Window = Fluent:CreateWindow({
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl 
 })
+Fluent:Notify({
+	Title = "Welcome to Kai Hub!",
+	Content = "Thank you for using our script!",
+	Duration = 5
+})
 ---------------------- TABS -------------------------
 --Beta = Window:AddTab({ Title = "BETA", Icon = "info" })
 Server = Window:AddTab({ Title = "Server Status", Icon = "scroll" }) -- 1604
@@ -8358,7 +8363,8 @@ local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 getgenv().WalkSpeed = 16
 Toggle = PVP:AddToggle("Toggle", {
-    Title = "Change WalkSpeed",
+    Title = "Enable WalkSpeed",
+    Description = "",
     Default = false
 })
 local SpeedConnection
@@ -8400,7 +8406,7 @@ Toggle:OnChanged(function(Value)
 end)
 Input = PVP:AddInput("Input", {
      Title = "Input WalkSpeed",
-     Default = 100,
+     Default = 16,
      Placeholder = "Input",
      Numeric = true,
      Finished = true,
@@ -8415,6 +8421,7 @@ getgenv().DashLength = 20 -- default dash length
 
 local DashToggle = PVP:AddToggle("ToggleDash", {
     Title = "Enable Dash Length",
+    Description = "",
     Default = false
 })
 
@@ -8455,12 +8462,12 @@ end)
 local DashInput = PVP:AddInput("DashLengthInput", {
     Title = "Input Dash Length",
     Default = 20,
-    Placeholder = "Enter Length (10-1200)",
+    Placeholder = "Input Length [10-1300]",
     Numeric = true,
     Finished = true,
     Callback = function(Value)
         local num = tonumber(Value)
-        if num and num >= 10 and num <= 1200 then
+        if num and num >= 10 and num <= 1300 then
             getgenv().DashLength = num
             if DashToggle.Value and Player.Character then
                 Player.Character:SetAttribute("DashLength", num)
@@ -8471,19 +8478,10 @@ local DashInput = PVP:AddInput("DashLengthInput", {
 
 ----------------------------------------------------------------------------------------------------
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Kai Hub";
-    Text = "Script Loaded.";
+    Title = "Kai Hub : Notification";
+    Text = "Script Loaded Successfully...";
     Icon = "rbxassetid://97615227201354";
-    Duration = 5;
-})
-
-game.StarterGui:SetCore("SendNotification", {
-    Title = "Hello! Welcome to Kai Hub!";
-    Text = "Is Kai Hub a good script?";
-    Icon = "rbxassetid://97615227201354";
-    Duration = 1e5;
-	Button1 = "Yes";
-	Button2 = "No";
+    Duration = 3;
 })
 
 ---------- INTERFACE AND SAVE MANAGER ---------
