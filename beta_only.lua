@@ -2010,18 +2010,18 @@ Server:AddButton({
             print("JobId Copied!")
         else
             print("Please try again in a moment!")
-        end
-    end
-})
-Fluent:Notify({
+	Window:Notify({
 	Title = "Job Id Copied!",
 	Content = "Job ID copied to clipboard successfully!",
 	Duration = 10
 })
+        end
+    end
+})
 Input = Server:AddInput("Input", {
      Title = "Job Id",
      Default = "",
-     Placeholder = "Paste Job Id",
+     Placeholder = "Input Job Id",
      Numeric = false,
      Finished = false,
      Callback = function(Value)
