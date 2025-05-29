@@ -3404,6 +3404,8 @@ spawn(function()
         end
     end
 end)
+Toggle = Main:AddToggle("Toggle", {Title = "Auto Collect Chest [ INSTANT ]", Description = "COMING SOON!", Default = false })
+-- function here [ TOGGLE ]
 Toggle = Main:AddToggle("Toggle", {Title = "Auto Stop Collecting Chest", Description = "Stops automatically if Fist and God's Chalice is owned.", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().StopChest = Value
@@ -4706,7 +4708,7 @@ spawn(function()
         end
     end
 end)
-Toggle = Stack:AddToggle("Toggle", {Title = "Auto Tyrant of the Skies", Default = false })     
+Toggle = Stack:AddToggle("Toggle", {Title = "Auto Tyrant of the Skies", Description = "UNDER DEVELOPING", Default = false })     
 Toggle:OnChanged(function(value)
      	_G.FarmDaiBan = value 
      	StopTween(_G.FarmDaiBan)
@@ -6365,7 +6367,7 @@ spawn(function()
         end
     end
 end)
-Toggle = Sea:AddToggle("Toggle", {Title = "Auto Summon Kitsune Island",Default = false })
+--[[Toggle = Sea:AddToggle("Toggle", {Title = "Auto Summon Kitsune Island",Default = false })
 Toggle:OnChanged(function(value)
     getgenv().SummonKitsume = value    
 end)
@@ -6382,7 +6384,53 @@ spawn(function()
             end)
         end
     end
-end)
+end)]]
+Toggle = Sea:AddToggle("Toggle", {Title = "Auto Summon Kitsune Island", Description = "Spawn Kitsune Island", Default = false })
+Toggle:OnChanged(function(value)
+_G.Settings.SeaStack["Summon Kitsune Island"] = value;
+		StopTween(_G.Settings.SeaStack["Summon Kitsune Island"]);
+		if TweenBoatKitsune then
+			TweenBoatKitsune:Stop();
+		end;
+	end);
+	spawn(function()
+		while wait(0.2) do
+			pcall(function()
+				if _G.Settings.SeaStack["Summon Kitsune Island"] then
+					if not (game:GetService("Workspace")).Boats:FindFirstChild(_G.Settings.SeaEvent["Selected Boat"]) then
+						local BuyBoatCFrame = CFrame.new(-16927.451171875, 9.0863618850708, 433.8642883300781);
+						if (BuyBoatCFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+							BTP(BuyBoatCFrame);
+						else
+							BuyBoatKitsune = topos(BuyBoatCFrame);
+						end;
+						if ((CFrame.new((-16927.451171875), 9.0863618850708, 433.8642883300781)).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10 then
+							if BuyBoatKitsune then
+								BuyBoatKitsune:Stop();
+							end;
+							(game:GetService("ReplicatedStorage")).Remotes.CommF_:InvokeServer("BuyBoat", _G.Settings.SeaEvent["Selected Boat"]);
+							wait(1);
+						end;
+					elseif (game:GetService("Workspace")).Boats:FindFirstChild(_G.Settings.SeaEvent["Selected Boat"]) then
+						repeat
+							wait();
+							if (game.Players.LocalPlayer.Character:WaitForChild("Humanoid")).Sit == false then
+								if TweenBoatKitsune then
+									TweenBoatKitsune:Stop();
+								end;
+								local stoppos = topos(((game:GetService("Workspace")).Boats:FindFirstChild(_G.Settings.SeaEvent["Selected Boat"])).VehicleSeat.CFrame * CFrame.new(0, 1, 0));
+							elseif (game.Players.LocalPlayer.Character:WaitForChild("Humanoid")).Sit == true then
+								TweenBoatKitsune = TweenBoat(CFrame.new(-44541.7617, 30.0003204, -1244.8584, -0.0844199061, -0.00553312758, 0.9964149, -0.0654025897, 0.997858942, 0.000000000202319411, -0.99428153, -0.0651681125, -0.0846010372));
+							end;
+						until not _G.Settings.SeaStack["Summon Kitsune Island"] or game.Workspace._WorldOrigin.Locations:FindFirstChild("Kitsune Island");
+						if TweenBoatKitsune then
+							TweenBoatKitsune:Stop();
+						end;
+					end;
+				end;
+			end);
+		end;
+	end);
 Toggle = Sea:AddToggle("Toggle", {Title = "Auto Collect Azure Wisp",Default = false })
 Toggle:OnChanged(function(value)
     getgenv().CollectAzure = value
