@@ -2621,9 +2621,24 @@ Toggle:OnChanged(function(Value)
 end)
 if World3 then
 Teleport:AddSection("Race V4")
+	Teleport:AddButton({
+	Title = "Teleport to Temple of Time",
+	Description = "not working rn!",
+	Callback = function()
+		print("THIS FUNCTION IS NOT WORKING!")
+end
+})
+	Teleport:AddButton({
+	Title = "Teleport to Top of Great Tree",
+	Description = "",
+	Callback = function()
+		topos(CFrame.new(2947.556884765625, 2281.630615234375, -7213.54931640625))
+  end
+})
 end
 -------- MISC TAB! -------
-Toggle = Settings:AddToggle("Toggle", {Title = "Auto Use Haki", Default = true })
+Settings:AddSection("Haki")
+Toggle = Settings:AddToggle("Toggle", {Title = "Auto Use Haki", Description = "Activates your haki automatically.", Default = true })
 Toggle:OnChanged(function(Value)
     getgenv().AUTOHAKI = Value
 end)
