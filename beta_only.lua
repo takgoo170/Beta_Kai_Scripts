@@ -2443,39 +2443,37 @@ LGa:AddButton({
         end
     end
 })
-local noDash = false
-local dashLoop
+local dashLoop = nil
 
-LGa:AddToggle({
+Toggle = LGa:AddToggle("Toggle", {
     Title = "No Dash Cooldown",
-    Description = "Removes dash cooldown.",
-    Default = false,
-    Callback = function(state)
-        noDash = state
+    Description = "Remove Dash CD.",
+    Default = false
+})
 
-        if noDash then
-            dashLoop = task.spawn(function()
-                while noDash do
-                    pcall(function()
-                        local player = game.Players.LocalPlayer
-                        local char = player.Character
-                        if char then
-                            local humanoid = char:FindFirstChildOfClass("Humanoid")
-                            if humanoid and humanoid:FindFirstChild("DashCooldown") then
-                                humanoid:FindFirstChild("DashCooldown"):Destroy()
-                            end
+Toggle:OnChanged(function(state)
+    if state then
+        dashLoop = task.spawn(function()
+            while Toggle.Value do
+                pcall(function()
+                    local player = game.Players.LocalPlayer
+                    local char = player.Character
+                    if char then
+                        local humanoid = char:FindFirstChildOfClass("Humanoid")
+                        if humanoid and humanoid:FindFirstChild("DashCooldown") then
+                            humanoid:FindFirstChild("DashCooldown"):Destroy()
                         end
-                    end)
-                    task.wait()
-                end
-            end)
-        else
-            if dashLoop then
-                task.cancel(dashLoop)
+                    end
+                end)
+                task.wait()
             end
+        end)
+    else
+        if dashLoop then
+            task.cancel(dashLoop)
         end
     end
-})
+end)
 
 LGa:AddButton({
 	Title = "Remove Portal Dash CD [ SOON ]",
