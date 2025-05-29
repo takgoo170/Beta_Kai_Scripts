@@ -2001,7 +2001,7 @@ Server:AddParagraph({
 local lastCopyTime = 0
 local copyCooldown = 2
 Server:AddButton({
-    Title = "Copy JobId",
+    Title = "Copy Job ID",
     Description = "Copy the Server Job Id.",
     Callback = function()
         if tick() - lastCopyTime >= copyCooldown then
@@ -2012,6 +2012,11 @@ Server:AddButton({
             print("Please try again in a moment!")
         end
     end
+})
+Fluent:Notify({
+	Title = "Job Id Copied!",
+	Content = "Job ID copied to clipboard successfully!"
+	Duration = 10
 })
 Input = Server:AddInput("Input", {
      Title = "Job Id",
@@ -8310,6 +8315,7 @@ spawn(function()
         end
     end
 end)
+PVP:AddSection("Mode")
 Toggle = PVP:AddToggle("Toggle", {Title = "Safe Mode", Default = false })
 Toggle:OnChanged(function(Value)
     getgenv().SafeMode = Value
