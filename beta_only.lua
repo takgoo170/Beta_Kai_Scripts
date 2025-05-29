@@ -2010,7 +2010,7 @@ Server:AddButton({
             print("JobId Copied!")
         else
             print("Please try again in a moment!")
-	Window:Notify({
+	Fluent:Notify({
 	Title = "Job Id Copied!",
 	Content = "Job ID copied to clipboard successfully!",
 	Duration = 10
