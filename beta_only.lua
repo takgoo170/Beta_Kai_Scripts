@@ -1774,7 +1774,7 @@ Shop:AddButton({
 
 -------- SERVER TAB --------
 Time = Server:AddParagraph({
-    Title = "Time Zone",
+    Title = "🌐 Time Zone",
     Content = ""
 })
 function UpdateOS()
@@ -1809,7 +1809,7 @@ spawn(function()
     end
 end)
 Timmessss = Server:AddParagraph({
-    Title = "Time",
+    Title = "🎮 Game Time",
     Content = ""
 })
 function UpdateTime()
@@ -1827,7 +1827,7 @@ spawn(function()
 end)
 
 Miragecheck = Server:AddParagraph({
-    Title = "Mirage Island",
+    Title = "🏝️ Mirage Island",
     Content = "Status: "
 })
 local previousStatus = ""
@@ -1845,7 +1845,7 @@ spawn(function()
     end)
 end)
 Kitsunecheck = Server:AddParagraph({
-    Title = "Kitsune Island",
+    Title = "🦊 Kitsune Island",
     Content = "Status: "
 })
 spawn(function()
@@ -1859,7 +1859,7 @@ spawn(function()
     end
 end)
 CPrehistoriccheck = Server:AddParagraph({
-    Title = "Prehistoric Island",
+    Title = "🌋 Prehistoric Island",
     Desc = "Status: "
 })
 task.spawn(function()
@@ -1873,7 +1873,7 @@ task.spawn(function()
     end
 end)
 FrozenIsland = Server:AddParagraph({
-    Title = "Frozen Dimension",
+    Title = "❄️ Frozen Dimension",
     Content = "Status: "
 })
 spawn(function()
@@ -1887,7 +1887,7 @@ spawn(function()
     end
 end)
 MobCakePrince = Server:AddParagraph({
-    Title = "Dimension Killed",
+    Title = "🔱 Dimension Killed",
     Content = ""
 })
 spawn(function()
@@ -1902,7 +1902,7 @@ spawn(function()
     end
 end)
 CheckRip = Server:AddParagraph({
-    Title = "Rip_Indra",
+    Title = "🗡️ Rip_Indra",
     Content = "Status: "
 })
 spawn(function()
@@ -1916,7 +1916,7 @@ spawn(function()
     end
 end)
 CheckDoughKing = Server:AddParagraph({
-    Title = "Dough King",
+    Title = "🍩 Dough King",
     Content = "Status: "
 })
 spawn(function()
@@ -1930,7 +1930,7 @@ spawn(function()
     end
 end)
 EliteHunter = Server:AddParagraph({
-    Title = "Elite Hunter",
+    Title = "👹 Elite Hunter",
     Content = "Status: "
 })
 spawn(function()
@@ -1945,7 +1945,7 @@ spawn(function()
     end
 end)
 FM = Server:AddParagraph({
-    Title = "Moon Status",
+    Title = "🌕 Moon Status",
     Content = ""
 })
 task.spawn(function()
@@ -1967,7 +1967,7 @@ task.spawn(function()
     end
 end)
 LegendarySword = Server:AddParagraph({
-    Title = "Legendary Sword",
+    Title = "⚔️ Legendary Sword",
     Content = "Status: "
 })
 spawn(function()
@@ -1975,17 +1975,17 @@ spawn(function()
     while wait(1) do
         local swordStatus = "No Legendary Sword Found"
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "1") then
-            swordStatus = "Shisui"
+            swordStatus = "🗡️ Shisui"
         elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "2") then
-            swordStatus = "Wando"
+            swordStatus = "🗡️ Wando"
         elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "3") then
-            swordStatus = "Saddi"
+            swordStatus = "🗡️ Saddi"
         end
         LegendarySword:SetDesc(swordStatus)
     end
 end)
 StatusBone = Server:AddParagraph({
-    Title = "Bone",
+    Title = "🦴 Bone",
     Content = ""
 })
 spawn(function()
@@ -2002,7 +2002,7 @@ local lastCopyTime = 0
 local copyCooldown = 2
 Server:AddButton({
     Title = "Copy Job ID",
-    Description = "Copy the Server Job Id.",
+    Description = "Copies the Server Job Id.",
     Callback = function()
         if tick() - lastCopyTime >= copyCooldown then
             lastCopyTime = tick()
