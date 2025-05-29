@@ -76,7 +76,7 @@ local CheckKey = Instance.new("TextButton")
 CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
 CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
 CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-CheckKey.Text = "Enter Key"
+CheckKey.Text = "Check Key"
 CheckKey.TextSize = 18
 CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
 CheckKey.Parent = Frame
@@ -102,7 +102,7 @@ CheckKey.MouseButton1Click:Connect(function()
         ScreenGui:Destroy()
  
 -- Put Your Script Here
-loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/beta_only.lua"))()
  
     else
         TextBox.PlaceholderText = "Invalid key. Try again."
