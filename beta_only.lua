@@ -2007,14 +2007,15 @@ Server:AddButton({
         if tick() - lastCopyTime >= copyCooldown then
             lastCopyTime = tick()
             setclipboard(tostring(game.JobId))
-            print("JobId Copied!")
-        else
-            print("Please try again in a moment!")
 	Fluent:Notify({
 	Title = "Job Id Copied!",
 	Content = "Job ID copied to clipboard successfully!",
 	Duration = 10
 })
+            print("JobId Copied!")
+        else
+            print("Please try again in a moment!")
+	
         end
     end
 })
@@ -2139,6 +2140,11 @@ LGa:AddButton({
     Title = "Stop Tween",
     Callback = function()
         StopTween()
+	Fluent:Notify({
+	Title = "Tween stopped successfully.",
+	Content = "",
+	Duration = 10
+})
     end
 })
 LGa:AddSection("Pop-up")
@@ -2941,6 +2947,11 @@ Main:AddButton({
     Callback = function()
         pcall(function()
             setclipboard("https://discord.gg/wDMPK3QAmY")
+	Fluent:Notify({
+	Title = "Server link copied successfully.",
+	Content = "COPIED SUCCESSFULLY!",
+	Duration = 10
+})
         end)
     end
 })
