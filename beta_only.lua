@@ -8491,7 +8491,7 @@ if World1 then
 game.StarterGui:SetCore("SendNotification", {
     Title = "Kai Hub",
     Text = "You are in First Sea.",
-    Icon = "rbxassetid://16118194291",
+    Icon = "rbxassetid://",
     Duration = 2;
 })
 end
@@ -8499,7 +8499,7 @@ if World2 then
 game.StarterGui:SetCore("SendNotification", {
     Title = "Kai Hub",
     Text = "You are in Second Sea.",
-    Icon = "rbxassetid://16118194291",
+    Icon = "rbxassetid://2125253106",
     Duration = 2;
 })
 end
@@ -8507,7 +8507,7 @@ if World3 then
 game.StarterGui:SetCore("SendNotification", {
     Title = "Kai Hub",
     Text = "You are in Third Sea.",
-    Icon = "rbxassetid://16118194291",
+    Icon = "rbxassetid://2125253113",
     Duration = 2;
 })
 end
