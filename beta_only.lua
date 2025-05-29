@@ -2443,12 +2443,40 @@ LGa:AddButton({
         end
     end
 })
-LGa:AddButton({
-	Title = "No Dash CD [ SOON ]",
-	Description = "COMING SOON",
-	Callback = function()
-end
+local noDash = false
+local dashLoop
+
+LGa:AddToggle({
+    Title = "No Dash Cooldown",
+    Description = "Removes dash cooldown.",
+    Default = false,
+    Callback = function(state)
+        noDash = state
+
+        if noDash then
+            dashLoop = task.spawn(function()
+                while noDash do
+                    pcall(function()
+                        local player = game.Players.LocalPlayer
+                        local char = player.Character
+                        if char then
+                            local humanoid = char:FindFirstChildOfClass("Humanoid")
+                            if humanoid and humanoid:FindFirstChild("DashCooldown") then
+                                humanoid:FindFirstChild("DashCooldown"):Destroy()
+                            end
+                        end
+                    end)
+                    task.wait()
+                end
+            end)
+        else
+            if dashLoop then
+                task.cancel(dashLoop)
+            end
+        end
+    end
 })
+
 LGa:AddButton({
 	Title = "Remove Portal Dash CD [ SOON ]",
 	Description = "COMING SOON",
