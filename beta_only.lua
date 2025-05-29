@@ -6385,6 +6385,11 @@ spawn(function()
         end
     end
 end)]]
+_G.Settings = {
+ SeaStack = {
+      ["Summon Kitsune Island"] = false
+}
+};
 Toggle = Sea:AddToggle("Toggle", {Title = "Auto Summon Kitsune Island", Description = "Spawn Kitsune Island", Default = false })
 Toggle:OnChanged(function(value)
 _G.Settings.SeaStack["Summon Kitsune Island"] = value;
