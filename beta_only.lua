@@ -1357,7 +1357,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 Window = Fluent:CreateWindow({
     Title = "Kai Hub : Blox Fruits ",
     SubTitle = " by Kai Team (discord.gg/wDMPK3QAmY)",
-    TabWidth = 145,
+    TabWidth = 143,
     Size = UDim2.fromOffset(535, 370),
     Acrylic = false, 
     Theme = "Dark",
@@ -1366,7 +1366,8 @@ Window = Fluent:CreateWindow({
 Fluent:Notify({
 	Title = "Welcome to Kai Hub!",
 	Content = "Thank you for using our script!",
-	Duration = 5
+	SubContent = "discord.gg/wDMPK3QAmY",
+	Duration = 10
 })
 ---------------------- TABS -------------------------
 --Beta = Window:AddTab({ Title = "BETA", Icon = "info" })
