@@ -2493,14 +2493,40 @@ Toggle:OnChanged(function(enabled)
     end
 end)
 
-
-
-LGa:AddButton({
-	Title = "Remove Portal Dash CD [ SOON ]",
-	Description = "COMING SOON",
-	Callback = function()
-end
+local Toggle = LGa:AddToggle("NoPortalCooldown", {
+    Title = "Remove Portal Dash CD",
+    Description = "Removes cooldown for Portal Fruit dash",
+    Default = false
 })
+
+local noCooldownLoop
+
+Toggle:OnChanged(function(state)
+    if state then
+        noCooldownLoop = game:GetService("RunService").Heartbeat:Connect(function()
+            pcall(function()
+                local char = game.Players.LocalPlayer.Character
+                if char then
+                    for _, v in pairs(char:GetChildren()) do
+                        if v:IsA("Tool") and v.Name:lower():find("portal") then
+                            for _, obj in pairs(v:GetDescendants()) do
+                                if obj:IsA("NumberValue") and obj.Name == "Cooldown" then
+                                    obj.Value = 0
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end)
+    else
+        if noCooldownLoop then
+            noCooldownLoop:Disconnect()
+            noCooldownLoop = nil
+        end
+    end
+end)
+
 ------------ TELEPORT TAB -----------
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local CommF_Remote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
