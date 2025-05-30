@@ -2443,52 +2443,49 @@ LGa:AddButton({
         end
     end
 })
-local dashEnabled = false
-local dashCooldown = false
-local DashPower = 100
-local dashDelay = 0.1 -- time between dashes
 
-Toggle = LGa:AddToggle("NoDashCooldown", {
-    Title = "Dash No CD",
-    Description = "Dash quickly",
+local TweenService = game:GetService("TweenService")
+local UIS = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local connection
+
+local Toggle = LGa:AddToggle("Toggle", {
+    Title = "No Dash CD",
+    Description = "Faster custom tween dash",
     Default = false
 })
-Toggle:OnChanged(function(state)
-    dashEnabled = state
 
-    if dashEnabled then
-        pcall(function()
-            local UIS = game:GetService("UserInputService")
-            local player = game.Players.LocalPlayer
-            local connection
+Toggle:OnChanged(function(enabled)
+    if enabled then
+        connection = UIS.InputBegan:Connect(function(input, gameProcessed)
+            if gameProcessed then return end
+            if input.KeyCode == Enum.KeyCode.Q then
+                local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+                local hrp = char:FindFirstChild("HumanoidRootPart")
+                if hrp then
+                    local direction = hrp.CFrame.LookVector
+                    local distance = 50 -- fast & far dash
+                    local dashTime = 0.08
 
-            connection = UIS.InputBegan:Connect(function(input, gpe)
-                if gpe then return end
-                if input.KeyCode == Enum.KeyCode.Q and not dashCooldown then
-                    dashCooldown = true
-
-                    local char = player.Character or player.CharacterAdded:Wait()
-                    local hrp = char:FindFirstChild("HumanoidRootPart")
-
-                    if hrp then
-                        hrp.Velocity = hrp.CFrame.LookVector * DashPower
-                    end
-
-                    task.delay(dashDelay, function()
-                        dashCooldown = false
-                    end)
+                    local goalPosition = hrp.Position + (direction * distance)
+                    local tween = TweenService:Create(
+                        hrp,
+                        TweenInfo.new(dashTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
+                        {CFrame = CFrame.new(goalPosition)}
+                    )
+                    tween:Play()
                 end
-            end)
-
-            -- Store the connection so we can disconnect later if needed
-            Toggle:OnChanged(function(newState)
-                if not newState and connection then
-                    connection:Disconnect()
-                end
-            end)
+            end
         end)
+    else
+        if connection then
+            connection:Disconnect()
+        end
     end
 end)
+
 
 
 LGa:AddButton({
