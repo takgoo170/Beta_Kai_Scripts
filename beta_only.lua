@@ -5679,7 +5679,8 @@ ListSeaZone = {
   "Lv. 3",
   "Lv. 4",
   "Lv. 5",
-  "Lv. 6"
+  "Lv. 6",
+  "Infinite"
 }
 zoneselect = Sea:AddDropdown("zoneselect", {
 	Title = "Select Sea Level",
@@ -5764,6 +5765,13 @@ spawn(function()
                     -0.0654025897, 0.997858942, 2.02319411e-10,
                     -0.99428153, -0.0651681125, -0.0846010372
                 )
+	    elseif getgenv().SelectedZone == "Infinite" then
+		CFrameSelectedZone = CFrame.new(
+	        -148073.359, 8.99999523, 7721.05078,
+		-0.0825930536, -0.00000154416148, 0.996583343, 
+		-0.000018696026, 1, -0.000000000000391858095, -0.996583343,
+		-0.0000186321486, -0.0825930536
+		)
             end
         end
     end)
