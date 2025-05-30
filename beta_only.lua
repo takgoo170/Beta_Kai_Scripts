@@ -7364,18 +7364,7 @@ task.spawn(function()
         end)
     end
 end)
-Toggle = Race:AddToggle("Toggle", {Title = "Teleport to Lever", Description = "", Default = false })
-Toggle:OnChanged(function(value)
- getgenv().LeverPullTP = value
- StopTween(getgenv().LeverPullTP)
-if getgenv().LeverPullTP then
-local LeverPullPos = CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734);
-						if (LeverPullPos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 1000 then
-							(game:GetService("Players")).LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875);
-						else
-							topos(LeverPullPos);
-						end;
-                                      end
+
 Pullever = Race:AddParagraph({
     Title = "Pull Lever",
     Content = "Status: "
