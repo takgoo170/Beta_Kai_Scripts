@@ -2445,43 +2445,50 @@ LGa:AddButton({
 })
 
 local TweenService = game:GetService("TweenService")
+local Tab = Window:AddTab({ Title = "Movement", Icon = "zap" })
+local Section = Tab:AddSection("Dash Settings")
+
+local TweenService = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-local connection
+local dashConnection
 
-local Toggle = LGa:AddToggle("Toggle", {
+local Toggle = LGa:AddToggle("FastDash", {
     Title = "No Dash CD",
-    Description = "Faster custom tween dash",
+    Description = "",
     Default = false
 })
 
 Toggle:OnChanged(function(enabled)
     if enabled then
-        connection = UIS.InputBegan:Connect(function(input, gameProcessed)
+        dashConnection = UIS.InputBegan:Connect(function(input, gameProcessed)
             if gameProcessed then return end
             if input.KeyCode == Enum.KeyCode.Q then
-                local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-                local hrp = char:FindFirstChild("HumanoidRootPart")
-                if hrp then
-                    local direction = hrp.CFrame.LookVector
-                    local distance = 50 -- fast & far dash
-                    local dashTime = 0.08
+                pcall(function()
+                    local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+                    local hrp = char:FindFirstChild("HumanoidRootPart")
+                    if hrp then
+                        local direction = hrp.CFrame.LookVector
+                        local distance = 50
+                        local dashTime = 0.08
 
-                    local goalPosition = hrp.Position + (direction * distance)
-                    local tween = TweenService:Create(
-                        hrp,
-                        TweenInfo.new(dashTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
-                        {CFrame = CFrame.new(goalPosition)}
-                    )
-                    tween:Play()
-                end
+                        local goal = hrp.Position + direction * distance
+                        local tween = TweenService:Create(
+                            hrp,
+                            TweenInfo.new(dashTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
+                            {CFrame = CFrame.new(goal)}
+                        )
+                        tween:Play()
+                    end
+                end)
             end
         end)
     else
-        if connection then
-            connection:Disconnect()
+        if dashConnection then
+            dashConnection:Disconnect()
+            dashConnection = nil
         end
     end
 end)
