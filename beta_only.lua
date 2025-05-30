@@ -2443,37 +2443,53 @@ LGa:AddButton({
         end
     end
 })
-local dashLoop = nil
+local dashEnabled = false
+local dashCooldown = false
+local DashPower = 100
+local dashDelay = 0.1 -- time between dashes
 
-Toggle = LGa:AddToggle("Toggle", {
-    Title = "No Dash Cooldown",
-    Description = "Remove Dash CD.",
+Toggle = LGa:AddToggle("NoDashCooldown", {
+    Title = "Dash No CD",
+    Description = "Dash quickly",
     Default = false
 })
-
 Toggle:OnChanged(function(state)
-    if state then
-        dashLoop = task.spawn(function()
-            while Toggle.Value do
-                pcall(function()
-                    local player = game.Players.LocalPlayer
-                    local char = player.Character
-                    if char then
-                        local humanoid = char:FindFirstChildOfClass("Humanoid")
-                        if humanoid and humanoid:FindFirstChild("DashCooldown") then
-                            humanoid:FindFirstChild("DashCooldown"):Destroy()
-                        end
+    dashEnabled = state
+
+    if dashEnabled then
+        pcall(function()
+            local UIS = game:GetService("UserInputService")
+            local player = game.Players.LocalPlayer
+            local connection
+
+            connection = UIS.InputBegan:Connect(function(input, gpe)
+                if gpe then return end
+                if input.KeyCode == Enum.KeyCode.Q and not dashCooldown then
+                    dashCooldown = true
+
+                    local char = player.Character or player.CharacterAdded:Wait()
+                    local hrp = char:FindFirstChild("HumanoidRootPart")
+
+                    if hrp then
+                        hrp.Velocity = hrp.CFrame.LookVector * DashPower
                     end
-                end)
-                task.wait()
-            end
+
+                    task.delay(dashDelay, function()
+                        dashCooldown = false
+                    end)
+                end
+            end)
+
+            -- Store the connection so we can disconnect later if needed
+            Toggle:OnChanged(function(newState)
+                if not newState and connection then
+                    connection:Disconnect()
+                end
+            end)
         end)
-    else
-        if dashLoop then
-            task.cancel(dashLoop)
-        end
     end
 end)
+
 
 LGa:AddButton({
 	Title = "Remove Portal Dash CD [ SOON ]",
