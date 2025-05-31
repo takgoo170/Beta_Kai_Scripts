@@ -4,7 +4,7 @@ getgenv().team = "Marines" -- Pirates
 -- Wait for the game to load completely
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
 
--- Tự động chọn team với phương pháp đáng tin cậy hơn
+-- Automatically select teams with a more reliable method
 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Main (minimal)") then
     repeat
         wait()
@@ -151,7 +151,7 @@ local World1, World2, World3 = false, false, false
 if game.PlaceId == 7449423635 then
     World3 = true
 else
-    game.Players.LocalPlayer:Kick("Chỉ hỗ trợ BF Sea 3")
+    game.Players.LocalPlayer:Kick("Only support Blox Fruits Sea 3")
     return
 end 
 
@@ -781,7 +781,7 @@ getgenv().HopServer = HopServer
 
 -- Skip Player
 function SkipPlayer()
-    UI.ShowNotification("Đã bỏ qua người chơi", "warning")
+    UI.ShowNotification("Player skipped", "warning")
     
     getgenv().killed = getgenv().targ 
     if getgenv().targ then
@@ -798,7 +798,7 @@ getgenv().SkipPlayer = SkipPlayer
 -- Target Selection
 function target() 
     pcall(function()
-        UI.ShowNotification("Đang tìm mục tiêu mới...", "info")
+        UI.ShowNotification("Looking for new target...", "info")
         
         local d = math.huge
         local p = nil
@@ -839,9 +839,9 @@ function target()
         
         if p == nil then 
             HopServer()
-            UI.ShowNotification("Không tìm thấy mục tiêu, đang chuyển server...", "warning")
+            UI.ShowNotification("Target not found, switching servers...", "warning")
         else
-            UI.ShowNotification("Đã tìm thấy mục tiêu: " .. p.Name, "success")
+            UI.ShowNotification("Target found: " .. p.Name, "success")
             UI.SetTarget(p.Name)
         end
         
@@ -1281,8 +1281,8 @@ end)
 -- Tự động tham gia lại khi mất kết nối
 game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if not hopserver and child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
-        print("Cuttay Auto Bounty | Đang vào lại!")
-        UI.ShowNotification("Bị ngắt kết nối, đang vào lại...", "warning")
+        print("Kai Hub Auto Bounty | Re-entering!")
+        UI.ShowNotification("Disconnected, trying to reconnect...", "warning")
         game:GetService("TeleportService"):Teleport(game.PlaceId)
     end
 end)
@@ -1303,7 +1303,7 @@ function wSend(main)
         end)
         
         if not success then
-            print("Lỗi webhook: " .. tostring(error))
+            print("Webhook error: " .. tostring(error))
         end
     end)
 end 
@@ -1319,31 +1319,31 @@ function wEarn(targ, earn, total)
             ["content"] = "",
             ["embeds"] = {
                 {
-                    ["title"] = "**Cuttay Hub | Auto Bounty**",
-                    ["color"] = 3447003, -- Màu xanh dương Discord
+                    ["title"] = "**Kai Hub | Auto Bounty**",
+                    ["color"] = 3447003, -- Discord Blue
                     ["fields"] = {
                         {
-                            ["name"] = "Tài khoản: ",
+                            ["name"] = "Username: ",
                             ["value"] = "||"..game.Players.LocalPlayer.Name.."||",
                             ["inline"] = false,
                         },
                         {
-                            ["name"] = "Mục tiêu: ",
+                            ["name"] = "Target: ",
                             ["value"] = "```"..targetName.."```",
                             ["inline"] = false,
                         },
                         {
-                            ["name"] = "Bounty thu được: ",
+                            ["name"] = "Bounty Earned: ",
                             ["value"] = "```Earned: "..tostring(earn).."```",
                             ["inline"] = false,
                         },
                         {
-                            ["name"] = "Tổng Bounty: ",
+                            ["name"] = "Total Bounty: ",
                             ["value"] = "```Earned: "..tostring(total).."```",
                             ["inline"] = false,
                         },
                         {
-                            ["name"] = "Bounty hiện tại: ",
+                            ["name"] = "Current Bounty: ",
                             ["value"] = "```"..(math.round((game.Players.LocalPlayer.leaderstats["Bounty/Honor"].Value / 1000000)*100)/100).."M```",
                             ["inline"] = false,
                         }
@@ -1352,7 +1352,7 @@ function wEarn(targ, earn, total)
                         ["url"] = "https://cdn.discordapp.com/attachments/1338107245983957013/1352284325386784850/Untitled524_20240705122146.png?ex=67dd746b&is=67dc22eb&hm=9271d0158ce1b078c61e2a5358ef80f1ff5e5619de9e159c2fe867a4a5ee734b&",
                     },
                     ["footer"] = {
-                        ["text"] = "Cuttay Hub - .gg/baokhanh",
+                        ["text"] = "Kai Hub - .gg/wDMPK3QAmY",
                     },
                     ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ"),
                 }
@@ -1363,7 +1363,7 @@ function wEarn(targ, earn, total)
     end
 end
 
--- === QUẢN LÝ CÀI ĐẶT ===
+-- === MANAGE SETTINGS ===
 local foldername = "Cuttay Hub Auto Bounty"
 local filename = foldername.."/Settings.json"
 
@@ -1387,7 +1387,7 @@ function loadSettings()
         if isfolder(foldername) and isfile(filename) then
             local settings = HttpService:JSONDecode(readfile(filename))
             
-            -- Cập nhật cài đặt từ file
+            -- Update settings from file
             for category, values in pairs(settings) do
                 if getgenv().Setting[category] then
                     for key, value in pairs(values) do
@@ -1399,17 +1399,17 @@ function loadSettings()
     end)
 end
 
--- Tải cài đặt
+-- Download settings
 loadSettings()
 
--- === CẬP NHẬT THỐNG KÊ ===
+-- ===  UPDATE STATISTICS ===
 local Bounty = game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value
 local Earned = 0
 local startTime = tick()
 local OldTotalEarned = _G.TotalEarn or 0
 local TotalEarned = _G.TotalEarn or 0
 
--- Hàm định dạng số
+-- The number format function
 function FormatNumber(number)
     if number >= 1000000 then
         return string.format("%.2fM", number / 1000000)
@@ -1468,4 +1468,4 @@ end)
 UI.UpdateTargetsList()
 
 -- Cập nhật giao diện
-UI.ShowNotification("Auto Bounty đã sẵn sàng!", "success")
+UI.ShowNotification("Auto Bounty is ready!", "success")
