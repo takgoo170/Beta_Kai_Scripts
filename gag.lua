@@ -24,26 +24,42 @@ local Tabs = {
 
 ----------------- MAIN TAB -------------------
 Tabs.Main:AddSection("Farming")
-    local Toggle = Tabs.Main:AddToggle("AutoCollectPlantedSeeds", {
-    Title = "Auto Collect",
-    Description = "Automatically harvest seeds planted in your garden.",
-    Default = false,
-})
+    -- Auto Collect Planted Seeds with Tweening using Fluent UI toggle
 
+local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-local collecting = false
+local Toggle = Tabs.Main:AddToggle("AutoCollectPlantedSeeds", {
+    Title = "Auto Collect Planted Seeds",
+    Description = "Automatically harvest seeds planted in your garden using smooth movement.",
+    Default = false,
+})
 
--- Set this to the folder/model where your planted seeds are stored
--- e.g., workspace:WaitForChild("Garden"):WaitForChild(LocalPlayer.Name)
-local gardenFolder = workspace:WaitForChild("Garden"):WaitForChild(LocalPlayer.Name)
+-- Update this path to your game's actual garden planted seeds folder
+local function getGardenFolder()
+    -- Example path:
+    -- Replace with your actual game path where planted seeds are parented
+    local garden = workspace:FindFirstChild("Garden")
+    if garden then
+        return garden:FindFirstChild(LocalPlayer.Name)
+    end
+    return nil
+end
 
--- Function to get HumanoidRootPart safely
 local function getHRP()
     local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     local hrp = character:WaitForChild("HumanoidRootPart", 10)
     return hrp
+end
+
+local collecting = false
+
+local function tweenToPosition(part, goalCFrame, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(part, tweenInfo, {CFrame = goalCFrame})
+    tween:Play()
+    tween.Completed:Wait()
 end
 
 Toggle:OnChanged(function(state)
@@ -58,21 +74,34 @@ Toggle:OnChanged(function(state)
             end
 
             while collecting do
-                wait(1) -- adjust wait time as needed
-
-                -- Ensure gardenFolder still exists and parented
-                if not gardenFolder or not gardenFolder.Parent then
-                    warn("Garden folder missing or inaccessible.")
-                    break
+                wait(0.5)
+                local gardenFolder = getGardenFolder()
+                if not gardenFolder then
+                    warn("Garden folder not found!")
+                    wait(5)
+                    continue
                 end
 
-                for _, seed in pairs(gardenFolder:GetChildren()) do
+                local seeds = gardenFolder:GetChildren()
+                for _, seed in pairs(seeds) do
                     if not collecting then break end
 
-                    -- Check if seed is a part or model you can harvest
-                    local seedPart = (seed:IsA("BasePart") and seed) or (seed.PrimaryPart or seed:FindFirstChildWhichIsA("BasePart"))
+                    local seedPart = nil
+                    if seed:IsA("BasePart") then
+                        seedPart = seed
+                    elseif seed:IsA("Model") then
+                        seedPart = seed.PrimaryPart or seed:FindFirstChildWhichIsA("BasePart")
+                    end
+
                     if seedPart then
-                        hrp.CFrame = seedPart.CFrame + Vector3.new(0, 3, 0)
+                        -- Tween smoothly near seed (above by 3 studs)
+                        local targetCFrame = seedPart.CFrame + Vector3.new(0,3,0)
+                        tweenToPosition(hrp, targetCFrame, 1)
+                        wait(1)
+
+                        -- TODO: Fire harvesting event here if needed, e.g.:
+                        -- game:GetService("ReplicatedStorage").Events.HarvestSeed:FireServer(seed)
+
                         wait(0.5)
                     end
                 end
@@ -80,6 +109,9 @@ Toggle:OnChanged(function(state)
         end)
     end
 end)
+
+
+                
 
     Tabs.Main:AddSection("Money")
     local Toggle = Tabs.Main:AddToggle("Toggle", {
