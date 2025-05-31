@@ -1,7 +1,7 @@
--- Cài đặt team và khởi tạo biến
+-- Team setup and variable initialization
 getgenv().team = "Marines" -- Pirates
 
--- Đợi game tải hoàn chỉnh
+-- Wait for the game to load completely
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
 
 -- Tự động chọn team với phương pháp đáng tin cậy hơn
