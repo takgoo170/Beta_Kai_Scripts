@@ -24,23 +24,27 @@ local Tabs = {
 
 ----------------- MAIN TAB -------------------
     Tabs.Main:AddSection("Money")
-    Tabs.Main:AddToggle("Toggle", {
-        Title = "Instant Money",
-        Description = "❗Enable this if someone is holding a pet, and you will automatically earn a money.",
-        Default = false
-      })
-    Toggle:OnChanged(function()
-        
-task.spawn(function()
-    while true do wait()
-        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-            if v ~= game.Players.LocalPlayer then
-                local Pet = v.Character:FindFirstChildOfClass("Tool")
-                if Pet and Pet:GetAttribute("ItemType") == "Pet" then
-                    game:GetService("ReplicatedStorage"):WaitForChild("GameEvents"):WaitForChild("SellPet_RE"):FireServer(Pet)
+    local Toggle = Tabs.Main:AddToggle("Toggle", {
+    Title = "Instant Money",
+    Description = "❗Enable this if someone is holding a pet, and you will automatically earn money.",
+    Default = false
+})
+
+Toggle:OnChanged(function(state)
+    if state then
+        task.spawn(function()
+            while Toggle:Get() do
+                wait(1) -- Adjust the wait time as needed
+                for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+                    if player ~= game.Players.LocalPlayer then
+                        local Pet = player.Character and player.Character:FindFirstChildOfClass("Tool")
+                        if Pet and Pet:GetAttribute("ItemType") == "Pet" then
+                            game:GetService("ReplicatedStorage"):WaitForChild("GameEvents"):WaitForChild("SellPet_RE"):FireServer(Pet)
+                        end
+                    end
                 end
             end
-        end
+        end)
     end
 end)
 
