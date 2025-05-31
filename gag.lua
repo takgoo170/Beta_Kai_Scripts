@@ -16,7 +16,7 @@ KaiUI:Notify({
     })
 ---------TABS---------
 local Tabs = {
-    Discord = Window:AddTab({ Title = "Discord", Icon = "info"
+    Discord = Window:AddTab({ Title = "Discord", Icon = "info" }),
     Main = Window:AddTab({ Title = "Main", Icon = "house" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
