@@ -1,8 +1,3 @@
--- Team setup and variable initialization
-getgenv().team = "Marines" -- Pirates
-
--- Wait for the game to load completely
-repeat wait() until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
 
 -- Automatically select teams with a more reliable method
 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Main (minimal)") then
@@ -1364,7 +1359,7 @@ function wEarn(targ, earn, total)
 end
 
 -- === MANAGE SETTINGS ===
-local foldername = "Cuttay Hub Auto Bounty"
+local foldername = "Kai Hub | Auto Bounty"
 local filename = foldername.."/Settings.json"
 
 function saveSettings()
