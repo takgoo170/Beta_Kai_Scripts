@@ -341,7 +341,7 @@ More:AddParagraph({
     })
 More:AddSection("Movement Settings")
 getgenv().WalkSpeed = 16
-Toggle = PVP:AddToggle("Toggle", {
+Toggle = More:AddToggle("Toggle", {
     Title = "Enable WalkSpeed",
     Description = "",
     Default = false
