@@ -26,7 +26,7 @@ PS99 = Window:AddTab({ Title = "Pet Simulator 99", Icon = "bone" })
 PetsGo = Window:AddTab({ Title = "Pet's Go", Icon = "bone" })
 MemeSea = Window:AddTab({ Title = "Meme Sea", Icon = "laugh" })
 KingLegacy = Window:AddTab({ Title = "King Legacy", Icon = "crown" })
-
+More = Window:AddTab({ Title = "More Scripts", Icon = "globe" })
 ------------- Interface Tab -----------------------
 local Tabs = {
       Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
@@ -319,6 +319,27 @@ PetsGo:AddButton({
         Description = "Requires a key",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+        end
+    })
+
+
+
+
+
+--------------- MORE SCRIPTS TAB ----------------
+More:AddParagraph({
+        Title = "More Scripts",
+        Content = "Find more scripts"
+    })
+More:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
+More:AddSection("FE Scripts")
+More:AddButton({
+        Title = "Infinite Yield",
+        Callback = function()
+            loadstring(game:HttpGet('https://cdn.robloxscripts.gg/public/furky/furky-infinite-yield-roblox-admin-script-source.lua'))()
         end
     })
 ----------- MANAGER ----------
