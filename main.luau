@@ -90,7 +90,7 @@ GetKey.MouseButton1Click:Connect(function()
 end)
  
 local function validateKey(key)
-    return key == "W1ndy_M1d3pz@i" -- Replace this with your key
+    return key == "KAI_11bc4a88n3x1bo" -- Replace this with your key
 end
  
 CheckKey.MouseButton1Click:Connect(function()
@@ -102,7 +102,7 @@ CheckKey.MouseButton1Click:Connect(function()
         ScreenGui:Destroy()
  
 -- Put Your Script Here
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ItzWindy01/WindyXBypass/main/WindyMainZ.lua"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/beta_only.lua"))();
  
     else
         TextBox.PlaceholderText = "Wrong Key. Try again."
