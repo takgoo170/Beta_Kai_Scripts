@@ -16,6 +16,11 @@ KaiUI:Notify({
         SubContent = "", -- Optional
         Duration = 12 -- Set to nil to make the notification not disappear
     })
+KaiUI:Notify({
+        Title = "Hey!",
+        Content = "Meme Sea, King Legacy Tab is currently empty right now.",
+        Duration = 17
+    })
 ------------------ TABS -----------------------
 Info = Window:AddTab({ Title = "Info", Icon = "info" })
 Bloxfruits = Window:AddTab({ Title = "Blox Fruits", Icon = "apple" })
@@ -35,7 +40,7 @@ local Tabs = {
 -------------- INFO Tab ---------------------
 Info:AddSection("Kai Hub COMMUNITY")
 Info:AddParagraph({
-    Title = "Welcome to Kai Hub!",
+    Title = "👋🏻 Welcome to Kai Hub!",
     Content = "Kai Hub is self-developed and it is developed by Takgoo."
   })
 Info:AddButton({
@@ -70,7 +75,7 @@ Info:AddParagraph({
     })
 Info:AddParagraph({
         Title = "Admin",
-        Description = "Sage, Chi"
+        Content = "Sage, Chi"
     })
 Info:AddParagraph({
         Title = "Beta Testers",
@@ -102,7 +107,7 @@ Info:AddParagraph({
 
 Bloxfruits:AddParagraph({
         Title = "Blox Fruits",
-        Content = "This is the Blox Fruits scripts."
+        Content = "Blox Fruits Scripts Section."
     })
 Bloxfruits:AddParagraph({
         Title = "Important Information",
@@ -342,6 +347,7 @@ More:AddParagraph({
 More:AddSection("FE Scripts")
 More:AddButton({
         Title = "Infinite Yield",
+        Description = "Keyless",
         Callback = function()
             loadstring(game:HttpGet('https://cdn.robloxscripts.gg/public/furky/furky-infinite-yield-roblox-admin-script-source.lua'))()
         end
