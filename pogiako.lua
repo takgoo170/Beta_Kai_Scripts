@@ -338,7 +338,7 @@ More:AddParagraph({
 More:AddSection("Movement Settings")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
-getgenv().WalkSpeed = 16
+local WalkSpeed = 16
 Toggle = PVP:AddToggle("Toggle", {
     Title = "Enable WalkSpeed",
     Description = "",
@@ -388,7 +388,7 @@ Input = More:AddInput("Input", {
      Numeric = true,
      Finished = true,
      Callback = function(Value)
-         getgenv().WalkSpeed = Value
+         WalkSpeed = Value
      end
 })
 More:AddSection("FE Scripts")
