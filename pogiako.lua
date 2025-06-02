@@ -71,6 +71,7 @@ Info:AddParagraph({
 Info:AddParagraph({
         Title = "Admin",
         Description = "Sage, Chi"
+    })
 Info:AddParagraph({
         Title = "Beta Testers",
         Content = "None"
