@@ -194,7 +194,7 @@ Deadrails:AddButton({
 --------------- PSX TAB ----------------------
 PSX:AddParagraph({
         Title = "Pet Simulator X! 🐾",
-        Description = "Pet Simulator X! 🐾 Scripts Section"
+        Description = "Pet Simulator X! 🐾 Scripts Section",
     })
 PSX:AddParagraph({
         Title = "Important Information",
@@ -204,7 +204,7 @@ PSX:AddParagraph({
 PSX:AddSection("Game Scripts")
 PSX:AddButton({
         Title = "Extreme Hub",
-        Description = "No info found",
+        Description = "Requires a key",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/ExtremeAntonis/loader/main/loader.lua"))()
         end
