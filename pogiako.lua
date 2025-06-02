@@ -20,7 +20,7 @@ KaiUI:Notify({
 Info = Window:AddTab({ Title = "Info", Icon = "info" })
 Bloxfruits = Window:AddTab({ Title = "Blox Fruits", Icon = "apple" })
 GaG = Window:AddTab({ Title = "Grow a Garden", Icon = "grape" })
-Deadrails = Window:AddTab ({ Title = "Dead Rails", Icon = "train", })
+Deadrails = Window:AddTab ({ Title = "Dead Rails", Icon = "train" })
 
 ------------- Interface Tab -----------------------
 local Tabs = {
@@ -81,7 +81,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/h
                 end
     })
 Bloxfruits:AddButton({
-        Title = "W-Azure"
+        Title = "W-Azure",
         Description = "Keyless",
         Callback = function()
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
