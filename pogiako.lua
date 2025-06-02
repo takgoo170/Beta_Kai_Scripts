@@ -1,3 +1,7 @@
+----------- local function ------------
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+----------- UI LOADING ---------
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -336,9 +340,7 @@ More:AddParagraph({
         Content = "Just click the scripts name below and it will automatically execute."
     })
 More:AddSection("Movement Settings")
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local WalkSpeed = 16
+getgenv().WalkSpeed = 16
 Toggle = PVP:AddToggle("Toggle", {
     Title = "Enable WalkSpeed",
     Description = "",
@@ -388,7 +390,7 @@ Input = More:AddInput("Input", {
      Numeric = true,
      Finished = true,
      Callback = function(Value)
-         WalkSpeed = Value
+         getgenv().WalkSpeed = Value
      end
 })
 More:AddSection("FE Scripts")
