@@ -124,6 +124,34 @@ Bloxfruits:AddButton({
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Trustmenotcondom/QTONYX/refs/heads/main/QuantumOnyx.lua"))()
                                                                 end
     })
+
+--------------- GROW A GARDEN TAB ---------------
+GaG:AddParagraph({
+        Title = "[🐝] Grow a Garden",
+        Content = "Grow a Garden Scripts Section"
+    })
+GaG:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
+
+GaG:AddSection("Game Scripts")
+GaG:AddButton({
+        Title = "Lunor Hub",
+        Description = "Requires a key",
+        Callback = function()
+            loadstring(game:HttpGet('https://lunor.dev/loader'))()
+        end
+    })
+------------ DEAD RAILS TAB ----------------
+Deadrails:AddParagraph({
+        Title = "Dead Rails [ALPHA]",
+        Content = "Dead Rails Scripts Section"
+    })
+Deadrails:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
 ----------- MANAGER ----------
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
