@@ -30,8 +30,8 @@ end)
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 30)
 Title.Position = UDim2.new(0, 0, 0.05, 0)
-Title.Text = "Windy Hub Key System"
-Title.TextSize = 18
+Title.Text = "Kai Hub | Key System"
+Title.TextSize = 19
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Parent = Frame
@@ -39,7 +39,7 @@ Title.Parent = Frame
 local Instructions = Instance.new("TextLabel")
 Instructions.Size = UDim2.new(1, 0, 0, 30)
 Instructions.Position = UDim2.new(0, 0, 0.2, 0)
-Instructions.Text = "Join Discord For GetKey"
+Instructions.Text = "Join to our discord server to get key."
 Instructions.TextSize = 13
 Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
 Instructions.BackgroundTransparency = 1
@@ -86,7 +86,7 @@ CheckKeyCorner.CornerRadius = UDim.new(0, 5)
 CheckKeyCorner.Parent = CheckKey
  
 GetKey.MouseButton1Click:Connect(function()
-   setclipboard("https://discord.com/invite/FAE4pp99")
+   setclipboard("https://discord.gg/wDMPK3QAmY")
 end)
  
 local function validateKey(key)
