@@ -58,6 +58,7 @@ Info:AddButton({
     })
 
 ------------------ BLOX FRUITS TAB ------------------
+
 Bloxfruits:AddParagraph({
         Title = "Blox Fruits",
         Content = "This is the Blox Fruits scripts."
@@ -66,6 +67,7 @@ Bloxfruits:AddParagraph({
         Title = "Important Information",
         Content = "Just click the scripts name below and it will automatically execute."
     })
+Bloxfruits:AddSection("Game Scripts")
 Bloxfruits:AddButton({
         Title = "Kai Hub V3 [ OUR SCRIPT ]",
         Description = "Keyless",
