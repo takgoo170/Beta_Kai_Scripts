@@ -335,6 +335,62 @@ More:AddParagraph({
         Title = "Important Information",
         Content = "Just click the scripts name below and it will automatically execute."
     })
+More:AddSection("Movement Settings")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+getgenv().WalkSpeed = 16
+Toggle = PVP:AddToggle("Toggle", {
+    Title = "Enable WalkSpeed",
+    Description = "",
+    Default = false
+})
+local SpeedConnection
+local function ApplySpeed()
+    if not Toggle.Value then return end
+    local Character = Player.Character
+    if Character then
+        local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+        if Humanoid then
+            Humanoid.WalkSpeed = getgenv().WalkSpeed
+            if SpeedConnection then
+                SpeedConnection:Disconnect()
+            end
+            SpeedConnection = Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                if Toggle.Value then
+                    Humanoid.WalkSpeed = getgenv().WalkSpeed
+                end
+            end)
+        end
+    end
+end
+Toggle:OnChanged(function(Value)
+    if Value then
+        ApplySpeed()
+        Player.CharacterAdded:Connect(ApplySpeed)
+    else
+        if SpeedConnection then
+            SpeedConnection:Disconnect()
+            SpeedConnection = nil
+        end
+        local Character = Player.Character
+        if Character then
+            local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+            if Humanoid then
+                Humanoid.WalkSpeed = 16
+            end
+        end
+    end
+end)
+Input = More:AddInput("Input", {
+     Title = "Input WalkSpeed",
+     Default = 16,
+     Placeholder = "Input",
+     Numeric = true,
+     Finished = true,
+     Callback = function(Value)
+         getgenv().WalkSpeed = Value
+     end
+})
 More:AddSection("FE Scripts")
 More:AddButton({
         Title = "Infinite Yield",
