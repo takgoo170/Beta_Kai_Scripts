@@ -30,6 +30,7 @@ local Tabs = {
 }
 
 -------------- INFO Tab ---------------------
+Info:AddSection("Kai Hub COMMUNITY")
 Info:AddParagraph({
     Title = "Welcome to Kai Hub!",
     Content = "Kai Hub is self-developed and it is developed by Takgoo."
@@ -59,6 +60,22 @@ Info:AddButton({
         end
     })
 
+Info:AddSection("Status")
+Info:AddParagraph({
+        Title = "Key System Status"
+    })
+Info:AddParagraph({
+        Title = "Requires a key",
+        Content = "The script has a key system."
+    })
+Info:AddParagraph({
+        Title = "Keyless",
+        Content = "The script has no key system."
+    })
+Info:AddParagraph({
+        Title = "No info found",
+        Content = "The script does not know whether there is a key system or not."
+    })
 ------------------ BLOX FRUITS TAB ------------------
 
 Bloxfruits:AddParagraph({
@@ -194,7 +211,7 @@ Deadrails:AddButton({
 --------------- PSX TAB ----------------------
 PSX:AddParagraph({
         Title = "Pet Simulator X! 🐾",
-        Description = "Pet Simulator X! 🐾 Scripts Section",
+        Content = "Pet Simulator X! 🐾 Scripts Section",
     })
 PSX:AddParagraph({
         Title = "Important Information",
@@ -214,6 +231,72 @@ PSX:AddButton({
         Description = "Requires a key",
         Callback = function()
             loadstring(game:HttpGetAsync("https://lua-library.btteam.net/script-auth.txt"))()
+        end
+    })
+
+--------------- PS99 TAB ---------------
+PS99:AddParagraph({
+        Title = "🏀 Pet Simulator 99! 🎯",
+        Content = "🏀 Pet Simulator 99! 🎯 Scripts Section"
+    })
+PS99:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
+
+PS99:AddSection("Game Scripts")
+PS99:AddButton({
+        Title = "Speed Hub",
+        Description = "No info found",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+        end
+    })
+PS99:AddButton({
+        Title = "Zap Hub",
+        Description = "No info found",
+        Callback = function()
+            loadstring(game:HttpGet('https://zaphub.xyz/Exec'))()
+        end
+    })
+PS99:AddButton({
+        Title = "Nousigi Hub",
+        Description = "No info found",
+        Callback = function()
+            loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()
+        end
+    })
+PS99:AddButton({
+        Title = "Nameless Hub",
+        Description = "No info found",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/HenSeu87PofghYT/pet-sim-99/main/Nameless%20Scripts"))()
+        end
+    })
+
+-------------- PetsGo Tab ------------------
+PetsGo:AddParagraph({
+        Title = "PETS GO! 🌽",
+        Content = "PETS GO! 🌽 Scripts Section"
+    })
+PetsGo:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
+
+PetsGo:AddSection("Game Scripts")
+PetsGo:AddButton({
+        Title = "Speed Hub",
+        Description = "No info found",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+        end
+    })
+PetsGo:AddButton({
+        Title = "Beecon Hub", 
+        Description = "Requires a key",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
         end
     })
 ----------- MANAGER ----------
