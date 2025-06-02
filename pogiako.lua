@@ -143,6 +143,27 @@ GaG:AddButton({
             loadstring(game:HttpGet('https://lunor.dev/loader'))()
         end
     })
+GaG:AddButton({
+        Title = "Blue Hub",
+        Description = "",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/tesghg/Grow-a-Garden/main/ameicaa_Grow_A_Garden.lua"))()
+        end
+    })
+GaG:AddButton({
+        Title = "No Lag",
+        Description = "",
+        Callback = function()
+            loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+        end
+    })
+GaG:AddButton({
+        Title = "Menace Hub",
+        Description = "",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/M-E-N-A-C-E/Menace-Hub/refs/heads/main/Old%20Server%20Finder%20Grow%20a%20Garden", true))()
+        end
+    })
 ------------ DEAD RAILS TAB ----------------
 Deadrails:AddParagraph({
         Title = "Dead Rails [ALPHA]",
