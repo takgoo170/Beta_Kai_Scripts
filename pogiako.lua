@@ -72,48 +72,56 @@ Bloxfruits:AddButton({
         Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo31/realtakgoo999/refs/heads/main/MAIN_UI.lua"))()
         end
+    })
 Bloxfruits:AddButton({
         Title = "Redz Hub",
         Description = "Keyless, Latest version",
         Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
                 end
+    })
 Bloxfruits:AddButton({
         Title = "W-Azure"
         Description = "Keyless",
         Callback = function()
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
                         end
+    })
 Bloxfruits:AddButton({
         Title = "Cokka Hub",
         Description = "Requires a key",
         Callback = function()
 loadstring(game:HttpGet"https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua")()
                                 end
+    })
 Bloxfruits:AddButton({
         Title = "Rubu Hub",
         Description = "Keyless",
         Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/RubuRoblox/refs/heads/main/RubuBF"))()
                                         end
+    })
 Bloxfruits:AddButton({
         Title = "HoHo Hub",
         Description = "Requires a key",
         Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()
-                                                end                                              
+                                                end      
+    })
 Bloxfruits:AddButton({
         Title = "Ro Hub",
         Description = "Keyless",
         Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RO-HUB-CODEX/RO-HUB/refs/heads/main/bloxfruits.lua"))()
                                             end
+    })
 Bloxfruits:AddButton({
         Title = "Quantum ONYX",       
         Description = "No info found",
         Callback = function()                                                                    
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Trustmenotcondom/QTONYX/refs/heads/main/QuantumOnyx.lua"))()
                                                                 end
+    })
 ----------- MANAGER ----------
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
