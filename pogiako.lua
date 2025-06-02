@@ -63,6 +63,18 @@ Info:AddButton({
         end
     })
 
+Info:AddSection("Kai Team Info")
+Info:AddParagraph({
+        Title = "Owner/Developer",
+        Content = "Takgoo"
+    })
+Info:AddParagraph({
+        Title = "Admin",
+        Description = "Sage, Chi"
+Info:AddParagraph({
+        Title = "Beta Testers",
+        Content = "None"
+    })
 Info:AddSection("Status")
 Info:AddParagraph({
         Title = "Key System Status"
@@ -78,6 +90,12 @@ Info:AddParagraph({
 Info:AddParagraph({
         Title = "No info found",
         Content = "The script does not know whether there is a key system or not."
+    })
+
+Info:AddSection("Socials")
+Info:AddParagraph({
+        Title = "SOON",
+        Description = ""
     })
 ------------------ BLOX FRUITS TAB ------------------
 
