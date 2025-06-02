@@ -13,15 +13,17 @@ local Window = KaiUI:CreateWindow({
 KaiUI:Notify({
         Title = "Kai Hub | Universal",
         Content = "Script loaded successfully.",
-        SubContent = "Enjoy!", -- Optional
+        SubContent = "", -- Optional
         Duration = 12 -- Set to nil to make the notification not disappear
     })
 ------------------ TABS -----------------------
 Info = Window:AddTab({ Title = "Info", Icon = "info" })
 Bloxfruits = Window:AddTab({ Title = "Blox Fruits", Icon = "apple" })
 GaG = Window:AddTab({ Title = "Grow a Garden", Icon = "grape" })
-Deadrails = Window:AddTab ({ Title = "Dead Rails", Icon = "train" })
-
+Deadrails = Window:AddTab({ Title = "Dead Rails", Icon = "train" })
+PSX = Window:AddTab({ Title = "Pet Simulator X", Icon = "paw-print" })
+PS99 = Window:AddTab({ Title = "Pet Simulator 99", Icon = "paw-print" })
+PetsGo = Window:AddTab({ Title = "Pet's Go", Icon = "paw-print" })
 ------------- Interface Tab -----------------------
 local Tabs = {
       Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
@@ -164,6 +166,13 @@ GaG:AddButton({
             loadstring(game:HttpGet("https://raw.githubusercontent.com/M-E-N-A-C-E/Menace-Hub/refs/heads/main/Old%20Server%20Finder%20Grow%20a%20Garden", true))()
         end
     })
+GaG:AddButton({
+        Title = "Skull Hub",
+        Description = "Requires a key",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/nf-36/Koronis/refs/heads/main/Scripts/Loader.lua"))()
+        end
+    })
 ------------ DEAD RAILS TAB ----------------
 Deadrails:AddParagraph({
         Title = "Dead Rails [ALPHA]",
@@ -172,6 +181,14 @@ Deadrails:AddParagraph({
 Deadrails:AddParagraph({
         Title = "Important Information",
         Content = "Just click the scripts name below and it will automatically execute."
+    })
+Deadrails:AddSection("Game Scripts")
+Deadrails:AddButton({
+        Title = "Skull Hub",
+        Description = "Requires a key",
+        Callback = function()            
+             loadstring(game:HttpGet('https://raw.githubusercontent.com/hungquan99/SkullHub/main/loader.lua'))()
+        end
     })
 ----------- MANAGER ----------
 SaveManager:SetLibrary(Fluent)
