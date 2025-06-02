@@ -147,21 +147,21 @@ GaG:AddButton({
     })
 GaG:AddButton({
         Title = "Blue Hub",
-        Description = "",
+        Description = "Keyless",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/tesghg/Grow-a-Garden/main/ameicaa_Grow_A_Garden.lua"))()
         end
     })
 GaG:AddButton({
         Title = "No Lag",
-        Description = "",
+        Description = "Keyless",
         Callback = function()
             loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
         end
     })
 GaG:AddButton({
         Title = "Menace Hub",
-        Description = "",
+        Description = "Keyless",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/M-E-N-A-C-E/Menace-Hub/refs/heads/main/Old%20Server%20Finder%20Grow%20a%20Garden", true))()
         end
@@ -188,6 +188,32 @@ Deadrails:AddButton({
         Description = "Requires a key",
         Callback = function()            
              loadstring(game:HttpGet('https://raw.githubusercontent.com/hungquan99/SkullHub/main/loader.lua'))()
+        end
+    })
+
+--------------- PSX TAB ----------------------
+PSX:AddParagraph({
+        Title = "Pet Simulator X! 🐾",
+        Description = "Pet Simulator X! 🐾 Scripts Section"
+    })
+PSX:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
+
+PSX:AddSection("Game Scripts")
+PSX:AddButton({
+        Title = "Extreme Hub",
+        Description = "No info found",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ExtremeAntonis/loader/main/loader.lua"))()
+        end
+    })
+PSX:AddButton({
+        Title = "BlackTrap",
+        Description = "Requires a key",
+        Callback = function()
+            loadstring(game:HttpGetAsync("https://lua-library.btteam.net/script-auth.txt"))()
         end
     })
 ----------- MANAGER ----------
