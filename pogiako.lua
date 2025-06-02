@@ -1,7 +1,3 @@
------------ local function ------------
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
------------ UI LOADING ---------
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -340,59 +336,9 @@ More:AddParagraph({
         Content = "Just click the scripts name below and it will automatically execute."
     })
 More:AddSection("Movement Settings")
-getgenv().WalkSpeed = 16
-Toggle = More:AddToggle("Toggle", {
-    Title = "Enable WalkSpeed",
-    Description = "",
-    Default = false
-})
-local SpeedConnection
-local function ApplySpeed()
-    if not Toggle.Value then return end
-    local Character = Player.Character
-    if Character then
-        local Humanoid = Character:FindFirstChildOfClass("Humanoid")
-        if Humanoid then
-            Humanoid.WalkSpeed = getgenv().WalkSpeed
-            if SpeedConnection then
-                SpeedConnection:Disconnect()
-            end
-            SpeedConnection = Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-                if Toggle.Value then
-                    Humanoid.WalkSpeed = getgenv().WalkSpeed
-                end
-            end)
-        end
-    end
-end
-Toggle:OnChanged(function(Value)
-    if Value then
-        ApplySpeed()
-        Player.CharacterAdded:Connect(ApplySpeed)
-    else
-        if SpeedConnection then
-            SpeedConnection:Disconnect()
-            SpeedConnection = nil
-        end
-        local Character = Player.Character
-        if Character then
-            local Humanoid = Character:FindFirstChildOfClass("Humanoid")
-            if Humanoid then
-                Humanoid.WalkSpeed = 16
-            end
-        end
-    end
-end)
-Input = More:AddInput("Input", {
-     Title = "Input WalkSpeed",
-     Default = 16,
-     Placeholder = "Input",
-     Numeric = true,
-     Finished = true,
-     Callback = function(Value)
-         getgenv().WalkSpeed = Value
-     end
-})
+More:AddParagraph({
+        Title = "Coming Soon!"
+    })
 More:AddSection("FE Scripts")
 More:AddButton({
         Title = "Infinite Yield",
