@@ -19,11 +19,14 @@ KaiUI:Notify({
 ------------------ TABS -----------------------
 Info = Window:AddTab({ Title = "Info", Icon = "info" })
 Bloxfruits = Window:AddTab({ Title = "Blox Fruits", Icon = "apple" })
-GaG = Window:AddTab({ Title = "Grow a Garden", Icon = "grape" })
+GaG = Window:AddTab({ Title = "Grow a Garden", Icon = "carrot" })
 Deadrails = Window:AddTab({ Title = "Dead Rails", Icon = "train" })
-PSX = Window:AddTab({ Title = "Pet Simulator X", Icon = "paw-print" })
-PS99 = Window:AddTab({ Title = "Pet Simulator 99", Icon = "paw-print" })
-PetsGo = Window:AddTab({ Title = "Pet's Go", Icon = "paw-print" })
+PSX = Window:AddTab({ Title = "Pet Simulator X", Icon = "bone" })
+PS99 = Window:AddTab({ Title = "Pet Simulator 99", Icon = "bone" })
+PetsGo = Window:AddTab({ Title = "Pet's Go", Icon = "bone" })
+MemeSea = Window:AddTab({ Title = "Meme Sea", Icon = "laugh" })
+KingLegacy = Window:AddTab({ Title = "King Legacy", Icon = "crown" })
+
 ------------- Interface Tab -----------------------
 local Tabs = {
       Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
