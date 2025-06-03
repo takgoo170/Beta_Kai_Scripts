@@ -1,5 +1,19 @@
-local Update = (loadstring(Game:HttpGet("https://raw.githubusercontent.com/q8ta0e/relzlib/main/relzlib.lua")))();
-local Library = Update:Window("Legends Of Speed")
+local Update = loadstring(Game:HttpGet("https://raw.githubusercontent.com/q8ta0e/relzlib/main/relzlib.lua"))()
+if Update:LoadAnimation() then
+	Update:StartLoad()
+end
+if Update:LoadAnimation() then
+	Update:Loaded()
+end
+local Library = Update:Window({
+	Title = "Kai Hub : Legends of Speed",
+	SubTitle = "by Kai Team | (discord.gg/wDMPK3QAmY)",
+	Size = UDim2.new(0, 450, 0, 300),
+	TabWidth = 140,
+	Image = "rbxassetid://13940080072",
+	Folder = "Relz Hub/Library",
+	File = "Exemple"
+})
 local main = Library:Tab("Main", "rbxassetid://6026568198")
 local ss = Library:Tab("Auto Farm", "rbxassetid://7044284832")
 local sss = Library:Tab("Teleport", "rbxassetid://6035190846")
