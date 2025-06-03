@@ -1,5 +1,5 @@
 local Update =  loadstring(game:HttpGet"https://you.whimper.xyz/sources/relzhub/dep/pc.lua")()
-local Library = Update:Window("Legends Of Speed")
+local Library = Update:Window("Kai Hub : Legends of Speed")
 local main = Library:Tab("Main", "rbxassetid://6026568198")
 local ss = Library:Tab("Auto Farm", "rbxassetid://7044284832")
 local sss = Library:Tab("Teleport", "rbxassetid://6035190846")
