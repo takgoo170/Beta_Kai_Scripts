@@ -10,14 +10,14 @@ local Library = Update:CreateWindow({
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
-local main = Library:AddTab("Main", "rbxassetid://6026568198")
-local ss = Library:AddTab("Auto Farm", "rbxassetid://7044284832")
-local sss = Library:AddTab("Teleport", "rbxassetid://6035190846")
-local race = Library:AddTab("Race", "rbxassetid://7251993295")
-local egg = Library:AddTab("Crystal", "rbxassetid://6031265976")
-local misc = Library:AddTab("Misc", "rbxassetid://6034509993")
-local cred = Library:AddTab("Credits", "rbxassetid://7743866778")
-local how = Library:AddTab("Glitch Help", "rbxassetid://7733964808")
+local main = Library:AddTab({ Title = "Main", Icon = "rbxassetid://6026568198" })
+local ss = Library:AddTab({ Title = "Auto Farm", Icon = "rbxassetid://7044284832" })
+local sss = Library:AddTab({ Title = "Teleport", Icon = "rbxassetid://6035190846" })
+local race = Library:AddTab({ Title = "Race", Icon = "rbxassetid://7251993295" })
+local egg = Library:AddTab({ Title = "Crystal", Icon = "rbxassetid://6031265976" })
+local misc = Library:AddTab({ Title = "Misc", Icon = "rbxassetid://6034509993" })
+local cred = Library:AddTab({ Title = "Credits", Icon = "rbxassetid://7743866778" })
+local how = Library:AddTab({ Title = "Glitch Help", Icon = "rbxassetid://7733964808" })
 
 local player = game.Players.LocalPlayer
 local antiAFK = true
@@ -31,9 +31,9 @@ while wait(5) do
 	end
 end)
 
-main:Seperator("Main")
+main:AddSection("Main")
 
-Time = main:Label("Executer Time")
+Time = main:AddLabel("Executer Time")
 
 function UpdateTime()
 local GameTime = math.floor(workspace.DistributedGameTime+0.5)
