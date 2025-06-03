@@ -10,14 +10,14 @@ local Library = Update:CreateWindow({
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
-local main = Library:Tab("Main", "rbxassetid://6026568198")
-local ss = Library:Tab("Auto Farm", "rbxassetid://7044284832")
-local sss = Library:Tab("Teleport", "rbxassetid://6035190846")
-local race = Library:Tab("Race", "rbxassetid://7251993295")
-local egg = Library:Tab("Crystal", "rbxassetid://6031265976")
-local misc = Library:Tab("Misc", "rbxassetid://6034509993")
-local cred = Library:Tab("Credits", "rbxassetid://7743866778")
-local how = Library:Tab("Glitch Help", "rbxassetid://7733964808")
+local main = Library:AddTab("Main", "rbxassetid://6026568198")
+local ss = Library:AddTab("Auto Farm", "rbxassetid://7044284832")
+local sss = Library:AddTab("Teleport", "rbxassetid://6035190846")
+local race = Library:AddTab("Race", "rbxassetid://7251993295")
+local egg = Library:AddTab("Crystal", "rbxassetid://6031265976")
+local misc = Library:AddTab("Misc", "rbxassetid://6034509993")
+local cred = Library:AddTab("Credits", "rbxassetid://7743866778")
+local how = Library:AddTab("Glitch Help", "rbxassetid://7733964808")
 
 local player = game.Players.LocalPlayer
 local antiAFK = true
