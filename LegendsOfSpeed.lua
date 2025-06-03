@@ -1,23 +1,13 @@
-local Update = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-local Library = Update:CreateWindow({
-    Title = "Kai Hub : Legends of Speed",
-    SubTitle = "by Kai Team | (discord.gg/wDMPK3QAmY)",
-    TabWidth = 149,
-    Size = UDim2.fromOffset(540, 375),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
-})
-local main = Library:AddTab({ Title = "Main", Icon = "rbxassetid://6026568198" })
-local ss = Library:AddTab({ Title = "Auto Farm", Icon = "rbxassetid://7044284832" })
-local sss = Library:AddTab({ Title = "Teleport", Icon = "rbxassetid://6035190846" })
-local race = Library:AddTab({ Title = "Race", Icon = "rbxassetid://7251993295" })
-local egg = Library:AddTab({ Title = "Crystal", Icon = "rbxassetid://6031265976" })
-local misc = Library:AddTab({ Title = "Misc", Icon = "rbxassetid://6034509993" })
-local cred = Library:AddTab({ Title = "Credits", Icon = "rbxassetid://7743866778" })
-local how = Library:AddTab({ Title = "Glitch Help", Icon = "rbxassetid://7733964808" })
+local Update =  loadstring(game:HttpGet"https://you.whimper.xyz/sources/relzhub/dep/pc.lua")()
+local Library = Update:Window("Legends Of Speed")
+local main = Library:Tab("Main", "rbxassetid://6026568198")
+local ss = Library:Tab("Auto Farm", "rbxassetid://7044284832")
+local sss = Library:Tab("Teleport", "rbxassetid://6035190846")
+local race = Library:Tab("Race", "rbxassetid://7251993295")
+local egg = Library:Tab("Crystal", "rbxassetid://6031265976")
+local misc = Library:Tab("Misc", "rbxassetid://6034509993")
+local cred = Library:Tab("Credits", "rbxassetid://7743866778")
+local how = Library:Tab("Glitch Help", "rbxassetid://7733964808")
 
 local player = game.Players.LocalPlayer
 local antiAFK = true
@@ -31,9 +21,9 @@ while wait(5) do
 	end
 end)
 
-main:AddSection("Main")
+main:Seperator("Main")
 
-Time = main:AddLabel("Executer Time")
+Time = main:Label("Executer Time")
 
 function UpdateTime()
 local GameTime = math.floor(workspace.DistributedGameTime+0.5)
