@@ -1,5 +1,15 @@
-local Update =  loadstring(game:HttpGet"https://you.whimper.xyz/sources/relzhub/dep/pc.lua")()
-local Library = Update:Window("Kai Hub : Legends of Speed")
+local Update = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Library = Update:CreateWindow({
+    Title = "Kai Hub : Legends of Speed",
+    SubTitle = "by Kai Team | (discord.gg/wDMPK3QAmY)",
+    TabWidth = 149,
+    Size = UDim2.fromOffset(540, 375),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
 local main = Library:Tab("Main", "rbxassetid://6026568198")
 local ss = Library:Tab("Auto Farm", "rbxassetid://7044284832")
 local sss = Library:Tab("Teleport", "rbxassetid://6035190846")
