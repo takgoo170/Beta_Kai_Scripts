@@ -110,7 +110,7 @@ Server:AddSection("Server Information")
 local MarketplaceService = game:GetService("MarketplaceService")
 
 -- Assume Server is your Fluent UI server object managing the UI
-local Server = --[[ your Fluent UI Server object here ]]
+--[[ local Server =  your Fluent UI Server object here ]]
 
 -- Function to get the current game name from PlaceId
 local function getCurrentGameName()
