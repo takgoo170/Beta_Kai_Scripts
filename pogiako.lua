@@ -106,7 +106,7 @@ Info:AddParagraph({
     })
 
 ------------------- SERVER TAB ---------------
-Server:AddSection("Server Information")
+
 local MarketplaceService = game:GetService("MarketplaceService")
 
 -- Assume Server is your Fluent UI server object managing the UI
