@@ -107,6 +107,30 @@ Info:AddParagraph({
 
 ------------------- SERVER TAB ---------------
 Server:AddSection("Server Information")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+-- Assume Server is your Fluent UI server object managing the UI
+local Server = --[[ your Fluent UI Server object here ]]
+
+-- Function to get the current game name from PlaceId
+local function getCurrentGameName()
+    local success, info = pcall(function()
+        return MarketplaceService:GetProductInfo(game.PlaceId)
+    end)
+    if success and info then
+        return info.Name
+    else
+        return "Unknown Game"
+    end
+end
+
+local gameName = getCurrentGameName()
+
+Server:AddParagraph({
+    Title = "Current Game",
+    Content = gameName ~= "" and gameName or "The game cannot be identified."
+})
+
 Server:AddParagraph({
     Title = "Server Job ID",
     Content = game.JobId ~= "" and game.JobId or "Job ID not available."
