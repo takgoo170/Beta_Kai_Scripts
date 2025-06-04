@@ -23,6 +23,7 @@ KaiUI:Notify({
     })
 ------------------ TABS -----------------------
 Info = Window:AddTab({ Title = "Info", Icon = "info" })
+Server = Window:AddTab({ Title = "Server", Icon = "scroll" })
 Bloxfruits = Window:AddTab({ Title = "Blox Fruits", Icon = "apple" })
 GaG = Window:AddTab({ Title = "Grow a Garden", Icon = "carrot" })
 Deadrails = Window:AddTab({ Title = "Dead Rails", Icon = "train" })
@@ -103,6 +104,54 @@ Info:AddParagraph({
         Title = "SOON",
         Description = ""
     })
+
+------------------- SERVER TAB ---------------
+Server:AddParagraph({
+    Title = "Server Job ID",
+    Content = game.JobId ~= "" and game.JobId or "Job ID not available."
+})
+local lastCopyTime = 0
+local copyCooldown = 2
+Server:AddButton({
+    Title = "Copy Job ID",
+    Description = "Copies the Server Job Id.",
+    Callback = function()
+        if tick() - lastCopyTime >= copyCooldown then
+            lastCopyTime = tick()
+            setclipboard(tostring(game.JobId))
+	KaiUI:Notify({
+	Title = "Job Id Copied!",
+	Content = "Job ID copied to clipboard successfully!",
+	Duration = 10
+})
+            print("JobId Copied!")
+        else
+            print("Please try again in a moment!")
+	
+        end
+    end
+})
+Input = Server:AddInput("Input", {
+     Title = "Job Id",
+     Default = "",
+     Placeholder = "Input Job Id",
+     Numeric = false,
+     Finished = false,
+     Callback = function(Value)
+         getgenv().Job = Value
+     end
+})    
+local lastTeleportTime = 0
+local teleportCooldown = 5
+Server:AddButton({
+    Title = "Join Server",
+    Callback = function()
+        if tick() - lastTeleportTime >= teleportCooldown then
+            lastTeleportTime = tick()
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId, getgenv().Job, game.Players.LocalPlayer)        
+        end
+    end
+})
 ------------------ BLOX FRUITS TAB ------------------
 
 Bloxfruits:AddParagraph({
