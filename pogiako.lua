@@ -106,6 +106,7 @@ Info:AddParagraph({
     })
 
 ------------------- SERVER TAB ---------------
+Server:AddSection("Server Information")
 Server:AddParagraph({
     Title = "Server Job ID",
     Content = game.JobId ~= "" and game.JobId or "Job ID not available."
