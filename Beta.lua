@@ -67,7 +67,8 @@ local Themes = {
 		"Sapphire",
 		"Cloud",
 		"Grape",
-		"Bloody"
+		"Bloody",
+		"Hacker"
 	},
 	Dark = {
 		Name = "Dark",
@@ -734,7 +735,45 @@ local Themes = {
 		SubText = Color3.fromRGB(131, 131, 131),
 		Hover = Color3.fromRGB(181, 0, 0),
 		HoverChange = 0.04
-	}
+	},
+	
+   Hacker = {
+        Name = "Hacker",
+        Accent = Color3.fromRGB(0, 255, 0),
+        AcrylicMain = Color3.fromRGB(0, 0, 0),
+        AcrylicBorder = Color3.fromRGB(7, 44, 13),
+        AcrylicGradient = ColorSequence.new(Color3.fromRGB(0, 0, 0), Color3.fromRGB(0, 0, 0)),
+        AcyclicNoise = 1,
+        TitleBarLine = Color3.fromRGB(0, 0, 0),
+        Tab = Color3.fromRGB(0, 200, 0),
+        Element = Color3.fromRGB(0, 255, 0),
+        ElementBorder = Color3.fromRGB(7, 44, 13),
+        InElementBorder = Color3.fromRGB(7, 44, 13),
+        ElementTransparency = 0.86,
+        ToggleSlider = Color3.fromRGB(0, 255, 0),
+        ToggleToggled = Color3.fromRGB(0, 100, 0),
+        SliderRail = Color3.fromRGB(0, 200, 0),
+        DropdownFrame = Color3.fromRGB(0, 200, 0),
+        DropdownHolder = Color3.fromRGB(0, 0, 0),
+        DropdownBorder = Color3.fromRGB(0, 0, 0),
+        DropdownOption = Color3.fromRGB(0, 200, 0),
+        Keybind = Color3.fromRGB(0, 200, 0),
+        Input = Color3.fromRGB(0, 200, 0),
+        InputFocused = Color3.fromRGB(0, 0, 0),
+        InputIndicator = Color3.fromRGB(0, 226, 0),
+        Dialog = Color3.fromRGB(0, 0, 0),
+        DialogHolder = Color3.fromRGB(0, 0, 0),
+        DialogHolderLine = Color3.fromRGB(0, 0, 0),
+        DialogButton = Color3.fromRGB(0, 172, 0),
+        DialogButtonBorder = Color3.fromRGB(0, 0, 0),
+        DialogBorder = Color3.fromRGB(0, 0, 0),
+        DialogInput = Color3.fromRGB(0, 200, 0),
+        DialogInputLine = Color3.fromRGB(0, 255, 0),
+        Text = Color3.fromRGB(255, 255, 255),
+        SubText = Color3.fromRGB(131, 131, 131),
+        Hover = Color3.fromRGB(0, 255, 0),
+        HoverChange = 0.04
+    }
 
 }
 
