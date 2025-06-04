@@ -3,12 +3,12 @@ local Luna = loadstring(game:HttpGet("http://you.whimper.xyz/sources/lunaUi.lua"
 local VIM = game:GetService("VirtualInputManager")
 
 local Window = Luna:CreateWindow({
-    Name = "TheBillDevHub Blue Lock Rivals V0.3",
-    Subtitle = "discord.gg/thebilldev", 
+    Name = "Kai Hub : Blue Lock: Rivals",
+    Subtitle = "discord.gg/wDMPK3QAmY", 
     LogoID = "",
     LoadingEnabled = false,
-    LoadingTitle = "Thebilldev Hub",
-    LoadingSubtitle = "by Galaxy",
+    LoadingTitle = "Kai Hub",
+    LoadingSubtitle = "by Kai Team",
     ConfigSettings = {
         RootFolder = nil,
         ConfigFolder = "Big Hub"
@@ -443,8 +443,8 @@ local function ClearTeamESP()
 end
 
 AutoFarmTab:CreateToggle({
-    Name = "Auto Farm (Teleport)",
-    Description = nil,
+    Name = "Auto Farm",
+    Description = "Start farming and tween.",
     CurrentValue = false,
     Callback = function(Value)
         autoFarmEnabled = Value
@@ -498,7 +498,7 @@ AutoFarmTab:CreateToggle({
 })
 
 AutoFarmTab:CreateToggle({
-    Name = "Auto Goal Keeper (Rarely Blocks Other Styles With Skills)",
+    Name = "Auto Goal Keeper",
     Description = "Automatically teleport to balls within 120 studs with prediction", 
     CurrentValue = false,
     Callback = function(Value)
@@ -583,7 +583,7 @@ AutoFarmTab:CreateToggle({
 	end
 })
 AutoFarmTab:CreateToggle({
-	Name = "Anti-AFK",
+	Name = "Anti AFK",
 	Description = "Prevent being kicked for inactivity",
 	CurrentValue = false,
 	Callback = function(Value)
@@ -601,12 +601,13 @@ AutoFarmTab:CreateToggle({
 })
 
 StatsTab:CreateSection("Stats")
-StatsTab:CreateLabel({
-    Text = "Event Currency: " .. game:GetService("Players").LocalPlayer.ProfileStats.EventCurrency.Value
-})
 
 StatsTab:CreateLabel({
     Text = "Experience: " .. game:GetService("Players").LocalPlayer.ProfileStats.Exp.Value
+})
+
+StatsTab:CreateLabel({
+    Text = "Event Currency: " .. game:GetService("Players").LocalPlayer.ProfileStats.EventCurrency.Value
 })
 
 StatsTab:CreateLabel({
@@ -779,7 +780,7 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "Sae",
-    Description = "Sae Style Ez",
+    Description = "Sae Style",
     Callback = function()
     player.PlayerStats.Style.Value = "Sae"
     end
@@ -788,7 +789,7 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "KAISER",
-    Description = "Select KAISER Style :)",
+    Description = "",
     Callback = function()
     player.PlayerStats.Style.Value = "Kaiser"
     end
