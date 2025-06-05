@@ -406,8 +406,7 @@ end
 
 --------------- FARM TAB ---------------
 farm:AddToggle("Toggle", {
-    Title = "Auto Farm"
-    Description = "",
+    Title = "Auto Farm",
     Default = false
   })
 Toggle:OnChanged(function(Value)
@@ -417,7 +416,7 @@ Toggle:OnChanged(function(Value)
 
 farm:AddToggle("Toggle", {
     Title = "Auto Steal",
-    Description = "",
+    Description = "Automatically steals the ball.",
     Default = false
   })
 Toggle:OnChanged(function(Value)
@@ -445,7 +444,7 @@ Toggle:OnChanged(function(Value)
 
 farm:AddToggle("Toggle", {
     Title = "Auto Goal Keeper",
-    Description = "",
+    Description = "Enabled Goal Keeper",
     Default = false
   })
 Toggle:OnChanged(function(Value)
@@ -521,7 +520,7 @@ Toggle:OnChanged(function(Value)
 farm:AddSection("Other")
 farm:AddToggle("Toggle", {
   Title = "No CD",
-  Description = "",
+  Description = "Abilities have no cooldown",
   Default = false
 })
 Toggle:OnChanged(function(Value)
@@ -545,7 +544,7 @@ Toggle:OnChanged(function(Value)
 end)
 
 farm:AddToggle("Toggle", {
-  Title = "Anti AFK"
+  Title = "Anti AFK",
   Description = "kick due to inactivity can be avoided",
   Default = true
 })
