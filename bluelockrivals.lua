@@ -15,7 +15,7 @@ local Window = KaiUI:CreateWindow({
 
 -------------- TABS ---------------------
 local info = Window:AddTab({ Title = "Info", Icon = "info" })
-local farm = Window:AddTab({ Title = "Auto Farm", Icon = "swords" })
+local farm = Window:AddTab({ Title = "Main", Icon = "house" })
 local stats = Window:AddTab({ Title = "Stats", Icon = "scroll" })
 local gstats = Window:AddTab({ Title = "Game Stats", Icon = "scroll" })
 local esp = Window:AddTab({ Title = "ESP", Icon = "visibility" })
@@ -433,8 +433,8 @@ local GoalToggle = farm:AddToggle("GoalToggle", {
     Description = "will automatically score goals when enabled",
     Default = false
   })
-GoalToggle:OnChanged(function(Value)
-    autoGoalEnabled = Value
+GoalToggle:OnChanged(function(value)
+    autoGoalEnabled = value
         if Value then
             task.spawn(autoGoal)
         else
@@ -444,7 +444,7 @@ GoalToggle:OnChanged(function(Value)
 
 local GoalKeeperToggle = farm:AddToggle("GoalKeeperToggle", {
     Title = "Auto Goal Keeper",
-    Description = "Enabled Goal Keeper",
+    Description = "Enabled Auto Goal Keeper",
     Default = false
   })
 GoalKeeperToggle:OnChanged(function(Value)
