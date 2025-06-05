@@ -497,8 +497,7 @@ Toggle:OnChanged(function(Value)
         else
             visualRadius:Destroy()
         end
-    end
-})
+    end)
 
 farm:AddToggle("Toggle", {
   Title = "Auto TP Ball",
