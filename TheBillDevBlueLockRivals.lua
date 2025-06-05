@@ -3,12 +3,12 @@ local Luna = loadstring(game:HttpGet("http://you.whimper.xyz/sources/lunaUi.lua"
 local VIM = game:GetService("VirtualInputManager")
 
 local Window = Luna:CreateWindow({
-    Name = "TheBillDevHub Blue Lock Rivals V0.3",
-    Subtitle = "discord.gg/thebilldev", 
+    Name = "Kai Hub : Blue Lock: Rivals",
+    Subtitle = "discord.gg/wDMPK3QAmY", 
     LogoID = "",
-    LoadingEnabled = false,
-    LoadingTitle = "Thebilldev Hub",
-    LoadingSubtitle = "by Galaxy",
+    LoadingEnabled = true,
+    LoadingTitle = "Kai Hub",
+    LoadingSubtitle = "by Kai Team",
     ConfigSettings = {
         RootFolder = nil,
         ConfigFolder = "Big Hub"
