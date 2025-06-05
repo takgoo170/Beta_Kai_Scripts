@@ -405,21 +405,21 @@ local function ClearTeamESP()
 end
 
 --------------- FARM TAB ---------------
-farm:AddToggle("Toggle", {
+local FarmToggle = farm:AddToggle("FarmToggle", {
     Title = "Auto Farm",
     Default = false
   })
-Toggle:OnChanged(function(Value)
+FarmToggle:OnChanged(function(Value)
     autoFarmEnabled = Value
         if Value then autoFarmTweenEnabled = false end
   end)
 
-farm:AddToggle("Toggle", {
+local StealToggle = farm:AddToggle("StealToggle", {
     Title = "Auto Steal",
     Description = "Automatically steals the ball.",
     Default = false
   })
-Toggle:OnChanged(function(Value)
+StealToggle:OnChanged(function(Value)
     StealBall = Value
         if Value then
              task.spawn(autoSteal)
@@ -428,12 +428,12 @@ Toggle:OnChanged(function(Value)
         end
   end)
 
-farm:AddToggle("Toggle", {
+local GoalToggle = farm:AddToggle("GoalToggle", {
     Title = "Auto Goal",
     Description = "will automatically score goals when enabled",
     Default = false
   })
-Toggle:OnChanged(function(Value)
+GoalToggle:OnChanged(function(Value)
     autoGoalEnabled = Value
         if Value then
             task.spawn(autoGoal)
@@ -442,12 +442,12 @@ Toggle:OnChanged(function(Value)
         end
   end)
 
-farm:AddToggle("Toggle", {
+local GoalKeeperToggle = farm:AddToggle("GoalKeeperToggle", {
     Title = "Auto Goal Keeper",
     Description = "Enabled Goal Keeper",
     Default = false
   })
-Toggle:OnChanged(function(Value)
+GoalKeeperToggle:OnChanged(function(Value)
     autoBallRadiusEnabled = Value
         
         local player = game.Players.LocalPlayer
@@ -498,12 +498,12 @@ Toggle:OnChanged(function(Value)
         end
     end)
 
-farm:AddToggle("Toggle", {
+local TPBallToggle = farm:AddToggle("TPBallToggle", {
   Title = "Auto TP Ball",
   Description = "teleport on purpose to the ball",
   Default = false
 })
-Toggle:OnChanged(function(Value)
+TPBallToggle:OnChanged(function(Value)
   autoTPBallEnabled = Value
         if Value then
             task.spawn(function()
@@ -518,12 +518,12 @@ Toggle:OnChanged(function(Value)
     end)
 
 farm:AddSection("Other")
-farm:AddToggle("Toggle", {
+local NoCDToggle = farm:AddToggle("NoCDToggle", {
   Title = "No CD",
   Description = "Abilities have no cooldown",
   Default = false
 })
-Toggle:OnChanged(function(Value)
+NoCDToggle:OnChanged(function(Value)
   noCDEnabled = Value
 		local AbilityController = require(game:GetService("ReplicatedStorage").Controllers.AbilityController)
 
@@ -543,12 +543,12 @@ Toggle:OnChanged(function(Value)
 		end
 end)
 
-farm:AddToggle("Toggle", {
+local AntiAFKToggle = farm:AddToggle("AntiAFKToggle", {
   Title = "Anti AFK",
   Description = "kick due to inactivity can be avoided",
   Default = true
 })
-Toggle:OnChanged(function(Value)
+AntiAFKToggle:OnChanged(function(Value)
   antiAFKEnabled = Value
 		if Value then
 			task.spawn(antiAFK)
