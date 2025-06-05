@@ -455,7 +455,6 @@ end
 
 AutoFarmTab:CreateToggle({
     Name = "Auto Farm",
-    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         autoFarmEnabled = Value
@@ -464,7 +463,6 @@ AutoFarmTab:CreateToggle({
 })
 AutoFarmTab:CreateToggle({
     Name = "Auto Steal",
-    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         StealBall = Value
@@ -510,7 +508,6 @@ AutoFarmTab:CreateToggle({
 
 AutoFarmTab:CreateToggle({
     Name = "Auto Goal Keeper",
-    Description = nil, 
     CurrentValue = false,
     Callback = function(Value)
         autoBallRadiusEnabled = Value
@@ -571,7 +568,6 @@ AutoFarmTab:CreateSection("Ability")
 
 AutoFarmTab:CreateToggle({
 	Name = "No CD",
-	Description = nil,
 	CurrentValue = false,
 	Callback = function(Value)
 		noCDEnabled = Value
@@ -711,7 +707,6 @@ ESPTab:CreateSection("ESP")
 
 ESPTab:CreateToggle({
     Name = "Football ESP",
-    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         FootballESPEnabled = Value
@@ -725,7 +720,6 @@ ESPTab:CreateToggle({
 
 ESPTab:CreateToggle({
     Name = "Tracer ESP",
-    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         TracerEnabled = Value
@@ -739,7 +733,6 @@ ESPTab:CreateToggle({
 
 ESPTab:CreateToggle({
     Name = "Player ESP", 
-    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         PlayerESPEnabled = Value
@@ -752,8 +745,7 @@ ESPTab:CreateToggle({
 })
 
 ESPTab:CreateToggle({
-    Name = "Team ESP",
-    Description = nil, 
+    Name = "Team ESP", 
     CurrentValue = false,
     Callback = function(Value)
         TeamESPEnabled = Value
@@ -768,7 +760,6 @@ ESPTab:CreateToggle({
 StyleTab:CreateSection("Style Selection")
 StyleTab:CreateButton({
     Name = "Nel Isagi",
-    Description = nil,
     Callback = function()
     player.PlayerStats.Style.Value = "NEL Isagi"
     end
@@ -776,7 +767,6 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "Sae",
-    Description = nil,
     Callback = function()
     player.PlayerStats.Style.Value = "Sae"
     end
@@ -785,7 +775,6 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "KAISER",
-    Description = nil,
     Callback = function()
     player.PlayerStats.Style.Value = "Kaiser"
     end
@@ -794,7 +783,6 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "Don Lorenzo",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Don Lorenzo"
     end
@@ -802,7 +790,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Kunigami", 
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Kunigami"
     end
@@ -810,7 +797,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Aiku",
-    Description = nil, 
     Callback = function()
         player.PlayerStats.Style.Value = "Aiku"
     end
@@ -818,7 +804,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Karasu",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Karasu"
     end
@@ -826,7 +811,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Otoya",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Otoya"
     end
@@ -834,7 +818,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Bachira",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Bachira"
     end
@@ -842,7 +825,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Chigiri",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Chigiri"
     end
@@ -850,7 +832,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Isagi",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Isagi"
     end
@@ -858,7 +839,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Gagamaru",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Gagamaru"
     end
@@ -866,7 +846,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "King",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "King"
     end
@@ -874,7 +853,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Nagi",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Nagi"
     end
@@ -882,7 +860,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Rin",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Rin"
     end
@@ -890,7 +867,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Sae",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Sae"
     end
@@ -898,7 +874,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Shidou",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Shidou"
     end
@@ -922,7 +897,6 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Hiori",
-    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Hiori"
     end
