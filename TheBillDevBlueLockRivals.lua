@@ -1,4 +1,3 @@
--- leaked by galaxy.lua ;; published by 25ms :p
 local Luna = loadstring(game:HttpGet("http://you.whimper.xyz/sources/lunaUi.lua"))()
 local VIM = game:GetService("VirtualInputManager")
 
@@ -16,21 +15,33 @@ local Window = Luna:CreateWindow({
     KeySystem = false
 })
 
+local InfoTab = Window:CreateTab({
+    Name = "Info",
+    Icon = "Info",
+    ImageSource = "Material",
+    ShowTitle = true
+})
 local AutoFarmTab = Window:CreateTab({
-    Name = "Auto Farm",
-    Icon = "agriculture", 
+    Name = "Main",
+    Icon = "home", 
+    ImageSource = "Material",
+    ShowTitle = true
+})
+local TeleportTab = Window:CreateTab({
+    Name = "Teleport",
+    Icon = "location_searching", 
     ImageSource = "Material",
     ShowTitle = true
 })
 local StatsTab = Window:CreateTab({
 	Name = "Stats",
-	Icon = "view_sidebar",
+	Icon = "Leaderboard",
 	ImageSource = "Material",
 	ShowTitle = true
 })
 local GameStatsTab = Window:CreateTab({
 	Name = "Game Stats",
-	Icon = "view_sidebar",
+	Icon = "Leaderboard",
 	ImageSource = "Material",
 	ShowTitle = true
 })
@@ -42,7 +53,7 @@ local ESPTab = Window:CreateTab({
 })
 local StyleTab = Window:CreateTab({
 	Name = "Styles",
-	Icon = "brush",
+	Icon = "Auto_Fix_High",
 	ImageSource = "Material",
 	ShowTitle = true
 })
@@ -444,7 +455,7 @@ end
 
 AutoFarmTab:CreateToggle({
     Name = "Auto Farm",
-    Description = "Start farming and tween.",
+    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         autoFarmEnabled = Value
@@ -453,7 +464,7 @@ AutoFarmTab:CreateToggle({
 })
 AutoFarmTab:CreateToggle({
     Name = "Auto Steal",
-    Description = "Enable auto steal",
+    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         StealBall = Value
@@ -466,7 +477,7 @@ AutoFarmTab:CreateToggle({
 })
 AutoFarmTab:CreateToggle({
     Name = "Auto Goal",
-    Description = "Automatically score goals when you have the ball", 
+    Description = "goals the ball automatically.", 
     CurrentValue = false,
     Callback = function(Value)
         autoGoalEnabled = Value
@@ -499,7 +510,7 @@ AutoFarmTab:CreateToggle({
 
 AutoFarmTab:CreateToggle({
     Name = "Auto Goal Keeper",
-    Description = "Automatically teleport to balls within 120 studs with prediction", 
+    Description = nil, 
     CurrentValue = false,
     Callback = function(Value)
         autoBallRadiusEnabled = Value
@@ -556,7 +567,7 @@ AutoFarmTab:CreateToggle({
 
 
 
-AutoFarmTab:CreateSection("Special Abilities")
+AutoFarmTab:CreateSection("Ability")
 
 AutoFarmTab:CreateToggle({
 	Name = "No CD",
@@ -582,23 +593,7 @@ AutoFarmTab:CreateToggle({
 		end
 	end
 })
-AutoFarmTab:CreateToggle({
-	Name = "Anti AFK",
-	Description = "Prevent being kicked for inactivity",
-	CurrentValue = false,
-	Callback = function(Value)
-		antiAFKEnabled = Value
-		if Value then
-			task.spawn(antiAFK)
-			Luna:Notification({
-				Title = "Anti-AFK Enabled",
-				Content = "You will not be kicked for inactivity",
-				Icon = "check_circle",
-				ImageSource = "Material"
-			})
-		end
-	end
-})
+
 
 StatsTab:CreateSection("Stats")
 
@@ -685,37 +680,38 @@ StatsTab:CreateLabel({
 StatsTab:CreateLabel({
     Text = "Style: " .. game:GetService("Players").LocalPlayer.PlayerStats.Style.Value
 })
-GameStatsTab:CreateSection("Game Stats")
-GameStatsTab:CreateLabel({
+StatsTab:CreateSection("Game Stats")
+StatsTab:CreateLabel({
     Text = "Assists: " .. game:GetService("Players").LocalPlayer.GameStats.Assists.Value
 })
 
-GameStatsTab:CreateLabel({
+StatsTab:CreateLabel({
     Text = "Goals: " .. game:GetService("Players").LocalPlayer.GameStats.Goals.Value
 })
 
-GameStatsTab:CreateLabel({
-    Text = "Ping: " .. game:GetService("Players").LocalPlayer.GameStats.Ping.Value
-})
-
-GameStatsTab:CreateLabel({
+StatsTab:CreateLabel({
     Text = "Points: " .. game:GetService("Players").LocalPlayer.GameStats.Points.Value
 })
 
-GameStatsTab:CreateLabel({
+StatsTab:CreateLabel({
     Text = "Saves: " .. game:GetService("Players").LocalPlayer.GameStats.Saves.Value
 })
 
-GameStatsTab:CreateLabel({
+StatsTab:CreateLabel({
     Text = "Steals: " .. game:GetService("Players").LocalPlayer.GameStats.Steals.Value
 })
-
-
-ESPTab:CreateSection("ESP Options")
+StatsTab:CreateSection("Device Stats")
+StatsTab:CreateLabel({
+    Text = "Ping: " .. game:GetService("Players").LocalPlayer.GameStats.Ping.Value
+})
+StatsTab:CreateLabel({
+    Text = "FPS: ..."
+})
+ESPTab:CreateSection("ESP")
 
 ESPTab:CreateToggle({
     Name = "Football ESP",
-    Description = "Show football ESP overlay",
+    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         FootballESPEnabled = Value
@@ -729,7 +725,7 @@ ESPTab:CreateToggle({
 
 ESPTab:CreateToggle({
     Name = "Tracer ESP",
-    Description = "Show line to football",
+    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         TracerEnabled = Value
@@ -743,7 +739,7 @@ ESPTab:CreateToggle({
 
 ESPTab:CreateToggle({
     Name = "Player ESP", 
-    Description = "Show player ESP overlay",
+    Description = nil,
     CurrentValue = false,
     Callback = function(Value)
         PlayerESPEnabled = Value
@@ -757,7 +753,7 @@ ESPTab:CreateToggle({
 
 ESPTab:CreateToggle({
     Name = "Team ESP",
-    Description = "Show team ESP overlay", 
+    Description = nil, 
     CurrentValue = false,
     Callback = function(Value)
         TeamESPEnabled = Value
@@ -772,7 +768,7 @@ ESPTab:CreateToggle({
 StyleTab:CreateSection("Style Selection")
 StyleTab:CreateButton({
     Name = "Nel Isagi",
-    Description = "Select NelISAGGII Style :D",
+    Description = nil,
     Callback = function()
     player.PlayerStats.Style.Value = "NEL Isagi"
     end
@@ -780,7 +776,7 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "Sae",
-    Description = "Sae Style",
+    Description = nil,
     Callback = function()
     player.PlayerStats.Style.Value = "Sae"
     end
@@ -789,7 +785,7 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "KAISER",
-    Description = "",
+    Description = nil,
     Callback = function()
     player.PlayerStats.Style.Value = "Kaiser"
     end
@@ -798,7 +794,7 @@ StyleTab:CreateButton({
 })
 StyleTab:CreateButton({
     Name = "Don Lorenzo",
-    Description = "Select Don Lorenzo style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Don Lorenzo"
     end
@@ -806,7 +802,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Kunigami", 
-    Description = "Select Kunigami style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Kunigami"
     end
@@ -814,7 +810,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Aiku",
-    Description = "Select Aiku style", 
+    Description = nil, 
     Callback = function()
         player.PlayerStats.Style.Value = "Aiku"
     end
@@ -822,7 +818,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Karasu",
-    Description = "Select Karasu style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Karasu"
     end
@@ -830,7 +826,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Otoya",
-    Description = "Select Otoya style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Otoya"
     end
@@ -838,7 +834,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Bachira",
-    Description = "Select Bachira style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Bachira"
     end
@@ -846,7 +842,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Chigiri",
-    Description = "Select Chigiri style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Chigiri"
     end
@@ -854,7 +850,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Isagi",
-    Description = "Select Isagi style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Isagi"
     end
@@ -862,7 +858,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Gagamaru",
-    Description = "Select Gagamaru style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Gagamaru"
     end
@@ -870,7 +866,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "King",
-    Description = "Select King style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "King"
     end
@@ -878,7 +874,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Nagi",
-    Description = "Select Nagi style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Nagi"
     end
@@ -886,7 +882,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Rin",
-    Description = "Select Rin style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Rin"
     end
@@ -894,7 +890,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Sae",
-    Description = "Select Sae style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Sae"
     end
@@ -902,7 +898,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Shidou",
-    Description = "Select Shidou style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Shidou"
     end
@@ -926,7 +922,7 @@ StyleTab:CreateButton({
 
 StyleTab:CreateButton({
     Name = "Hiori",
-    Description = "Select Hiori style",
+    Description = nil,
     Callback = function()
         player.PlayerStats.Style.Value = "Hiori"
     end
@@ -1074,9 +1070,26 @@ FlowTab:CreateButton({
     end
 })
 MiscTab:CreateSection("Misc")
+MiscTab:CreateToggle({
+	Name = "Anti AFK",
+	Description = "Prevent kick due to AFK.",
+	CurrentValue = false,
+	Callback = function(Value)
+		antiAFKEnabled = Value
+		if Value then
+			task.spawn(antiAFK)
+			Luna:Notification({
+				Title = "Anti AFK is Enabled.",
+				Content = "Anti AFK successfully enabled. Kick is bypassed.",
+				Icon = "check_circle",
+				ImageSource = "Material"
+			})
+		end
+	end
+})
 MiscTab:CreateButton({
     Name = "Teleport to Ball",
-    Description = "Teleport to ball",
+    Description = nil,
     Callback = function()
         local Football = workspace:FindFirstChild("Football")
         if Football then
