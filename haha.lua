@@ -1215,20 +1215,20 @@ local Window = Rayfield:CreateWindow({
 })
 
 -- Tabs
-local MainTab = Window:CreateTab("Main", "house")
-local ShopTab = Window:CreateTab("Shop", "shopping-cart")
-local PlayerTab = Window:CreateTab("Players", "user")
-local EventTab = Window:CreateTab("Events", "flower")
-local MiscTab = Window:CreateTab("Misc", "list")
-local SpawnerTab = Window:CreateTab("Spawner", "paw-print")
-local VisualsTab = Window:CreateTab("Visuals", "eye")
+local MainTab = Window:AddTab({ Title = "Main", Icon = "house" })
+local ShopTab = Window:CreateTab({ Title = "Shop", Icon = "shopping-cart" })
+local PlayerTab = Window:CreateTab({ Title = "Players", Icon = "user" })
+local EventTab = Window:CreateTab({ Title = "Events", Icon = "flower" })
+local MiscTab = Window:CreateTab({ Title = "Misc", Icon = "list" })
+local SpawnerTab = Window:CreateTab({ Title = "Spawner", Icon = "paw-print" })
+local VisualsTab = Window:CreateTab({ Title = "Visuals", Icon = "eye" })
 
 -- Main Tab
-MainTab:CreateSection("Auto Farm")
-MainTab:CreateToggle({ Name = "Auto Farm", CurrentValue = false, Callback = function(state) autoFarmEnabled = state if state then instantFarm() else if farmThread then task.cancel(farmThread) farmThread = nil end end end })
-MainTab:CreateToggle({ Name = "Auto Farm [ v2 ]", Info = "Make sure you look down! May not collect sometimes. Bad for packed areas!", CurrentValue = false, Callback = ToggleHarvest })
-MainTab:CreateToggle({ Name = "Auto Collect", CurrentValue = false, Callback = function(state) fastClickEnabled = state if state then fastClickFarm() else if fastClickThread then task.cancel(fastClickThread) fastClickThread = nil end end end })
-MainTab:CreateToggle({ Name = "Auto Collect [ v2 ]", Info = "Automatically collects fruits near you", CurrentValue = false, Callback = function(Value)
+MainTab:AddSection("Main Farm")
+MainTab:AddToggle({ Title = "Auto Farm", Default = false, Callback = function(state) autoFarmEnabled = state if state then instantFarm() else if farmThread then task.cancel(farmThread) farmThread = nil end end end })
+MainTab:AddToggle({ Title = "Auto Farm [ v2 ]", Description = "Make sure you look down! May not collect sometimes. Bad for packed areas!", Default = false, Callback = ToggleHarvest })
+MainTab:AddToggle({ Title = "Auto Collect", Default = false, Callback = function(state) fastClickEnabled = state if state then fastClickFarm() else if fastClickThread then task.cancel(fastClickThread) fastClickThread = nil end end end })
+MainTab:AddToggle({ Title = "Auto Collect [ v2 ]", Description = "Automatically collects fruits near you", Default = false, Callback = function(Value)
     spamE = Value
     updateFarmData()
     for _, farm in pairs(farms) do for _, obj in ipairs(farm:GetDescendants()) do if obj:IsA("ProximityPrompt") then handleNewPrompt(obj) end end end
@@ -1258,13 +1258,13 @@ MainTab:CreateToggle({ Name = "Auto Collect [ v2 ]", Info = "Automatically colle
     end
 end })
 descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
-MainTab:CreateToggle({ Name = "Auto Sell", Info = "Automatically sells when inventory is full (200)", CurrentValue = false, Callback = function(Value)
+MainTab:AddToggle({ Title = "Auto Sell", Description = "Automatically sells when inventory is full (200)", Default = false, Callback = function(Value)
     autoSellEnabled = Value
     if autoSellEnabled then
         autoSellThread = task.spawn(function() while autoSellEnabled and task.wait(1) do if isInventoryFull() then sellItems() end end end)
     elseif autoSellThread then task.cancel(autoSellThread) end
 end })
-MainTab:CreateSection("Exclude Mutations or Fruits")
+MainTab:AddSection("Exclude Mutations or Fruits")
 
 local ignoredMutations = {"Celestial"} -- Table to store selected mutations to ignore
 local ignoreMutationsEnabled = false -- Toggle for ignoring mutations
@@ -1354,12 +1354,11 @@ Workspace.Farm.ChildAdded:Connect(function()
 end)
 
 -- Dropdown for selecting mutations to ignore
-MainTab:CreateDropdown({
-    Name = "Exclude Mutations In Collecting",
-    Options = mutationOptions, -- Assumes mutationOptions is defined
-    CurrentOption = {},
-    MultipleOptions = true,
-    Flag = "ExcludeMut",
+MainTab:AddDropdown({
+    Title = "Exclude Mutations In Collecting",
+    Values = mutationOptions, -- Assumes mutationOptions is defined
+    Multi = true,
+    Default = {},
     Callback = function(selectedOptions)
         ignoredMutations = selectedOptions
         updatePromptsForMutations()
@@ -1367,9 +1366,9 @@ MainTab:CreateDropdown({
 })
 
 -- Toggle for ignoring selected mutations
-MainTab:CreateToggle({
-    Name = "Ignore Selected Mutations",
-    CurrentValue = false,
+MainTab:AddToggle({
+    Title = "Ignore Selected Mutations",
+    Default = false,
     Callback = function(state)
         ignoreMutationsEnabled = state
         updatePromptsForMutations()
@@ -1377,20 +1376,20 @@ MainTab:CreateToggle({
 })
 
 -- Toggle for ignoring all plants
-MainTab:CreateToggle({
-    Name = "Ignore Every Plant (for mobile or pc idk)",
-    CurrentValue = false,
+MainTab:AddToggle({
+    Title = "Ignore Every Plant (for mobile or pc idk)",
+    Default = false,
     Callback = function(state)
         allPromptsDisabled = state
         updatePromptsForMutations()
     end
 })
-MainTab:CreateSection("Insta Sell")
-MainTab:CreateButton({ Name = "Insta Sell", Callback = SellAll })
-MainTab:CreateButton({ Name = "Insta Sell Hand", Callback = HSell })
-MainTab:CreateButton({
-    Name = "Sell Pets",
-    Info = "Sells all eligible pets in your backpack that are not favorited",
+MainTab:AddSection("Sell")
+MainTab:AddButton({ Title = "Insta Sell", Callback = SellAll })
+MainTab:AddButton({ Title = "Insta Sell Hand", Callback = HSell })
+MainTab:AddButton({
+    Title = "Sell Pets",
+    Description = "Sells all eligible pets in your backpack that are not favorited",
     Callback = function()
         local p = lp
         local b = p:WaitForChild("Backpack")
@@ -1412,58 +1411,44 @@ MainTab:CreateButton({
                 e:FireServer(t) 
             end 
         end
-        Rayfield:Notify({
-            Title = "Pet Seller",
-            Content = "Pet selling process completed! Favorited pets were skipped.",
-            Duration = 3,
-            Actions = {
-                Ignore = {
-                    Name = "OK",
-                    Callback = function() end
-                }
-            }
-        })
     end
 })
-MainTab:CreateSection("Others")
-MainTab:CreateDropdown({ Name = "Select Mutations(Auto Fav)", Options = mutationOptions, CurrentOption = selectedMutations, MultipleOptions = true, Flag = "AutoFavvv", Callback = function(Options) selectedMutations = Options if autoFavoriteEnabled then processBackpack() end end })
-MainTab:CreateToggle({ Name = "Auto-Favorite", CurrentValue = false, Callback = function(Value) autoFavoriteEnabled = Value if Value then setupAutoFavorite() elseif connection then connection:Disconnect() connection = nil end end })
-MainTab:CreateButton({ Name = "Unfav all", Callback = function() local backpack = lp:WaitForChild("Backpack") for _, tool in ipairs(backpack:GetChildren()) do local isFavorited = tool:GetAttribute("Favorite") or (tool:FindFirstChild("Favorite") and tool.Favorite.Value) if isFavorited then favoriteEvent:FireServer(tool) task.wait() end end end })
-MainTab:CreateToggle({ Name = "One Click Plant Remove", Info = "Be careful! Hope you don't delete something you needed!", CurrentValue = false, Callback = OneClickRemove })
-MainTab:CreateButton({ Name = "Stop Grow-ALL Pop-up", Callback = DestroySign })
+MainTab:AddSection("Others")
+MainTab:AddDropdown({ Title = "Select Mutations(Auto Fav)", Values = mutationOptions, Default = selectedMutations, Multi = true, Callback = function(Options) selectedMutations = Options if autoFavoriteEnabled then processBackpack() end end })
+MainTab:AddToggle({ Title = "Auto-Favorite", CurrentValue = false, Callback = function(Value) autoFavoriteEnabled = Value if Value then setupAutoFavorite() elseif connection then connection:Disconnect() connection = nil end end })
+MainTab:AddButton({ Title = "Unfav all", Callback = function() local backpack = lp:WaitForChild("Backpack") for _, tool in ipairs(backpack:GetChildren()) do local isFavorited = tool:GetAttribute("Favorite") or (tool:FindFirstChild("Favorite") and tool.Favorite.Value) if isFavorited then favoriteEvent:FireServer(tool) task.wait() end end end })
+MainTab:AddToggle({ Title = "One Click Plant Remove", Description = "Be careful! Hope you don't delete something you needed!", Default = false, Callback = function(value) OneClickRemove = value })
+MainTab:AddButton({ Title = "Stop Grow-ALL Pop-up", Callback = function(value) DestroySign = value })
 
 -- Shop Tab
-ShopTab:CreateSection("Auto Buy")
-ShopTab:CreateDropdown({
-    Name = "Select Seeds",
-    Info = "Choose which seeds to auto buy",
-    Options = seedItems,
-    CurrentOption = selectedSeeds,
-    MultipleOptions = true,
-    Flag = "SelectSeds",
+ShopTab:AddSection("Auto Buy")
+ShopTab:AddDropdown({
+    Title = "Select Seeds",
+    Description = "Choose which seeds to auto buy",
+    Values = seedItems,
+    Default = selectedSeeds,
+    Multi = true,
     Callback = function(Options) selectedSeeds = Options end
 })
-ShopTab:CreateDropdown({
-    Name = "Select Gear",
-    Info = "Choose which gear to auto buy",
-    Options = gearItems,
-    CurrentOption = selectedGears,
-    MultipleOptions = true,
-    Flag = "SelectGers",
+ShopTab:AddDropdown({
+    Title = "Select Gear",
+    Description = "Choose which gear to auto buy",
+    Values = gearItems,
+    Default = selectedGears,
+    Multi = true,
     Callback = function(Options) selectedGears = Options end
 })
-ShopTab:CreateDropdown({
-    Name = "Select Twilight",
-    Info = "Choose which gear to auto buy",
-    Options = TwilightItems,
-    CurrentOption = selectedTwilight,
-    MultipleOptions = true,
-    Flag = "SelectTwilightt",
+ShopTab:AddDropdown({
+    Title = "Select Twilight",
+    Description = "Choose which gear to auto buy",
+    Values = TwilightItems,
+    Default = selectedTwilight,
+    Multi = true,
     Callback = function(Options) selectedTwilight = Options end
 })
-ShopTab:CreateToggle({
-    Name = "Auto Buy",
-    CurrentValue = false,
+ShopTab:AddToggle({
+    Title = "Auto Buy",
+    Default = false,
     Callback = function(Value)
         autoBuyEnabled = Value
         if autoBuyEnabled then
@@ -1495,9 +1480,9 @@ ShopTab:CreateToggle({
         end
     end
 })
-ShopTab:CreateToggle({
-    Name = "Auto Buy Twilight",
-    CurrentValue = false,
+ShopTab:AddToggle({
+    Title = "Auto Buy Twilight",
+    Default = false,
     Callback = function(Value)
         autoBuyEnabled = Value
         if autoBuyEnabled then
@@ -1515,14 +1500,14 @@ ShopTab:CreateToggle({
         end
     end
 })
-ShopTab:CreateToggle({ Name = "Auto Buy Eggs", CurrentValue = false, Callback = function(value) Autoegg_autoBuyEnabled = value if Autoegg_autoBuyEnabled then Autoegg_firstRun = true Autoegg_autoBuyEggs() end end })
-ShopTab:CreateSection("Cosmetic")
-ShopTab:CreateButton({ Name = "Open Cosmetic Shop", Callback = OpenCosmetic })
-ShopTab:CreateButton({Name="Buy Cosmetic Items x5 (In Stock it'll also drains your shuckles)",Callback=function()for _,s in ipairs({lp.PlayerGui.CosmeticShop_UI.CosmeticShop.Main.Holder.Shop.ContentFrame.TopSegment,lp.PlayerGui.CosmeticShop_UI.CosmeticShop.Main.Holder.Shop.ContentFrame.BottomSegment})do for _=1,5 do for _,f in ipairs(s:GetChildren())do if f:IsA("Frame")then GameEvents.BuyCosmeticItem:FireServer(f.Name)if f.Name:find("Crate")then GameEvents.BuyCosmeticCrate:FireServer(f.Name)end end end end end end})
+ShopTab:AddToggle({ Name = "Auto Buy Eggs", Default = false, Callback = function(value) Autoegg_autoBuyEnabled = value if Autoegg_autoBuyEnabled then Autoegg_firstRun = true Autoegg_autoBuyEggs() end end })
+ShopTab:AddSection("Cosmetic")
+ShopTab:AddButton({ Title = "Open Cosmetic Shop", Callback = function(value) OpenCosmetic = value })
+ShopTab:AddButton({ Title = "Buy Cosmetic Items x5 (In Stock it'll also drains your shuckles)",Callback = function()for _,s in ipairs({lp.PlayerGui.CosmeticShop_UI.CosmeticShop.Main.Holder.Shop.ContentFrame.TopSegment,lp.PlayerGui.CosmeticShop_UI.CosmeticShop.Main.Holder.Shop.ContentFrame.BottomSegment})do for _=1,5 do for _,f in ipairs(s:GetChildren())do if f:IsA("Frame")then GameEvents.BuyCosmeticItem:FireServer(f.Name)if f.Name:find("Crate")then GameEvents.BuyCosmeticCrate:FireServer(f.Name)end end end end end end})
 local TeleportButton =
-    ShopTab:CreateButton(
+    ShopTab:AddButton(
     {
-        Name = "Teleport to Cosmetic",
+        Title = "Teleport to Cosmetic",
         Callback = function()
             local player = Players.LocalPlayer
             local character = player.Character
@@ -1534,17 +1519,17 @@ local TeleportButton =
         end
     }
 )
-ShopTab:CreateSection("Events")
-ShopTab:CreateButton({ Name = "Open BloodShop", Callback = OpenBloodShop })
-ShopTab:CreateButton({ Name = "Open Twilight Shop", Callback = OpenTwilight })
-ShopTab:CreateButton({ Name = "Open Twilight Quest", Callback = OpenTwilightQuest })
-ShopTab:CreateSection("Menus")
-ShopTab:CreateButton({ Name = "Open Egg Shop 1", Info = "Click again to close", Callback = EggShop1 })
-ShopTab:CreateButton({ Name = "Open Egg Shop 2", Info = "Click again to close", Callback = EggShop2 })
-ShopTab:CreateButton({ Name = "Open Egg Shop 3", Info = "Click again to close", Callback = EggShop3 })
-ShopTab:CreateButton({ Name = "Open Seed Shop", Info = "Click again to close", Callback = OpenShop })
-ShopTab:CreateButton({ Name = "Open Gear Shop", Info = "Click again to close", Callback = OpenGearShop })
-ShopTab:CreateButton({ Name = "Open Quest", Info = "Click again to close", Callback = OpenQuest })
+ShopTab:AddSection("Events")
+ShopTab:AddButton({ Title = "Open BloodShop", Callback = function(value) OpenBloodShop = value })
+ShopTab:AddButton({ Title = "Open Twilight Shop", Callback = function(value) OpenTwilight = value })
+ShopTab:AddButton({ Title = "Open Twilight Quest", Callback = function(value) OpenTwilightQuest = value })
+ShopTab:AddSection("Menus")
+ShopTab:AddButton({ Title = "Open Egg Shop 1", Description = "Click again to close", Callback = EggShop1 })
+ShopTab:AddButton({ Title = "Open Egg Shop 2", Description = "Click again to close", Callback = EggShop2 })
+ShopTab:AddButton({ Title = "Open Egg Shop 3", Description = "Click again to close", Callback = EggShop3 })
+ShopTab:AddButton({ Title = "Open Seed Shop", Description = "Click again to close", Callback = OpenShop })
+ShopTab:AddButton({ Title = "Open Gear Shop", Description = "Click again to close", Callback = OpenGearShop })
+ShopTab:AddButton({ Title = "Open Quest", Description = "Click again to close", Callback = OpenQuest })
 
 -- Player Tab
 PlayerTab:CreateSection("Movement")
