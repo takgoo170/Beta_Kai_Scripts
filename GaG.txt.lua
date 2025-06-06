@@ -1193,14 +1193,14 @@ local Window = Rayfield:CreateWindow({
     LoadingTitle = "Kai Hub",
     LoadingSubtitle = "by Kai Team",
     Theme = "Ocean",
-    ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Kai Hub" },
+    ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Polleser Hub" },
     Discord = { Enabled = true, Invite = "wDMPK3QAmY", RememberJoins = true },
     KeySystem = false,
     KeySettings = {
         Title = "Kai Hub Key System",
         Subtitle = "Hello.",
         Note = "To get the Script's Key you need to join our Discord server the link is already copied.",
-        FileName = "KaiHub Key",
+        FileName = "PolleserHub Key",
         SaveKey = true,
         GrabKeyFromSite = false,
         Key = {
@@ -1209,7 +1209,7 @@ local Window = Rayfield:CreateWindow({
             "PermKey183947749292", "PermKey648291927377", "PermKey179104847372", "PermKey632892938488", 
             "PermKey940402727289", "PermKey059472626183", "PermKey950492717183", "PermKey050472719199", 
             "PermKey500372628394", "PermKey040381618030", "PermKey508271728394", "PermKey192747483929", 
-            "PermKey728199487473", "PermKey010284746371", "PermKey101082736282"
+            "PermKey728199487473", "PermKey010284746371", "PermKey101082736282", "FREE"
         }
     }
 })
