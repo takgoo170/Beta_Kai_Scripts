@@ -326,13 +326,13 @@ end
 local ui = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 local win = ui:CreateWindow({
-    Title = "LAJ HUB v2 - Grow a Garden",
+    Title = "Kai Hub : Grow a Garden",
     Icon = "leaf",
     Folder = nil,
-    Size = UDim2.fromOffset(580, 400),
+    Size = UDim2.fromOffset(500, 380),
     Transparent = true,
     Theme = "Dark",
-    SideBarWidth = 200,
+    SideBarWidth = 170,
     Background = "",
 })
 
