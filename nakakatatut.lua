@@ -10,12 +10,12 @@ local minimizeUI = Enum.KeyCode.RightAlt
 
 -- 🟢 Create Main UI
 local Window = Fluent:CreateWindow({
-    Title = "Hutao hub V1.5",
-    SubTitle = "Grow a Garden",
-    TabWidth = 160,
+    Title = "Kai Hub : Grow a Garden",
+    SubTitle = "by Kai Team (discord.gg/wDMPK3QAmY)",
+    TabWidth = 149,
     Size = UDim2.fromOffset(480, 360),
     Acrylic = false,
-    Theme = "Darker",
+    Theme = "Dark",
     MinimizeKey = minimizeUI
 })
 
@@ -785,7 +785,7 @@ end
 
 -- Tạo toggle NoClip
 local NoClipToggle = Tabs.Player:AddToggle("NoClipToggle", {
-    Title = "NoClip",
+    Title = "No Clip",
     Default = false
 })
 
