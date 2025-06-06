@@ -1,4 +1,4 @@
-setclipboard("https://discord.gg/dmBzVaRrD3")
+setclipboard("https://discord.gg/wDMPK3QAmY")
 -- Services
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
@@ -1651,7 +1651,7 @@ SpawnerTab:CreateButton({
         end)
     end
 })
-SpawnerTab:CreateLabel("Credits to @ah_punisher")
+SpawnerTab:CreateLabel("VISUAL")
 SpawnerTab:CreateLabel("This is just Visual. It's not real")
 
 -- Visuals Tab
