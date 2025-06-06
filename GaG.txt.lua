@@ -1188,19 +1188,19 @@ end
 -- UI Setup
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-    Name = "Grow a Garden | PolleserHub",
+    Name = "Kai Hub : Grow a Garden",
     Icon = 0,
-    LoadingTitle = "Grow a Garden | PolleserHub",
-    LoadingSubtitle = "by Polleser",
+    LoadingTitle = "Kai Hub",
+    LoadingSubtitle = "by Kai Team",
     Theme = "Ocean",
-    ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Polleser Hub" },
-    Discord = { Enabled = true, Invite = "dmBzVaRrD3", RememberJoins = true },
+    ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Kai Hub" },
+    Discord = { Enabled = true, Invite = "wDMPK3QAmY", RememberJoins = true },
     KeySystem = false,
     KeySettings = {
-        Title = "Polleser Hub Key System",
+        Title = "Kai Hub Key System",
         Subtitle = "Hello.",
         Note = "To get the Script's Key you need to join our Discord server the link is already copied.",
-        FileName = "PolleserHub Key",
+        FileName = "KaiHub Key",
         SaveKey = true,
         GrabKeyFromSite = false,
         Key = {
@@ -1215,19 +1215,19 @@ local Window = Rayfield:CreateWindow({
 })
 
 -- Tabs
-local MainTab = Window:CreateTab("Main", "flower")
+local MainTab = Window:CreateTab("Main", "house")
 local ShopTab = Window:CreateTab("Shop", "shopping-cart")
-local PlayerTab = Window:CreateTab("Players", "user")
-local MiscTab = Window:CreateTab("Miscellaneous", "list")
+local PlayerTab = Window:CreateTab("Player", "user")
+local MiscTab = Window:CreateTab("Misc", "list")
 local SpawnerTab = Window:CreateTab("Spawner", "paw-print")
 local VisualsTab = Window:CreateTab("Visuals", "eye")
 
 -- Main Tab
 MainTab:CreateSection("Auto Farm")
 MainTab:CreateToggle({ Name = "Auto Farm", CurrentValue = false, Callback = function(state) autoFarmEnabled = state if state then instantFarm() else if farmThread then task.cancel(farmThread) farmThread = nil end end end })
-MainTab:CreateToggle({ Name = "Auto Farm v2", Info = "Make sure you look down! May not collect sometimes. Bad for packed areas!", CurrentValue = false, Callback = ToggleHarvest })
+MainTab:CreateToggle({ Name = "Auto Farm [ V2 ]", Info = "Make sure you look down! May not collect sometimes. Bad for packed areas!", CurrentValue = false, Callback = ToggleHarvest })
 MainTab:CreateToggle({ Name = "Auto Collect", CurrentValue = false, Callback = function(state) fastClickEnabled = state if state then fastClickFarm() else if fastClickThread then task.cancel(fastClickThread) fastClickThread = nil end end end })
-MainTab:CreateToggle({ Name = "Auto Collect V2", Info = "Automatically collects fruits near you", CurrentValue = false, Callback = function(Value)
+MainTab:CreateToggle({ Name = "Auto Collect [ V2 ]", Info = "Automatically collects fruits near you", CurrentValue = false, Callback = function(Value)
     spamE = Value
     updateFarmData()
     for _, farm in pairs(farms) do for _, obj in ipairs(farm:GetDescendants()) do if obj:IsA("ProximityPrompt") then handleNewPrompt(obj) end end end
@@ -1547,7 +1547,7 @@ ShopTab:CreateButton({ Name = "Open Quest", Info = "Click again to close", Callb
 
 -- Player Tab
 PlayerTab:CreateSection("Movement")
-PlayerTab:CreateToggle({ Name = "Fly", CurrentValue = false, Callback = Fly })
+PlayerTab:CreateToggle({ Name = "Fly [ BUGGED ]", CurrentValue = false, Callback = Fly })
 PlayerTab:CreateToggle({ Name = "No Clip", CurrentValue = false, Callback = ToggleNoclip })
 PlayerTab:CreateToggle({ Name = "Infinite Jump", CurrentValue = false, Callback = ToggleInfJump })
 PlayerTab:CreateSlider({ Name = "Player Speed", Range = {0, 200}, Increment = 4, Suffix = "Speed", CurrentValue = 16, Callback = function(value) local char = lp.Character if char and char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid").WalkSpeed = value end end })
@@ -1579,10 +1579,12 @@ MiscTab:CreateButton({ Name = "Buy Skip Expander Timer (1day)", Info = "Click to
 MiscTab:CreateButton({ Name = "Buy Skip Expander Timer (3days)", Info = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3290619407) end) end })
 
 SpawnerTab:CreateSection("Seed Spawner")
+SpawnerTab:CreateLabel("This is just Visual. It's not real")
 SpawnerTab:CreateInput({Name="Seed Name (Without the Seed for example Candy Blossom)",PlaceholderText="Name",RemoveTextAfterFocusLost=false,Callback=function(t)seedName=t end})
 SpawnerTab:CreateInput({Name="Quanity",PlaceholderText="Amount",RemoveTextAfterFocusLost=false,Callback=function(t)seedAmount=tonumber(t)or 0 end})
 SpawnerTab:CreateButton({Name="Spawn Seeds",Callback=function()if seedName==""or seedAmount<=0 then return end local m=game:GetService("ReplicatedStorage"):FindFirstChild("Seed_Models"):FindFirstChild(seedName)if not m then warn("no model:",seedName)return end local t=Instance.new("Tool")t.Name=seedName.." Seed [x"..seedAmount.."]"t.RequiresHandle=true local c=m:Clone()local h=c:IsA("Part")and c or c:FindFirstChildWhichIsA("Part")if not h then warn("no handle lololol")return end h.Name="Handle"h.Anchored=false h.CanCollide=false h.Massless=true h.Parent=t t.Grip=CFrame.new(0.2,-0.449,0.232)*CFrame.Angles(0,math.rad(0),0)t.Parent=game.Players.LocalPlayer.Backpack end})
 SpawnerTab:CreateSection("Pet Spawner")
+SpawnerTab:CreateLabel("This is just Visual. It's not real")
 makeInput(SpawnerTab, "Pet name", "e.g., Raccoon", function(t) PetName = t end)
 makeInput(SpawnerTab, "Pet Weight", "e.g., 2", function(t) PetWeight = t end)
 makeInput(SpawnerTab, "Pet Age", "e.g., 3", function(t) PetAge = t end)
@@ -1651,8 +1653,6 @@ SpawnerTab:CreateButton({
         end)
     end
 })
-SpawnerTab:CreateLabel("VISUAL")
-SpawnerTab:CreateLabel("This is just Visual. It's not real")
 
 -- Visuals Tab
 VisualsTab:CreateSection("ESP")
