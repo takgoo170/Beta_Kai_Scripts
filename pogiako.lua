@@ -18,7 +18,7 @@ KaiUI:Notify({
     })
 KaiUI:Notify({
         Title = "Hey!",
-        Content = "Meme Sea, King Legacy Tab is currently empty right now.",
+        Content = "If you found some bugs, report it on our discord community.",
         Duration = 17
     })
 ------------------ TABS -----------------------
@@ -309,6 +309,41 @@ Deadrails:AddButton({
         end
     })
 
+Deadrails:AddButton({
+	Title = "Kagu Hub",
+	Description = "Keyless",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaguya11/KaguHubRework/refs/heads/main/Scripts/Loader.lua", true))()
+	end
+})
+			
+Deadrails:AddButton({
+	Title = "Null Fire",
+	Description = "No info found",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()
+	end
+     })
+Deadrails:AddButton({
+	Title = "Lunec Hub",
+	Description = "No info found",
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/LiterallyBacon12/LUNEC-On-Top/refs/heads/main/Official%20Source.lua"))()
+	end
+})
+Deadrails:AddButton({
+	Title = "Than Hub",
+	Description = "No info found",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
+	end
+})
+Deadrails:AddButton({
+	Title = "Nat Hub",
+	Description = "No info found",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))()
+	end
+})
 --------------- PSX TAB ----------------------
 PSX:AddParagraph({
         Title = "Pet Simulator X! 🐾",
