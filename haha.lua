@@ -1,4 +1,4 @@
-setclipboard("https://discord.gg/dmBzVaRrD3")
+setclipboard("https://discord.gg/wDMPK3QAmY")
 -- Services
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
@@ -1188,10 +1188,10 @@ end
 -- UI Setup
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-    Name = "Grow a Garden | PolleserHub",
+    Name = "Kai Hub : Grow a Garden",
     Icon = 0,
-    LoadingTitle = "Grow a Garden | PolleserHub",
-    LoadingSubtitle = "by Polleser",
+    LoadingTitle = "Kai Hub | GaG",
+    LoadingSubtitle = "by Kai Team",
     Theme = "Ocean",
     ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Polleser Hub" },
     Discord = { Enabled = true, Invite = "dmBzVaRrD3", RememberJoins = true },
@@ -1218,16 +1218,16 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("Main", "flower")
 local ShopTab = Window:CreateTab("Shop", "shopping-cart")
 local PlayerTab = Window:CreateTab("Players", "user")
-local MiscTab = Window:CreateTab("Miscellaneous", "list")
+local MiscTab = Window:CreateTab("Misc", "list")
 local SpawnerTab = Window:CreateTab("Spawner", "paw-print")
 local VisualsTab = Window:CreateTab("Visuals", "eye")
 
 -- Main Tab
 MainTab:CreateSection("Auto Farm")
 MainTab:CreateToggle({ Name = "Auto Farm", CurrentValue = false, Callback = function(state) autoFarmEnabled = state if state then instantFarm() else if farmThread then task.cancel(farmThread) farmThread = nil end end end })
-MainTab:CreateToggle({ Name = "Auto Farm v2", Info = "Make sure you look down! May not collect sometimes. Bad for packed areas!", CurrentValue = false, Callback = ToggleHarvest })
+MainTab:CreateToggle({ Name = "Auto Farm [ v2 ]", Info = "Make sure you look down! May not collect sometimes. Bad for packed areas!", CurrentValue = false, Callback = ToggleHarvest })
 MainTab:CreateToggle({ Name = "Auto Collect", CurrentValue = false, Callback = function(state) fastClickEnabled = state if state then fastClickFarm() else if fastClickThread then task.cancel(fastClickThread) fastClickThread = nil end end end })
-MainTab:CreateToggle({ Name = "Auto Collect V2", Info = "Automatically collects fruits near you", CurrentValue = false, Callback = function(Value)
+MainTab:CreateToggle({ Name = "Auto Collect [ v2 ]", Info = "Automatically collects fruits near you", CurrentValue = false, Callback = function(Value)
     spamE = Value
     updateFarmData()
     for _, farm in pairs(farms) do for _, obj in ipairs(farm:GetDescendants()) do if obj:IsA("ProximityPrompt") then handleNewPrompt(obj) end end end
