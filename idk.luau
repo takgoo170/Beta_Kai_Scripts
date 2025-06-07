@@ -8,9 +8,9 @@ local minimizeUI = Enum.KeyCode.RightAlt
 
 -- 🟢 Create Main UI
 local Window = Fluent:CreateWindow({
-    Title = "Hutao hub [FREE]",
-    SubTitle = "Dead Rails",
-    TabWidth = 160,
+    Title = "Kai Hub : Dead Rails",
+    SubTitle = "by Kai Team (discord.gg/wDMPK3QAmY)",
+    TabWidth = 150,
     Size = UDim2.fromOffset(480, 360),
     Acrylic = false,
     Theme = "Darker",
