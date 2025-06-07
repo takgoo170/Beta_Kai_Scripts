@@ -327,6 +327,7 @@ Deadrails:AddButton({
 Deadrails:AddButton({
 	Title = "Lunec Hub",
 	Description = "No info found",
+	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/LiterallyBacon12/LUNEC-On-Top/refs/heads/main/Official%20Source.lua"))()
 	end
 })
