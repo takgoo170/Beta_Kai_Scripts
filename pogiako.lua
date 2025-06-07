@@ -23,6 +23,7 @@ KaiUI:Notify({
     })
 ------------------ TABS -----------------------
 Info = Window:AddTab({ Title = "Info", Icon = "info" })
+Updates = Window:AddTab({ Title = "Updates", Icon = "hammer" })
 Server = Window:AddTab({ Title = "Server", Icon = "scroll" })
 Bloxfruits = Window:AddTab({ Title = "Blox Fruits", Icon = "apple" })
 GaG = Window:AddTab({ Title = "Grow a Garden", Icon = "carrot" })
@@ -71,15 +72,15 @@ Info:AddButton({
 
 Info:AddSection("Kai Team Info")
 Info:AddParagraph({
-        Title = "Owner/Developer",
+        Title = "🧑🏻‍💻 Owner/Developer",
         Content = "Takgoo"
     })
 Info:AddParagraph({
-        Title = "Admin",
+        Title = "⚒️ Admin",
         Content = "Sage, Chi"
     })
 Info:AddParagraph({
-        Title = "Beta Testers",
+        Title = "🧑🏻‍🔬 Beta Testers",
         Content = "None"
     })
 Info:AddSection("Status")
@@ -99,12 +100,35 @@ Info:AddParagraph({
         Content = "The script does not know whether there is a key system or not."
     })
 
+Info:AddSection("Credits")
+Info:AddParagraph({
+	Title = "❗ READ ONLY!",
+	Content = "Big credits to the owners of the scripts, we do not claim the scripts and I give credits to the owners."
+	})
 Info:AddSection("Socials")
 Info:AddParagraph({
         Title = "SOON",
         Description = ""
     })
 
+------------ UPDATES TAB -------------
+Updates:AddSection("Version")
+Updates:AddParagraph({
+	Title = "Version: 1.1"
+	})
+Updates:AddParagraph({
+	Title = "Version: 1.2"
+	})
+
+Updates:AddSection("Changelogs")
+Updates:AddParagraph({
+	Title = "Version 1.1 | Changelogs",
+	Content = "HEADS UP! Changelogs will be seen in our discord community!"
+	})
+Updates:AddParagraph({
+	Title = "Version 1.2 | Changelogs",
+	Content = "HEADS UP! Changelogs will be seen in our discord community!"
+	})	
 ------------------- SERVER TAB ---------------
 
 local MarketplaceService = game:GetService("MarketplaceService")
@@ -437,8 +461,29 @@ PetsGo:AddButton({
         end
     })
 
+-------------- MEME SEA TAB ----------------
+MemeSea:AddParagraph({
+	Title = "[Update 4] Meme Sea",
+	Content = "Meme Sea Script Section"
+	})
+MemeSea:AddParagraph({
+        Title = "Important Information",
+        Content = "Just click the scripts name below and it will automatically execute."
+    })
 
+MemeSea:AddButton({
+	Title = "Infinity X",
+	Description = "Requires a key",
+	Callback = function()
+		loadstring(game:HttpGet("https://gitlab.com/Lmy77/menu/-/raw/main/infinityx"))()
+	end
+	})
 
+------------ KING LEGACY TAB ------------
+KingLegacy:AddParagraph({
+	Title = "[UPD 8] King Legacy",
+	Content = "King Legacy Scripts Section"
+	})
 
 
 --------------- MORE SCRIPTS TAB ----------------
