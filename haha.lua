@@ -1186,14 +1186,19 @@ local function checkForMutations()
 end
 
 -- UI Setup
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Window = Rayfield:CreateWindow({
-    Name = "Kai Hub : Grow a Garden",
-    Icon = 0,
-    LoadingTitle = "Kai Hub | GaG",
-    LoadingSubtitle = "by Kai Team",
-    Theme = "Ocean",
-    ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Polleser Hub" },
+    Title = "Kai Hub : Grow a Garden",
+    SubTitle = "by Kai Team | (discord.gg/wDMPK3QAmY)",
+    TabWidth = 149,
+    Size = UDim2.fromOffset(540, 375),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+    --[[ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Polleser Hub" },
     Discord = { Enabled = true, Invite = "dmBzVaRrD3", RememberJoins = true },
     KeySystem = false,
     KeySettings = {
@@ -1212,7 +1217,7 @@ local Window = Rayfield:CreateWindow({
             "PermKey728199487473", "PermKey010284746371", "PermKey101082736282"
         }
     }
-})
+})]]
 
 -- Tabs
 local MainTab = Window:AddTab({ Title = "Main", Icon = "house" })
@@ -1417,8 +1422,8 @@ MainTab:AddSection("Others")
 MainTab:AddDropdown({ Title = "Select Mutations(Auto Fav)", Values = mutationOptions, Default = selectedMutations, Multi = true, Callback = function(Options) selectedMutations = Options if autoFavoriteEnabled then processBackpack() end end })
 MainTab:AddToggle({ Title = "Auto-Favorite", CurrentValue = false, Callback = function(Value) autoFavoriteEnabled = Value if Value then setupAutoFavorite() elseif connection then connection:Disconnect() connection = nil end end })
 MainTab:AddButton({ Title = "Unfav all", Callback = function() local backpack = lp:WaitForChild("Backpack") for _, tool in ipairs(backpack:GetChildren()) do local isFavorited = tool:GetAttribute("Favorite") or (tool:FindFirstChild("Favorite") and tool.Favorite.Value) if isFavorited then favoriteEvent:FireServer(tool) task.wait() end end end })
-MainTab:AddToggle({ Title = "One Click Plant Remove", Description = "Be careful! Hope you don't delete something you needed!", Default = false, Callback = function(value) OneClickRemove = value })
-MainTab:AddButton({ Title = "Stop Grow-ALL Pop-up", Callback = function(value) DestroySign = value })
+MainTab:AddToggle({ Title = "One Click Plant Remove", Description = "Be careful! Hope you don't delete something you needed!", Default = false, Callback = OneClickRemove })
+MainTab:AddButton({ Title = "Stop Grow-ALL Pop-up", Callback = DestroySign = })
 
 -- Shop Tab
 ShopTab:AddSection("Auto Buy")
@@ -1502,7 +1507,7 @@ ShopTab:AddToggle({
 })
 ShopTab:AddToggle({ Name = "Auto Buy Eggs", Default = false, Callback = function(value) Autoegg_autoBuyEnabled = value if Autoegg_autoBuyEnabled then Autoegg_firstRun = true Autoegg_autoBuyEggs() end end })
 ShopTab:AddSection("Cosmetic")
-ShopTab:AddButton({ Title = "Open Cosmetic Shop", Callback = function(value) OpenCosmetic = value })
+ShopTab:AddButton({ Title = "Open Cosmetic Shop", Callback = OpenCosmetic })
 ShopTab:AddButton({ Title = "Buy Cosmetic Items x5 (In Stock it'll also drains your shuckles)",Callback = function()for _,s in ipairs({lp.PlayerGui.CosmeticShop_UI.CosmeticShop.Main.Holder.Shop.ContentFrame.TopSegment,lp.PlayerGui.CosmeticShop_UI.CosmeticShop.Main.Holder.Shop.ContentFrame.BottomSegment})do for _=1,5 do for _,f in ipairs(s:GetChildren())do if f:IsA("Frame")then GameEvents.BuyCosmeticItem:FireServer(f.Name)if f.Name:find("Crate")then GameEvents.BuyCosmeticCrate:FireServer(f.Name)end end end end end end})
 local TeleportButton =
     ShopTab:AddButton(
@@ -1520,9 +1525,9 @@ local TeleportButton =
     }
 )
 ShopTab:AddSection("Events")
-ShopTab:AddButton({ Title = "Open BloodShop", Callback = function(value) OpenBloodShop = value })
-ShopTab:AddButton({ Title = "Open Twilight Shop", Callback = function(value) OpenTwilight = value })
-ShopTab:AddButton({ Title = "Open Twilight Quest", Callback = function(value) OpenTwilightQuest = value })
+ShopTab:AddButton({ Title = "Open BloodShop", Callback = OpenBloodShop })
+ShopTab:AddButton({ Title = "Open Twilight Shop", Callback = OpenTwilight })
+ShopTab:AddButton({ Title = "Open Twilight Quest", Callback = OpenTwilightQuest })
 ShopTab:AddSection("Menus")
 ShopTab:AddButton({ Title = "Open Egg Shop 1", Description = "Click again to close", Callback = EggShop1 })
 ShopTab:AddButton({ Title = "Open Egg Shop 2", Description = "Click again to close", Callback = EggShop2 })
@@ -1532,20 +1537,20 @@ ShopTab:AddButton({ Title = "Open Gear Shop", Description = "Click again to clos
 ShopTab:AddButton({ Title = "Open Quest", Description = "Click again to close", Callback = OpenQuest })
 
 -- Player Tab
-PlayerTab:CreateSection("Movement")
-PlayerTab:CreateToggle({ Name = "Fly", CurrentValue = false, Callback = Fly })
-PlayerTab:CreateToggle({ Name = "No Clip", CurrentValue = false, Callback = ToggleNoclip })
-PlayerTab:CreateToggle({ Name = "Infinite Jump", CurrentValue = false, Callback = ToggleInfJump })
-PlayerTab:CreateSlider({ Name = "Player Speed", Range = {0, 200}, Increment = 4, Suffix = "Speed", CurrentValue = 16, Callback = function(value) local char = lp.Character if char and char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid").WalkSpeed = value end end })
-PlayerTab:CreateSlider({ Name = "Jump Height", Range = {0, 200}, Increment = 10, Suffix = "Height", CurrentValue = 50, Callback = function(value) local char = lp.Character if char and char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid").JumpPower = value end end })
+PlayerTab:AddSection("Movement")
+PlayerTab:AddToggle({ Title = "Fly", Default = false, Callback = Fly })
+PlayerTab:AddToggle({ Title = "No Clip", Default = false, Callback = ToggleNoclip })
+PlayerTab:AddToggle({ Title = "Infinite Jump", Default = false, Callback = ToggleInfJump })
+PlayerTab:AddSlider({ Title = "Walkspeed", Min = 0, Max = 350, Increment = 4, Suffix = "Speed", Default = 16, Callback = function(value) local char = lp.Character if char and char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid").WalkSpeed = value end end })
+PlayerTab:AddSlider({ Title = "Jump Height", Min = 0, Max = 300, Increment = 10, Suffix = "Height", Default = 50, Callback = function(value) local char = lp.Character if char and char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid").JumpPower = value end end })
 
-MiscTab:CreateSection("Plants")
-MiscTab:CreateDropdown({ Name = "Select Seeds to Plant", Info = "Seeds to plant", Options = seedNames, CurrentOption = {}, MultipleOptions = true, Flag = "SelectPlantFr", Callback = function(opts) SelectedSeeds = opts end })
-MiscTab:CreateToggle({ Name = "Auto Plant", Info = "Fly and No Clip recommended to avoid glitches from growing crops", CurrentValue = false, Callback = function(state) AutoPlanting = state if state then startAutoPlanting() end end })
-MiscTab:CreateToggle({ Name = "Auto Submit Plant", CurrentValue = false, Callback = AutoGiveFruitMoon })
-MiscTab:CreateButton({
-    Name = "Submit All Moon Fruits",
-    Info = "Submits All Moon Fruits Of Yours.",
+MiscTab:AddSection("Plants")
+MiscTab:AddDropdown({ Title = "Select Seeds to Plant", Description = "Seeds to plant", Values = seedNames, Default = {}, Multi = true, Callback = function(opts) SelectedSeeds = opts end })
+MiscTab:AddToggle({ Title = "Auto Plant", Description = "Fly and No Clip recommended to avoid glitches from growing crops", Default = false, Callback = function(state) AutoPlanting = state if state then startAutoPlanting() end end })
+MiscTab:AddToggle({ Title = "Auto Submit Plant", Default = false, Callback = AutoGiveFruitMoon })
+MiscTab:AddButton({
+    Title = "Submit All Moon Fruits",
+    Description = "Submits All Moon Fruits Of Yours.",
     Callback = function()
         local args = {
             "SubmitAllPlants"
@@ -1554,27 +1559,116 @@ MiscTab:CreateButton({
     end
 })
 
-MiscTab:CreateSection("Extras")
-MiscTab:CreateButton({ Name = "AntiAfk (Press Once Only)", Callback = function() local success, error = pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/Anti-afk/main/antiafkbyhassanxzyn"))() end) Rayfield:Notify({ Title = success and "Anti Afk" or "Error", Content = success and "Anti Afk script executed successfully!" or "Failed to execute Anti Afk script: " .. tostring(error), Duration = 5, Image = success and "rewind" or "alert-triangle" }) end })
-MiscTab:CreateButton({ Name = "ServerHop", Callback = function() local success, error = pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Spectrum-Trash/Addons/refs/heads/main/FindServer.lua"))() end) Rayfield:Notify({ Title = success and "Server Finder" or "Error", Content = success and "Server Finder script executed successfully!" or "Failed to execute Server Finder script: " .. tostring(error), Duration = 5, Image = success and "rewind" or "alert-triangle" }) end })
-MiscTab:CreateButton({ Name = "ServerHop V2", Callback = ServerHop })
-MiscTab:CreateSection("Purchase Stuff (if it gave you the item dm me please)")
-MiscTab:CreateButton({ Name = "Buy Candy Blossom With Robux", Info = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, ProductId) end) end })
-MiscTab:CreateButton({ Name = "Buy Bug Egg", Info = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3277000452) end) end })
-MiscTab:CreateButton({ Name = "Buy Skip Expander Timer (1day)", Info = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3290577633) end) end })
-MiscTab:CreateButton({ Name = "Buy Skip Expander Timer (3days)", Info = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3290619407) end) end })
+MiscTab:AddSection("Extras")
+MiscTab:AddButton({ Title = "AntiAfk (Press Once Only)", Callback = function() local success, error = pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/Anti-afk/main/antiafkbyhassanxzyn"))() end) Rayfield:Notify({ Title = success and "Anti Afk" or "Error", Content = success and "Anti Afk script executed successfully!" or "Failed to execute Anti Afk script: " .. tostring(error), Duration = 5, Image = success and "rewind" or "alert-triangle" }) end })
+MiscTab:AddButton({ Title = "ServerHop", Callback = function() local success, error = pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Spectrum-Trash/Addons/refs/heads/main/FindServer.lua"))() end) Rayfield:Notify({ Title = success and "Server Finder" or "Error", Content = success and "Server Finder script executed successfully!" or "Failed to execute Server Finder script: " .. tostring(error), Duration = 5, Image = success and "rewind" or "alert-triangle" }) end })
+MiscTab:AddButton({ Title = "ServerHop V2", Callback = ServerHop })
+MiscTab:AddSection("Purchase Stuff (if it gave you the item dm me please)")
+MiscTab:AddButton({ Title = "Buy Candy Blossom With Robux", Description = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, ProductId) end) end })
+MiscTab:AddButton({ Title = "Buy Bug Egg", Description = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3277000452) end) end })
+MiscTab:AddButton({ Title = "Buy Skip Expander Timer (1day)", Description = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3290577633) end) end })
+MiscTab:AddButton({ Title = "Buy Skip Expander Timer (3days)", Description = "Click to purchase", Callback = function() local MarketplaceService = game:GetService("MarketplaceService") pcall(function() MarketplaceService:PromptProductPurchase(lp, 3290619407) end) end })
 
-SpawnerTab:CreateSection("Seed Spawner")
-SpawnerTab:CreateInput({Name="Seed Name (Without the Seed for example Candy Blossom)",PlaceholderText="Name",RemoveTextAfterFocusLost=false,Callback=function(t)seedName=t end})
-SpawnerTab:CreateInput({Name="Quanity",PlaceholderText="Amount",RemoveTextAfterFocusLost=false,Callback=function(t)seedAmount=tonumber(t)or 0 end})
-SpawnerTab:CreateButton({Name="Spawn Seeds",Callback=function()if seedName==""or seedAmount<=0 then return end local m=game:GetService("ReplicatedStorage"):FindFirstChild("Seed_Models"):FindFirstChild(seedName)if not m then warn("no model:",seedName)return end local t=Instance.new("Tool")t.Name=seedName.." Seed [x"..seedAmount.."]"t.RequiresHandle=true local c=m:Clone()local h=c:IsA("Part")and c or c:FindFirstChildWhichIsA("Part")if not h then warn("no handle lololol")return end h.Name="Handle"h.Anchored=false h.CanCollide=false h.Massless=true h.Parent=t t.Grip=CFrame.new(0.2,-0.449,0.232)*CFrame.Angles(0,math.rad(0),0)t.Parent=game.Players.LocalPlayer.Backpack end})
-SpawnerTab:CreateSection("Pet Spawner")
-makeInput(SpawnerTab, "Pet name", "e.g., Raccoon", function(t) PetName = t end)
-makeInput(SpawnerTab, "Pet Weight", "e.g., 2", function(t) PetWeight = t end)
-makeInput(SpawnerTab, "Pet Age", "e.g., 3", function(t) PetAge = t end)
+SpawnerTab:AddSection("Seed Spawner")
+-- Seed Name Input
+SpawnerTab:AddInput({
+    Title = "Seed Name)",
+    Default = "",
+    Placeholder = "e.g, Beanstalk",
+    Numeric = false,
+    Finished = false, -- calls callback on each text change
+    Callback = function(value)
+        seedName = value
+    end
+})
 
-SpawnerTab:CreateButton({
-    Name = "Spawn Pet",
+-- Seed Quantity Input
+SpawnerTab:AddInput({
+    Title = "Quantity",
+    Default = "0",
+    Placeholder = "Amount",
+    Numeric = true,
+    Finished = false,
+    Callback = function(value)
+        seedAmount = tonumber(value) or 0
+    end
+})
+
+-- Spawn Seeds Button
+SpawnerTab:AddButton({
+    Title = "Spawn Seeds",
+    Callback = function()
+        if seedName == "" or seedAmount <= 0 then return end
+        
+        local seedModels = game:GetService("ReplicatedStorage"):FindFirstChild("Seed_Models")
+        local model = seedModels and seedModels:FindFirstChild(seedName)
+        if not model then
+            warn("No model found for seed name:", seedName)
+            return
+        end
+
+        local tool = Instance.new("Tool")
+        tool.Name = seedName .. " Seed [x" .. seedAmount .. "]"
+        tool.RequiresHandle = true
+
+        local cloneModel = model:Clone()
+        local handle = cloneModel:IsA("Part") and cloneModel or cloneModel:FindFirstChildWhichIsA("Part")
+        if not handle then
+            warn("No handle part found in the seed model")
+            return
+        end
+
+        handle.Name = "Handle"
+        handle.Anchored = false
+        handle.CanCollide = false
+        handle.Massless = true
+        handle.Parent = tool
+
+        tool.Grip = CFrame.new(0.2, -0.449, 0.232) * CFrame.Angles(0, math.rad(0), 0)
+        tool.Parent = game.Players.LocalPlayer.Backpack
+    end
+})
+
+-- Pet Spawner Section
+SpawnerTab:AddSection("Pet Spawner")
+
+-- Pet Name Input
+SpawnerTab:AddInput({
+    Title = "Pet Name",
+    Default = "",
+    Placeholder = "e.g., Raccoon",
+    Numeric = false,
+    Finished = false,
+    Callback = function(value)
+        PetName = value
+    end
+})
+
+-- Pet Weight Input
+SpawnerTab:AddInput({
+    Title = "Pet Weight",
+    Default = "0",
+    Placeholder = "e.g., 2",
+    Numeric = true,
+    Finished = false,
+    Callback = function(value)
+        PetWeight = tonumber(value) or 0
+    end
+})
+
+-- Pet Age Input
+SpawnerTab:AddInput({
+    Title = "Pet Age",
+    Default = "0",
+    Placeholder = "e.g., 3",
+    Numeric = true,
+    Finished = false,
+    Callback = function(value)
+        PetAge = tonumber(value) or 0
+    end
+})
+SpawnerTab:AddButton({
+    Title = "Spawn Pet",
     Callback = function()
         local player = Players.LocalPlayer
         local backpack = player:WaitForChild("Backpack")
@@ -1637,22 +1731,27 @@ SpawnerTab:CreateButton({
         end)
     end
 })
-SpawnerTab:CreateLabel("Credits to @ah_punisher")
-SpawnerTab:CreateLabel("This is just Visual. It's not real")
+SpawnerTab:AddParagraph({
+        Title = "THIS IS JUST A VISUAL!!!"
+    })
 
 -- Visuals Tab
-VisualsTab:CreateSection("ESP")
-VisualsTab:CreateDropdown({ Name = "Select Mutations", Options = mutationOptions, CurrentOption = state.selectedMutations, MultipleOptions = true, Flag = "ESPFr", Callback = function(options) state.selectedMutations = options updateESP() end })
-VisualsTab:CreateToggle({ Name = "Enable Mutation ESP", CurrentValue = false, Callback = function(value) state.espEnabled = value updateESP() end })
-local CountLabel = VisualsTab:CreateLabel("Mutation Stats")
+VisualsTab:AddSection("ESP")
+VisualsTab:CreateDropdown({ Title = "Select Mutations", Values = mutationOptions, Default = state.selectedMutations, Multi = true, Callback = function(options) state.selectedMutations = options updateESP() end })
+VisualsTab:CreateToggle({ Title = "Enable Mutation ESP", Default = false, Callback = function(value) state.espEnabled = value updateESP() end })
+local CountLabel = VisualsTab:AddParagraph({ Title = "Mutation Stats" })
 RunService.Heartbeat:Connect(function() CountLabel:Set(updateMutationCounts()) end)
-VisualsTab:CreateSection("Mutation Webhook Notifier")
+VisualsTab:AddSection("Mutation Webhook Notifier")
 
 -- UI Setup
-VisualsTab:CreateInput({
-    Name = "Discord Webhook URL",
-    Info = "Enter your Discord webhook URL for mutation notifications",
-    PlaceholderText = "https://discord.com/api/webhooks/...",
+-- Discord Webhook URL Input using Fluent UI with Default-inspired styling
+
+-- Assuming VisualsTab is your Fluent UI tab object
+
+VisualsTab:AddInput({
+    Title = "Discord Webhook URL",
+    Description = "Enter your Discord webhook URL for mutation notifications",
+    Placeholder = "https://discord.com/api/webhooks/...",
     Flag = "WebhookInput",
     Callback = function(value)
         state.webhookUrl = value
@@ -1662,12 +1761,11 @@ VisualsTab:CreateInput({
     end
 })
 
-VisualsTab:CreateDropdown({
-    Name = "Select Mutations",
-    Options = mutationOptions,
-    CurrentOption = state.selectedMutations,
-    MultipleOptions = true,
-    Flag = "SelectMutts",
+VisualsTab:AddDropdown({
+    Title = "Select Mutations",
+    Values = mutationOptions,
+    Default = state.selectedMutations,
+    Multi = true,
     Callback = function(options)
         state.selectedMutations = options
         if #options > 0 and state.webhookUrl ~= "" then
@@ -1685,41 +1783,73 @@ spawn(function()
         wait(5) -- Check every 5 seconds to avoid performance issues
     end
 end)
-VisualsTab:CreateSection("Visuals")
-VisualsTab:CreateButton({ Name = "Remove Other's Plants", Info = "Removes everyone else's plants except yours", Callback = DestroyOthersFarm })
-VisualsTab:CreateInput({ Name = "Fake Money", PlaceholderText = "Enter Amount", RemoveTextAfterFocusLost = false, Callback = function(value)
-    local amount = tonumber(value)
-    if not amount then return end
-    if lp and lp:FindFirstChild("leaderstats") and lp.leaderstats:FindFirstChild("Sheckles") then lp.leaderstats.Sheckles.Value = amount end
-    local function formatCommas(n)
-        local negative = n < 0
-        n = tostring(math.abs(n))
-        local left, num, right = string.match(n, "^([^%d]*%d)(%d*)(.-)$")
-        local formatted = left .. (num:reverse():gsub("(%d%d%d)", "%1,"):reverse()) .. right
-        return (negative and "-" or "") .. formatted .. "ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢"
-    end
-    local function shortenNumber(n)
-        local scales = { {1000000000000000000, "Qi"}, {999999986991104, "Qa"}, {999999995904, "T"}, {1000000000, "B"}, {1000000, "M"}, {1000, "K"} }
-        local negative = n < 0
-        n = math.abs(n)
-        if n < 1000 then return (negative and "-" or "") .. tostring(math.floor(n)) end
-        for i = 1, #scales do
-            local scale, label = scales[i][1], scales[i][2]
-            if n >= scale then
-                local value = n / scale
-                return (negative and "-" or "") .. (value % 1 == 0 and string.format("%.0f%s", value, label) or string.format("%.2f%s", value, label))
-            end
+VisualsTab:AddSection("Visuals")
+VisualsTab:AddButton({ Title = "Remove Other's Plants", Description = "Removes everyone else's plants except yours", Callback = DestroyOthersFarm })
+-- Assuming VisualsTab is your Fluent UI tab object
+
+VisualsTab:AddInput({
+    Title = "Fake Money",
+    Placeholder = "Enter Amount",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(value)
+        local amount = tonumber(value)
+        if not amount then return end
+        
+        -- Update player's Sheckles
+        if lp and lp:FindFirstChild("leaderstats") and lp.leaderstats:FindFirstChild("Sheckles") then
+            lp.leaderstats.Sheckles.Value = amount
         end
-        return (negative and "-" or "") .. tostring(n)
+
+        -- Function to format numbers with commas
+        local function formatCommas(n)
+            local negative = n < 0
+            n = tostring(math.abs(n))
+            local left, num, right = string.match(n, "^([^%d]*%d)(%d*)(.-)$")
+            local formatted = left .. (num:reverse():gsub("(%d%d%d)", "%1,"):reverse()) .. right
+            return (negative and "-" or "") .. formatted .. "₵" -- Adjusted currency symbol
+        end
+
+        -- Function to shorten numbers
+        local function shortenNumber(n)
+            local scales = {
+                {1000000000000000000, "Qi"},
+                {999999986991104, "Qa"},
+                {999999995904, "T"},
+                {1000000000, "B"},
+                {1000000, "M"},
+                {1000, "K"}
+            }
+            local negative = n < 0
+            n = math.abs(n)
+            if n < 1000 then return (negative and "-" or "") .. tostring(math.floor(n)) end
+            for i = 1, #scales do
+                local scale, label = scales[i][1], scales[i][2]
+                if n >= scale then
+                    local value = n / scale
+                    return (negative and "-" or "") .. (value % 1 == 0 and string.format("%.0f%s", value, label) or string.format("%.2f%s", value, label))
+                end
+            end
+            return (negative and "-" or "") .. tostring(n)
+        end
+
+        -- Format the amounts for UI display
+        local formattedDealer = formatCommas(amount)
+        local formattedBoard = shortenNumber(amount)
+
+        -- Update the Sheckles UI
+        local shecklesUI = lp:FindFirstChild("PlayerGui") and lp.PlayerGui:FindFirstChild("Sheckles_UI")
+        if shecklesUI and shecklesUI:FindFirstChild("TextLabel") then
+            shecklesUI.TextLabel.Text = formattedDealer
+        end
+
+        -- Update the Dealer Board UI
+        local dealerBoard = workspace:FindFirstChild("DealerBoard")
+        if dealerBoard and dealerBoard:FindFirstChild("BillboardGui") and dealerBoard.BillboardGui:FindFirstChild("TextLabel") then
+            dealerBoard.BillboardGui.TextLabel.Text = formattedBoard
+        end
     end
-    local formattedDealer = formatCommas(amount)
-    local formattedBoard = shortenNumber(amount)
-    local shecklesUI = lp:FindFirstChild("PlayerGui") and lp.PlayerGui:FindFirstChild("Sheckles_UI")
-    if shecklesUI and shecklesUI:FindFirstChild("TextLabel") then shecklesUI.TextLabel.Text = formattedDealer end
-    local dealerBoard = workspace:FindFirstChild("DealerBoard")
-    if dealerBoard and dealerBoard:FindFirstChild("BillboardGui") and dealerBoard.BillboardGui:FindFirstChild("TextLabel") then dealerBoard.BillboardGui.TextLabel.Text = formattedBoard end
-end })
-VisualsTab:CreateButton({ Name = "Destroy UI", Callback = function() Rayfield:Destroy() end })
+})
+VisualsTab:AddButton({ Title = "Destroy UI", Callback = function() Rayfield:Destroy() end })
 
 local function getItemPrice(path, item)
     local container = path:FindFirstChild(item)
